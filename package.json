@@ -15,10 +15,5 @@
   },
   "scripts": {
     "prepare": "husky install"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "cd client && npm test"
-    }
   }
 }
