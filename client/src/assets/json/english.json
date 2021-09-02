@@ -1,0 +1,82 @@
+{
+  "intro": [
+    {
+      "title": "FoodBot",
+      "subtitle": "Create your own dream dessert"
+    }
+  ],
+  "menu": "Menu",
+  "home": [
+    {
+      "title": "FoodBot",
+      "description": "FoodBot 3D printer\nis an equipment which\ncan make food quickly.\nIt allows you to create\nyour own dream dessert.",
+      "button": "Discover features"
+    }
+  ],
+  "features": [
+    {
+      "name": "basis",
+      "left": 32,
+      "top": 69,
+      "title": "Basis",
+      "description": "Different size (0.3 mm - 1.2 mm) printing heads\nprovided to allow you to choose how delicate\nthe print jobs will be.\nAnd the FoodBot 3D printer\nalways print the best.\nThis is sample text."
+    },
+    {
+      "name": "head",
+      "left": 48,
+      "top": 60,
+      "title": "Head",
+      "description": "Different size (0.3 mm - 1.2 mm) printing heads\nprovided to allow you to choose how delicate\nthe print jobs will be.\nAnd the FoodBot 3D printer\nalways print the best."
+    },
+    {
+      "name": "fence",
+      "left": 38,
+      "top": 40,
+      "title": "Fence",
+      "description": "Different size (0.3 mm - 1.2 mm) printing heads\nprovided to allow you to choose how delicate\nthe print jobs will be.\nAnd the FoodBot 3D printer\nalways print the best."
+    },
+    {
+      "name": "logo",
+      "left": 53,
+      "top": 27,
+      "title": "Logo",
+      "description": "Different size (0.3 mm - 1.2 mm) printing heads\nprovided to allow you to choose how delicate\nthe print jobs will be.\nAnd the FoodBot 3D printer\nalways print the best."
+    },
+    {
+      "name": "screen",
+      "left": 80,
+      "top": 28,
+      "title": "Screen",
+      "description": "Different size (0.3 mm - 1.2 mm) printing heads\nprovided to allow you to choose how delicate\nthe print jobs will be.\nAnd the FoodBot 3D printer\nalways print the best."
+    }
+  ],
+  "gallery": [
+    {
+      "title": "Gallery",
+      "imageRatio": "16:9",
+      "imagesQuantity": 5
+    }
+  ],
+  "blog": [
+    {
+      "title": "Blog",
+      "posts": [
+        {
+          "slug": "first_post",
+          "title": "This is the first post.",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus, nisi ac suscipit consectetur, purus orci pharetra orci, vitae varius felis odio et odio. Maecenas et velit dapibus ex semper commodo. Nunc at augue eget lorem congue ultrices. Maecenas condimentum sed tellus ut vehicula. Nulla sollicitudin erat imperdiet lectus convallis lobortis. Suspendisse placerat est eros, sit amet accumsan justo porttitor quis. Mauris semper sapien leo, nec ullamcorper turpis sollicitudin non. Donec a orci posuere turpis porttitor facilisis sit amet eget ex.   Sed auctor viverra lacinia. Sed a facilisis urna. In quis lorem aliquet, aliquet neque sed, malesuada ante. In eget quam aliquam, rutrum mi vitae, ultricies quam. Phasellus eu nisl erat. Nullam molestie dolor ac ex malesuada mattis sit amet eget ex. Morbi at euismod ipsum, nec faucibus tortor. Ut rutrum nulla quis nisl lacinia tempus. In sollicitudin mi nec feugiat pretium.Donec non fringilla nisl. Vivamus laoreet tortor mi, fermentum egestas quam tincidunt at. Nulla laoreet placerat turpis, id euismod metus dignissim interdum. Etiam non dui non diam sollicitudin pulvinar sed et purus. Donec eget arcu euismod, cursus dolor tempor, mollis lacus. Suspendisse vel gravida neque, in suscipit augue. Phasellus tempor consectetur nisi cursus congue. Donec id odio ac ex rutrum commodo. Quisque odio neque, iaculis eu nibh in, dapibus egestas ex. Ut tincidunt, arcu quis pretium placerat, lacus ipsum convallis turpis, a lacinia mi quam ut arcu. Maecenas commodo tempor nunc et hendrerit. Pellentesque sed tristique nisi."
+        },
+        {
+          "slug": "second_post",
+          "title": "This is the second post.",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus, nisi ac suscipit consectetur, purus orci pharetra orci, vitae varius felis odio et odio. Maecenas et velit dapibus ex semper commodo. Nunc at augue eget lorem congue ultrices. Maecenas condimentum sed tellus ut vehicula. Nulla sollicitudin erat imperdiet lectus convallis lobortis. Suspendisse placerat est eros, sit amet accumsan justo porttitor quis. Mauris semper sapien leo, nec ullamcorper turpis sollicitudin non. Donec a orci posuere turpis porttitor facilisis sit amet eget ex.   Sed auctor viverra lacinia. Sed a facilisis urna. In quis lorem aliquet, aliquet neque sed, malesuada ante. In eget quam aliquam, rutrum mi vitae, ultricies quam. Phasellus eu nisl erat. Nullam molestie dolor ac ex malesuada mattis sit amet eget ex. Morbi at euismod ipsum, nec faucibus tortor. Ut rutrum nulla quis nisl lacinia tempus. In sollicitudin mi nec feugiat pretium.Donec non fringilla nisl. Vivamus laoreet tortor mi, fermentum egestas quam tincidunt at. Nulla laoreet placerat turpis, id euismod metus dignissim interdum. Etiam non dui non diam sollicitudin pulvinar sed et purus. Donec eget arcu euismod, cursus dolor tempor, mollis lacus. Suspendisse vel gravida neque, in suscipit augue. Phasellus tempor consectetur nisi cursus congue. Donec id odio ac ex rutrum commodo. Quisque odio neque, iaculis eu nibh in, dapibus egestas ex. Ut tincidunt, arcu quis pretium placerat, lacus ipsum convallis turpis, a lacinia mi quam ut arcu. Maecenas commodo tempor nunc et hendrerit. Pellentesque sed tristique nisi."
+        },
+        {
+          "slug": "third_post",
+          "title": "This is the third post.",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus, nisi ac suscipit consectetur, purus orci pharetra orci, vitae varius felis odio et odio. Maecenas et velit dapibus ex semper commodo. Nunc at augue eget lorem congue ultrices. Maecenas condimentum sed tellus ut vehicula. Nulla sollicitudin erat imperdiet lectus convallis lobortis. Suspendisse placerat est eros, sit amet accumsan justo porttitor quis. Mauris semper sapien leo, nec ullamcorper turpis sollicitudin non. Donec a orci posuere turpis porttitor facilisis sit amet eget ex.   Sed auctor viverra lacinia. Sed a facilisis urna. In quis lorem aliquet, aliquet neque sed, malesuada ante. In eget quam aliquam, rutrum mi vitae, ultricies quam. Phasellus eu nisl erat. Nullam molestie dolor ac ex malesuada mattis sit amet eget ex. Morbi at euismod ipsum, nec faucibus tortor. Ut rutrum nulla quis nisl lacinia tempus. In sollicitudin mi nec feugiat pretium.Donec non fringilla nisl. Vivamus laoreet tortor mi, fermentum egestas quam tincidunt at. Nulla laoreet placerat turpis, id euismod metus dignissim interdum. Etiam non dui non diam sollicitudin pulvinar sed et purus. Donec eget arcu euismod, cursus dolor tempor, mollis lacus. Suspendisse vel gravida neque, in suscipit augue. Phasellus tempor consectetur nisi cursus congue. Donec id odio ac ex rutrum commodo. Quisque odio neque, iaculis eu nibh in, dapibus egestas ex. Ut tincidunt, arcu quis pretium placerat, lacus ipsum convallis turpis, a lacinia mi quam ut arcu. Maecenas commodo tempor nunc et hendrerit. Pellentesque sed tristique nisi."
+        }
+      ]
+    }
+  ]
+}
