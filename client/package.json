@@ -32,6 +32,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.25.1",
     "jest": "^26.6.0",
+    "redux-devtools-extension": "^2.13.9",
     "sass": "^1.38.2"
   },
   "scripts": {
