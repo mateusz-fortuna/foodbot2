@@ -1,7 +1,24 @@
 import React from 'react';
+import './styles.sass';
+
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import MainLayout from '../layouts/MainLayout';
+import Home from '../pages/Home';
 
 const App: () => JSX.Element = () => {
-  return <div className="App">FoodBot website</div>;
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="">
+            <MainLayout>
+              <Home />
+            </MainLayout>
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
 };
 
 export default App;

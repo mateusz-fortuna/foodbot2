@@ -4,9 +4,5 @@ export const darkColor = '#0e0e0e';
 export const lightTheme = {
   background: lightColor,
   font: darkColor,
-};
-
-export const darkTheme = {
-  background: darkColor,
-  font: lightColor,
+  openedMenu: lightColor,
 };
