@@ -14,6 +14,7 @@
     "husky": "^7.0.2"
   },
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "client": "cd client && npm start"
   }
 }
