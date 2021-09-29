@@ -1,6 +1,6 @@
-import { TransitionOut } from '../components/Transitions';
 import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import { RootState } from '../redux/rootReducer';
+import Intro from '../components/Intro';
 import './styles.sass';
 
 type Props = {
@@ -10,18 +10,17 @@ type Props = {
 };
 
 const MainLayout = ({ children }: Props): JSX.Element => {
-  const { background } = useSelector(
+  const { background, font } = useSelector(
     (state: RootState) => state.themeReducer.THEME,
   );
 
   return (
     <div className="mainLayout">
       {children}
-      <TransitionOut
+      <Intro
+        initialRender={true}
+        textColor={font.transition}
         backgroundColor={background.transition}
-        duration={1000}
-        delay={100}
-        mount={true}
       />
     </div>
   );
