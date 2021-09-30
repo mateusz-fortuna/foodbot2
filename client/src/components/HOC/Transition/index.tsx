@@ -1,5 +1,7 @@
+//import { useState } from 'react';
 import { TransitionGroup } from 'react-transition-group';
-import TransitionCol from './TransitionCol';
+import { renderCols } from '../../../utils/helpers/renderCols';
+import TransitionCol from '../../Transitions/TransitionCol';
 import './styles.sass';
 
 export interface TransitionProps {
@@ -13,21 +15,19 @@ export interface Props extends TransitionProps {
   transitionClassName: string;
 }
 
-const Transition = (props: Props): JSX.Element => {
-  const colsNumber = 4;
+const Transition = (props: Props): JSX.Element | null => {
+  /* const [isAnimationDone, setIsAnimationDone] = useState(false);
+  if (isAnimationDone) return null; */
 
-  const renderCols = () => {
-    const cols: JSX.Element[] = [];
-    for (let i = 0; i < colsNumber; i++) {
-      cols.push(
-        <TransitionCol {...props} index={i} key={`transitionCol${i}`} />,
-      );
-    }
-    return cols;
-  };
+  const colsQuantity = 4;
+  const col = (i: number) => (
+    <TransitionCol {...props} index={i} key={`transitionCol${i}`} />
+  );
 
   return (
-    <TransitionGroup className="transition">{renderCols()}</TransitionGroup>
+    <TransitionGroup className="transition">
+      {renderCols(col, colsQuantity)}
+    </TransitionGroup>
   );
 };
 

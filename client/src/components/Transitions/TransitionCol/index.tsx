@@ -1,5 +1,5 @@
 import { CSSTransition } from 'react-transition-group';
-import { Props } from '../index';
+import { Props } from '../../HOC/Transition/index';
 
 interface TransitionColProps extends Props {
   index: number;
@@ -22,7 +22,6 @@ const TransitionCol = ({
       timeout={duration + transitionDelay}
       classNames={transitionClassName}
       key={transitionClassName + index}
-      //onEntered unmount Transition
     >
       <div
         className={`transition__col ${transitionClassName}`}

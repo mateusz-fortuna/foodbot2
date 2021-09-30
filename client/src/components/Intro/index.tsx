@@ -16,7 +16,7 @@ type Props = {
 
 const Intro = ({
   initialRender,
-  textColor,
+  //textColor,
   backgroundColor,
 }: Props): JSX.Element | null => {
   if (!initialRender) return null;
