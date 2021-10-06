@@ -19,7 +19,7 @@ const TransitionCol = ({
     <CSSTransition
       in={mount}
       appear
-      timeout={duration + transitionDelay}
+      timeout={duration + transitionDelay + 100}
       classNames={transitionClassName}
       key={transitionClassName + index}
       unmountOnExit
