@@ -1,4 +1,3 @@
-//import { useState } from 'react';
 import { TransitionGroup } from 'react-transition-group';
 import { renderCols } from '../../../utils/helpers/renderCols';
 import TransitionCol from '../../Transitions/TransitionCol';
@@ -16,10 +15,8 @@ export interface Props extends TransitionProps {
 }
 
 const Transition = (props: Props): JSX.Element | null => {
-  /* const [isAnimationDone, setIsAnimationDone] = useState(false);
-  if (isAnimationDone) return null; */
-
   const colsQuantity = 4;
+
   const col = (i: number) => (
     <TransitionCol {...props} index={i} key={`transitionCol${i}`} />
   );
