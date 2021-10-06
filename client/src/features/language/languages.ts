@@ -1,4 +1,4 @@
-export const english = 'EN_GB';
-export const polish = 'PL';
+export const english = 'en_gb';
+export const polish = 'pl';
 
 export default english;
