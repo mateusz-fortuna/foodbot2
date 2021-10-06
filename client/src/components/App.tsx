@@ -1,9 +1,7 @@
-import React from 'react';
-import './styles.sass';
-
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home';
+import './styles.sass';
 
 const App: () => JSX.Element = () => {
   return (
