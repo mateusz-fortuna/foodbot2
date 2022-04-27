@@ -10,6 +10,7 @@ const TransitionCol = ({
   duration,
   delay,
   backgroundColor,
+  textColor,
   transitionClassName,
   index,
 }: TransitionColProps): JSX.Element => {
@@ -19,7 +20,7 @@ const TransitionCol = ({
     <CSSTransition
       in={mount}
       appear
-      timeout={duration + transitionDelay + 100}
+      timeout={duration + transitionDelay}
       classNames={transitionClassName}
       key={transitionClassName + index}
       unmountOnExit
@@ -28,8 +29,9 @@ const TransitionCol = ({
         className={`transition__col ${transitionClassName}`}
         style={{
           transitionDelay: `${transitionDelay}ms`,
-          transitionDuration: `${duration}ms`,
+          transitionDuration: `${duration - transitionDelay}ms`,
           backgroundColor: backgroundColor,
+          color: textColor,
         }}
       />
     </CSSTransition>
