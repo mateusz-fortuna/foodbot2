@@ -6,7 +6,7 @@ describe('Testing multiline text component', () => {
     const text = 'the quick\nbrown fox\njumps over\nthe lazy dog';
     const { container } = render(<AnimatedText mount>{text}</AnimatedText>);
 
-    const component = getByTestId(container, 'animatedText');
+    const component = getByTestId(container, 'text__wrapper');
     expect(component.children).toHaveLength(4);
   });
 });

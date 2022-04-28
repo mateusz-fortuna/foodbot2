@@ -10,7 +10,6 @@ const TransitionCol = ({
   duration,
   delay,
   backgroundColor,
-  textColor,
   transitionClassName,
   index,
 }: TransitionColProps): JSX.Element => {
@@ -31,7 +30,6 @@ const TransitionCol = ({
           transitionDelay: `${transitionDelay}ms`,
           transitionDuration: `${duration - transitionDelay}ms`,
           backgroundColor: backgroundColor,
-          color: textColor,
         }}
       />
     </CSSTransition>

@@ -26,17 +26,24 @@ const Intro = ({
   const transitionDelay = 100;
 
   return (
-    <div className="intro">
+    <div className="intro" style={{ color: textColor }}>
       <TransitionOut
         mount={true}
         duration={transitionDuration}
         delay={transitionDelay}
         backgroundColor={backgroundColor}
-        textColor={textColor}
       />
-      <h1 className="intro__header">
-        <AnimatedText mount>FoodBot</AnimatedText>
-      </h1>
+      <div className="intro__text">
+        <h1>
+          <AnimatedText mount>Title</AnimatedText>
+        </h1>
+        {
+          //--------REGEX DETECTING TAGS AND SPLITTING TEXT-------//
+        }
+        <p>
+          <AnimatedText mount>Lorem ipsum dolor sit amet.</AnimatedText>
+        </p>
+      </div>
     </div>
   );
 };

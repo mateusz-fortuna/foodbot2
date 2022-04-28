@@ -8,7 +8,6 @@ export interface TransitionProps {
   duration: number;
   delay: number;
   backgroundColor: string;
-  textColor: string;
 }
 
 export interface Props extends TransitionProps {
