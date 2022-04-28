@@ -7,13 +7,15 @@ type Props = {
 };
 
 const AnimatedText = ({ mount, children }: Props): JSX.Element => {
-  const textLine = children.split('\n');
+  const textLine = children.includes('\\n')
+    ? children.split('\\n')
+    : children.split('\n');
   const animationClass = 'text--animation';
-  const animationDuration = 1000;
+  const animationDuration = 700;
   const animationDelay = 100;
 
   return (
-    <TransitionGroup data-testid="animatedText" className="animatedText">
+    <TransitionGroup data-testid="animatedText">
       {textLine.map((line, index) => (
         <div className="text__wrapper" key={`line${index}`}>
           <CSSTransition

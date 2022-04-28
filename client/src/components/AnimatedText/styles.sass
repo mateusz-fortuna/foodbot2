@@ -1,18 +1,11 @@
-$transformValue: 100px
-$duration: 1s
-  
-.animatedText
-  color: white
-  line-height: 1.8
-
+$transformValue: 1.5em
+$duration: .7s
+    
 .text__wrapper
   overflow: hidden
-  position: relative
-  height: 24px // Depends on the font size
 
 .text
-  position: absolute
-  height: 100%
+  display: inline-block
 
 .text--animation-appear, .text--animation-enter
   transform: translate3d(0,$transformValue,0)
@@ -20,6 +13,9 @@ $duration: 1s
 .text--animation-appear-active, .text--animation-enter-active
   transform: translate3d(0,0,0)
   transition: all $duration
+
+.text--animation-appear-done, .text--animation-enter-done
+  transform: translate3d(0,0,0)
 
 .text--animation-exit-active
   transform: translate3d(0,-$transformValue,0)
