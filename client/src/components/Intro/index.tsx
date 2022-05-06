@@ -16,7 +16,11 @@ type Props = {
  * @param backgroundColor Color of the background
  */
 
-const Intro = ({ setMountIntro, textColor, backgroundColor }: Props) => {
+const Intro = ({
+  setMountIntro,
+  textColor,
+  backgroundColor,
+}: Props): JSX.Element => {
   const introDuration = 3000;
   const transitionDuration = 1000;
   const transitionDelay = 100;
@@ -43,7 +47,7 @@ const Intro = ({ setMountIntro, textColor, backgroundColor }: Props) => {
       clearTimeout(unmountStripes);
       clearTimeout(unmountIntro);
     };
-  }, []);
+  }, [setMountIntro]);
 
   return (
     <div className="intro" style={{ color: textColor }}>
