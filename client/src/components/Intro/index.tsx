@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setInitialLoading } from 'features/initialLoading/initialLoadingSlice';
 import { TransitionOut } from '../Transitions';
 import AnimatedText from '../AnimatedText';
 import './styles.sass';
@@ -28,6 +30,8 @@ const Intro = ({
   const [mountText, setMountText] = useState(true);
   const [mountStripes, setMountStripes] = useState(true);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const unmountText = setTimeout(
       () => setMountText(false),
@@ -46,8 +50,10 @@ const Intro = ({
       clearTimeout(unmountText);
       clearTimeout(unmountStripes);
       clearTimeout(unmountIntro);
+
+      dispatch(setInitialLoading());
     };
-  }, [setMountIntro]);
+  }, [setMountIntro, dispatch]);
 
   return (
     <div className="intro" style={{ color: textColor }}>

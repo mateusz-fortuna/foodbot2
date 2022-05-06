@@ -14,6 +14,9 @@ const MainLayout = ({ children }: Props): JSX.Element => {
   const { background, font } = useSelector(
     (state: RootState) => state.themeReducer.THEME,
   );
+  const isInitialLoading = useSelector(
+    (state: RootState) => state.initialLoadingReducer.INITIAL_LOADING,
+  );
 
   const [mountIntro, setMountIntro] = useState(true);
 
@@ -21,7 +24,7 @@ const MainLayout = ({ children }: Props): JSX.Element => {
     <div className="mainLayout">
       {children}
 
-      {mountIntro && (
+      {isInitialLoading && mountIntro && (
         <Intro
           setMountIntro={setMountIntro}
           textColor={font.transition}
