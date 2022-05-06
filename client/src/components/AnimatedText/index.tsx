@@ -4,19 +4,24 @@ import './styles.sass';
 type Props = {
   mount: boolean;
   children: string;
+  nth?: number;
 };
 
-const AnimatedText = ({ mount, children }: Props): JSX.Element => {
-  const textLine = children.includes('\\n')
-    ? children.split('\\n')
-    : children.split('\n');
+const splitText = (txt: string) => {
+  const linesSplittingRegex = /.{1,65}(\s|$)/g;
+  return txt.match(linesSplittingRegex)?.map((line) => line.trimEnd()) || [txt];
+};
+
+const AnimatedText = ({ mount, children, nth = 0 }: Props): JSX.Element => {
+  const textLines = splitText(children);
   const animationClass = 'text--animation';
-  const animationDuration = 1000;
   const animationDelay = 100;
+  const componentDelay = nth * animationDelay * 2;
+  const animationDuration = 1000 + componentDelay;
 
   return (
     <TransitionGroup data-testid="text__wrapper">
-      {textLine.map((line, index) => (
+      {textLines.map((line, index) => (
         <div className="text__wrapper" key={`line${index}`}>
           <CSSTransition
             in={mount}
@@ -28,7 +33,7 @@ const AnimatedText = ({ mount, children }: Props): JSX.Element => {
             <span
               className={`text ${animationClass}`}
               style={{
-                transitionDelay: `${index * animationDelay}ms`,
+                transitionDelay: `${index * animationDelay + componentDelay}ms`,
               }}
             >
               {line}

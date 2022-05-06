@@ -37,11 +37,10 @@ const Intro = ({
         <h1>
           <AnimatedText mount>Title</AnimatedText>
         </h1>
-        {
-          //--------REGEX DETECTING TAGS AND SPLITTING TEXT-------//
-        }
         <p>
-          <AnimatedText mount>Lorem ipsum dolor sit amet.</AnimatedText>
+          <AnimatedText mount nth={1}>
+            Lorem ipsum dolor sit amet.
+          </AnimatedText>
         </p>
       </div>
     </div>
