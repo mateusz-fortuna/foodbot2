@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/rootReducer';
 import Intro from '../components/Intro';
@@ -14,14 +15,19 @@ const MainLayout = ({ children }: Props): JSX.Element => {
     (state: RootState) => state.themeReducer.THEME,
   );
 
+  const [mountIntro, setMountIntro] = useState(true);
+
   return (
     <div className="mainLayout">
       {children}
-      <Intro
-        initialRender={true}
-        textColor={font.transition}
-        backgroundColor={background.transition}
-      />
+
+      {mountIntro && (
+        <Intro
+          setMountIntro={setMountIntro}
+          textColor={font.transition}
+          backgroundColor={background.transition}
+        />
+      )}
     </div>
   );
 };

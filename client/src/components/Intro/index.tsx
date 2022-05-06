@@ -1,44 +1,64 @@
-import AnimatedText from '../AnimatedText';
+import { useState, useEffect } from 'react';
 import { TransitionOut } from '../Transitions';
+import AnimatedText from '../AnimatedText';
 import './styles.sass';
 
 type Props = {
-  initialRender: boolean;
+  setMountIntro: React.Dispatch<React.SetStateAction<boolean>>;
   textColor: string;
   backgroundColor: string;
 };
 
 /**
  * Intro - Display the starter text and end up with the animation.
- * @param initialRender Show the component only once per session
+ * @param setMountIntro Pass the boolean set state action to destroy the component after animations
  * @param textColor Color of the text
  * @param backgroundColor Color of the background
  */
 
-const Intro = ({
-  initialRender,
-  textColor,
-  backgroundColor,
-}: Props): JSX.Element | null => {
-  if (!initialRender) return null;
-
-  const transitionDuration = 1100;
+const Intro = ({ setMountIntro, textColor, backgroundColor }: Props) => {
+  const introDuration = 3000;
+  const transitionDuration = 1000;
   const transitionDelay = 100;
+
+  const [mountText, setMountText] = useState(true);
+  const [mountStripes, setMountStripes] = useState(true);
+
+  useEffect(() => {
+    const unmountText = setTimeout(
+      () => setMountText(false),
+      introDuration - transitionDuration * 0.5,
+    );
+    const unmountStripes = setTimeout(
+      () => setMountStripes(false),
+      introDuration,
+    );
+    const unmountIntro = setTimeout(
+      () => setMountIntro(false),
+      introDuration + transitionDuration + transitionDelay,
+    );
+
+    return () => {
+      clearTimeout(unmountText);
+      clearTimeout(unmountStripes);
+      clearTimeout(unmountIntro);
+    };
+  }, []);
 
   return (
     <div className="intro" style={{ color: textColor }}>
       <TransitionOut
-        mount={true}
+        mount={mountStripes}
         duration={transitionDuration}
         delay={transitionDelay}
         backgroundColor={backgroundColor}
       />
       <div className="intro__text">
         <h1>
-          <AnimatedText mount>Title</AnimatedText>
+          <AnimatedText mount={mountText}>Title</AnimatedText>
         </h1>
         <p>
-          <AnimatedText mount nth={1}>
+          <AnimatedText mount={mountText} nth={1}>
             Lorem ipsum dolor sit amet.
           </AnimatedText>
         </p>
