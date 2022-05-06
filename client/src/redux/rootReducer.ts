@@ -1,11 +1,17 @@
-import { combineReducers } from 'redux';
+import { persistCombineReducers } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import languageReducer from '../features/language/languageSlice';
 import navigationReducer from '../features/navigation/navigationSlice';
 import themeReducer from '../features/theme/themeSlice';
 import initialLoadingReducer from '../features/initialLoading/initialLoadingSlice';
 
-export const rootReducer = combineReducers({
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+export const rootReducer = persistCombineReducers(persistConfig, {
   languageReducer,
   navigationReducer,
   themeReducer,
