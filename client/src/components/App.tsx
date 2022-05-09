@@ -1,6 +1,6 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
-import Home from '../pages/Home';
+import Home from '../pages/Home/Home';
 import './styles.sass';
 
 const App: () => JSX.Element = () => {

@@ -1,0 +1,26 @@
+.home
+  display: flex
+  height: 100%
+  width: 100%
+
+.home > *
+  flex: 1
+
+.home > section
+  display: flex
+  justify-content: center
+  align-items: center
+
+section > img
+  height: 100%
+
+// ----------MEDIA QUERIES---------- //s
+    
+@media screen and (orientation:portrait)
+  .home
+    flex-direction: column
+
+  .home__imageContainer
+    flex: 0
+    height: 33%
+    

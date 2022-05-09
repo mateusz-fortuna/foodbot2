@@ -5,6 +5,7 @@ import languageReducer from '../features/language/languageSlice';
 import navigationReducer from '../features/navigation/navigationSlice';
 import themeReducer from '../features/theme/themeSlice';
 import initialLoadingReducer from '../features/initialLoading/initialLoadingSlice';
+import menuReducer from '../features/menu/menuSlice';
 
 const persistConfig = {
   key: 'root',
@@ -16,6 +17,7 @@ export const rootReducer = persistCombineReducers(persistConfig, {
   navigationReducer,
   themeReducer,
   initialLoadingReducer,
+  menuReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
