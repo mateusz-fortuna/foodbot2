@@ -1,21 +1,40 @@
-import { useTheme } from '../../utils/hooks/useTheme';
+import { useTheme } from '../../utils/hooks';
+import Button from '../../components/Button';
+import AnimatedText from 'components/AnimatedText';
 import './index.sass';
 
 const Home = (): JSX.Element => {
   const { font, background } = useTheme();
+
   const imageURL =
-    'https://images.unsplash.com/photo-1652074847108-0b4294408ca1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2127&q=80';
+    'https://images.unsplash.com/photo-1652074847108-0b4294408ca1';
 
   return (
     <main className="home" style={{ color: font.default }}>
       <section
-        style={{ backgroundColor: background.transition }}
+        style={{ backgroundColor: background.inverted }}
         className="home__imageContainer"
       >
-        <img src={imageURL} alt="" />
+        <img src={imageURL} alt="The FoodBot printer" />
       </section>
-      <section>
-        <p>FoodBot</p>
+      <section
+        style={{ backgroundColor: background.default }}
+        className="home__contentContainer"
+      >
+        <AnimatedText mount={true}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </AnimatedText>
+        <Button fontColor={font.inverted} backgroundColor={background.inverted}>
+          Learn more
+        </Button>
+        <h1 className="h1--decorative">
+          <AnimatedText mount={true} nth={3}>
+            Sample Text
+          </AnimatedText>
+        </h1>
       </section>
     </main>
   );

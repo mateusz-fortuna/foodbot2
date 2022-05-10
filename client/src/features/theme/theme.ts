@@ -4,10 +4,10 @@ export const darkColor = '#0e0e0e';
 export const lightTheme = {
   background: {
     default: lightColor,
-    transition: darkColor,
+    inverted: darkColor,
   },
   font: {
     default: darkColor,
-    transition: lightColor,
+    inverted: lightColor,
   },
 };

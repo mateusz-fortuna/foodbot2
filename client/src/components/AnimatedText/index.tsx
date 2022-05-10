@@ -20,27 +20,31 @@ const AnimatedText = ({ mount, children, nth = 0 }: Props): JSX.Element => {
   const animationDuration = 1000 + componentDelay;
 
   return (
-    <TransitionGroup data-testid="text__wrapper">
-      {textLines.map((line, index) => (
-        <div className="text__wrapper" key={`line${index}`}>
-          <CSSTransition
-            in={mount}
-            classNames={animationClass}
-            timeout={animationDuration + index * animationDelay}
-            appear
-            unmountOnExit
-          >
-            <span
-              className={`text ${animationClass}`}
-              style={{
-                transitionDelay: `${index * animationDelay + componentDelay}ms`,
-              }}
+    <TransitionGroup data-testid="text__container">
+      <p>
+        {textLines.map((line, index) => (
+          <div className="text__wrapper" key={`line${index}`}>
+            <CSSTransition
+              in={mount}
+              classNames={animationClass}
+              timeout={animationDuration + index * animationDelay}
+              appear
+              unmountOnExit
             >
-              {line}
-            </span>
-          </CSSTransition>
-        </div>
-      ))}
+              <span
+                className={`text ${animationClass}`}
+                style={{
+                  transitionDelay: `${
+                    index * animationDelay + componentDelay
+                  }ms`,
+                }}
+              >
+                {line}
+              </span>
+            </CSSTransition>
+          </div>
+        ))}
+      </p>
     </TransitionGroup>
   );
 };

@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/rootReducer';
+import { useInitialLoading, useTheme } from 'utils/hooks';
 import Intro from '../components/Intro';
 import './styles.sass';
 
@@ -11,13 +10,8 @@ type Props = {
 };
 
 const MainLayout = ({ children }: Props): JSX.Element => {
-  const { background, font } = useSelector(
-    (state: RootState) => state.themeReducer.THEME,
-  );
-  const isInitialLoading = useSelector(
-    (state: RootState) => state.initialLoadingReducer.INITIAL_LOADING,
-  );
-
+  const isInitialLoading = useInitialLoading();
+  const { background, font } = useTheme();
   const [mountIntro, setMountIntro] = useState(true);
 
   return (
@@ -27,8 +21,8 @@ const MainLayout = ({ children }: Props): JSX.Element => {
       {isInitialLoading && mountIntro && (
         <Intro
           setMountIntro={setMountIntro}
-          textColor={font.transition}
-          backgroundColor={background.transition}
+          textColor={font.inverted}
+          backgroundColor={background.inverted}
         />
       )}
     </div>
