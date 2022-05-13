@@ -1,4 +1,6 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+//import { useEffect } from 'react';
+import { Route } from 'react-router-dom';
+import { Routes } from 'react-router';
 import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home/Home';
 import './styles.sass';
@@ -6,15 +8,16 @@ import './styles.sass';
 const App: () => JSX.Element = () => {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="">
+      <Routes>
+        <Route
+          path=""
+          element={
             <MainLayout>
               <Home />
             </MainLayout>
-          </Route>
-        </Switch>
-      </BrowserRouter>
+          }
+        ></Route>
+      </Routes>
     </div>
   );
 };

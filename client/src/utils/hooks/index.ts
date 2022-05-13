@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+//import { useLocation } from 'react-router';
 import { RootState } from '../../redux/rootReducer';
 
 // ----------THEME---------- //
@@ -14,3 +15,11 @@ export const useInitialLoading: () => InitialLoading = () =>
   useSelector(
     (state: RootState) => state.initialLoadingReducer.INITIAL_LOADING,
   );
+
+// ----------USE-CURRENT-PAGE---------- //
+
+/* const useCurrentPage: () => string = () => {
+  const { pathname } = useLocation();
+  return pathname.slice(1);
+};
+ */

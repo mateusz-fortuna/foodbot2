@@ -7,10 +7,14 @@ const navigationSlice = createSlice({
     PAGES: pages,
     NAVIGATION_EXCEPTIONS: navigationExceptions,
     CURRENT_PAGE: '',
+    IS_TRANSITION_ACTIVE: false,
   },
   reducers: {
     setCurrentPage: (state, { payload }: PayloadAction<string>) => {
       state.CURRENT_PAGE = payload;
+    },
+    toggleTransitionActive: (state) => {
+      state.IS_TRANSITION_ACTIVE = !state.IS_TRANSITION_ACTIVE;
     },
   },
 });
