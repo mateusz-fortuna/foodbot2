@@ -1,0 +1,20 @@
+@import '../../sass/variables'
+$underlineWidth: 2px
+
+.navbar__item_underline
+  content: ''
+  position: absolute
+  width: 100%
+  height: $underlineWidth
+  bottom: calc(-$padding-small/2)
+
+.navbar__item_underline--wrapper
+  overflow: hidden  
+      
+.navbar__item_underline--item
+  bottom: -$underlineWidth
+  transition: all 0.4s ease
+  background-color: #fff  
+
+.navbar__item:hover > .navbar__item_underline--wrapper > .navbar__item_underline--item
+  transform: translate3d(0,-$underlineWidth,0)

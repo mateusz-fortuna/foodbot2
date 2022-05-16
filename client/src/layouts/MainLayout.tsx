@@ -1,3 +1,4 @@
+import Navbar from 'components/Navbar';
 import { useState } from 'react';
 import { useInitialLoading, useTheme } from 'utils/hooks';
 import Intro from '../components/Intro';
@@ -17,6 +18,7 @@ const MainLayout = ({ children }: Props): JSX.Element => {
   return (
     <div className="mainLayout">
       {children}
+      <Navbar />
 
       {isInitialLoading && mountIntro && (
         <Intro

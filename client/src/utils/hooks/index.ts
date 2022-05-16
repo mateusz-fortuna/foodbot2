@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-//import { useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import { RootState } from '../../redux/rootReducer';
 
 // ----------THEME---------- //
@@ -16,10 +16,41 @@ export const useInitialLoading: () => InitialLoading = () =>
     (state: RootState) => state.initialLoadingReducer.INITIAL_LOADING,
   );
 
-// ----------USE-CURRENT-PAGE---------- //
+// ----------CURRENT-PAGE---------- //
 
-/* const useCurrentPage: () => string = () => {
+export const useCurrentPage = (): string => {
   const { pathname } = useLocation();
   return pathname.slice(1);
 };
- */
+
+// ----------NAVIGATION---------- //
+
+export type PageOrBoundary = string | null;
+type Navigation = RootState['navigationReducer'] & {
+  CURRENT_PAGE: string;
+  PREV_PAGE: PageOrBoundary;
+  NEXT_PAGE: PageOrBoundary;
+};
+
+export const useNavigation = (): Navigation => {
+  const { PAGES, IS_TRANSITION_ACTIVE, NAVIGATION_DURATION } = useSelector(
+    (state: RootState) => state.navigationReducer,
+  );
+
+  const CURRENT_PAGE = useCurrentPage();
+  const currentPageIndex = PAGES.indexOf(CURRENT_PAGE);
+
+  const PREV_PAGE =
+    currentPageIndex - 1 < 0 ? null : PAGES[currentPageIndex - 1];
+  const NEXT_PAGE =
+    currentPageIndex + 1 > PAGES.length ? null : PAGES[currentPageIndex + 1];
+
+  return {
+    PREV_PAGE,
+    CURRENT_PAGE,
+    NEXT_PAGE,
+    PAGES,
+    IS_TRANSITION_ACTIVE,
+    NAVIGATION_DURATION,
+  };
+};
