@@ -1,8 +1,5 @@
-import Underline from 'components/Underline';
 import { ReactNode } from 'react';
-import { useNavigate } from 'react-router';
-import { handleNavigation } from 'utils/helpers/handleNavigation';
-import { useNavigation } from 'utils/hooks';
+import Underline from 'components/Underline';
 import './index.sass';
 
 type Props = {
@@ -10,14 +7,8 @@ type Props = {
 };
 
 const NavbarItem = ({ children }: Props): JSX.Element => {
-  const { PREV_PAGE, NEXT_PAGE } = useNavigation();
-  const navigate = useNavigate();
-
   return (
-    <li
-      className="navbar__item"
-      onClick={() => handleNavigation('next', PREV_PAGE, NEXT_PAGE, navigate)}
-    >
+    <li className="navbar__item">
       {children}
       <Underline />
     </li>

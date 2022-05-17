@@ -1,5 +1,5 @@
-import { toggleTransitionActive } from 'features/navigation/navigationSlice';
 import { useEffect, useRef } from 'react';
+import { toggleTransitionActive } from 'features/navigation/navigationSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useNavigation } from 'utils/hooks';
@@ -29,7 +29,7 @@ const NavigationButton = (props: Props): JSX.Element => {
     return () => {
       if (transitionTimer.current) clearTimeout(transitionTimer.current);
     };
-  });
+  }, []);
 
   return (
     <Button

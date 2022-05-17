@@ -11,10 +11,12 @@ const Button = ({
   children,
   fontColor,
   backgroundColor,
+  onClick,
 }: Props): JSX.Element => {
   return (
     <button
       type="button"
+      onClick={onClick ? () => onClick() : undefined}
       className="button"
       style={{
         color: fontColor,
