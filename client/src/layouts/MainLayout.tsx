@@ -1,6 +1,7 @@
 import Navbar from 'components/Navbar';
+import PageTransition from 'components/Transitions/PageTransition';
 import { useState } from 'react';
-import { useInitialLoading, useTheme } from 'utils/hooks';
+import { useInitialLoading, useTheme, useTransition } from 'utils/hooks';
 import Intro from '../components/Intro';
 import './styles.sass';
 
@@ -11,8 +12,11 @@ type Props = {
 };
 
 const MainLayout = ({ children }: Props): JSX.Element => {
-  const isInitialLoading = useInitialLoading();
   const { background, font } = useTheme();
+
+  const { IS_INITIAL_LOADING } = useInitialLoading();
+  const { IS_TRANSITION_ACTIVE } = useTransition();
+
   const [mountIntro, setMountIntro] = useState(true);
 
   return (
@@ -20,7 +24,9 @@ const MainLayout = ({ children }: Props): JSX.Element => {
       {children}
       <Navbar />
 
-      {isInitialLoading && mountIntro && (
+      {IS_TRANSITION_ACTIVE && <PageTransition />}
+
+      {IS_INITIAL_LOADING && mountIntro && (
         <Intro
           setMountIntro={setMountIntro}
           textColor={font.inverted}

@@ -4,6 +4,7 @@ import { setInitialLoading } from 'features/initialLoading/initialLoadingSlice';
 import { TransitionOut } from '../Transitions';
 import AnimatedText from '../AnimatedText';
 import './styles.sass';
+import { useTransition } from 'utils/hooks';
 
 type Props = {
   setMountIntro: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,9 +24,8 @@ const Intro = ({
   textColor,
   backgroundColor,
 }: Props): JSX.Element => {
+  const { DURATION, ELEMENTS_DELAY } = useTransition();
   const introDuration = 3000;
-  const transitionDuration = 1000;
-  const transitionDelay = 100;
 
   const [mountText, setMountText] = useState(true);
   const [mountStripes, setMountStripes] = useState(true);
@@ -35,7 +35,7 @@ const Intro = ({
   useEffect(() => {
     const unmountText = setTimeout(
       () => setMountText(false),
-      introDuration - transitionDuration * 0.5,
+      introDuration - DURATION * 0.5,
     );
     const unmountStripes = setTimeout(
       () => setMountStripes(false),
@@ -43,7 +43,7 @@ const Intro = ({
     );
     const unmountIntro = setTimeout(
       () => setMountIntro(false),
-      introDuration + transitionDuration + transitionDelay,
+      introDuration + DURATION + ELEMENTS_DELAY,
     );
 
     return () => {
@@ -53,14 +53,14 @@ const Intro = ({
 
       dispatch(setInitialLoading());
     };
-  }, [setMountIntro, dispatch]);
+  }, [setMountIntro, dispatch, DURATION, ELEMENTS_DELAY]);
 
   return (
     <div className="intro" style={{ color: textColor }}>
       <TransitionOut
         mount={mountStripes}
-        duration={transitionDuration}
-        delay={transitionDelay}
+        duration={DURATION}
+        delay={ELEMENTS_DELAY}
         backgroundColor={backgroundColor}
       />
       <div className="intro__text">

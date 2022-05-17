@@ -8,16 +8,11 @@ import './styles.sass';
 const App: () => JSX.Element = () => {
   return (
     <div className="App">
-      <Routes>
-        <Route
-          path=""
-          element={
-            <MainLayout>
-              <Home />
-            </MainLayout>
-          }
-        ></Route>
-      </Routes>
+      <MainLayout>
+        <Routes>
+          <Route path="" element={<Home />}></Route>
+        </Routes>
+      </MainLayout>
     </div>
   );
 };

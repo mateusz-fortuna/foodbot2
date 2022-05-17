@@ -1,8 +1,8 @@
+import { toggleTransitionActive } from 'features/transition/transitionSlice';
 import { useEffect, useRef } from 'react';
-import { toggleTransitionActive } from 'features/navigation/navigationSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { useNavigation } from 'utils/hooks';
+import { useTransition } from 'utils/hooks';
 import Button from '../Button/';
 
 type Props = {
@@ -12,17 +12,16 @@ type Props = {
 };
 
 const NavigationButton = (props: Props): JSX.Element => {
-  const { NAVIGATION_DURATION } = useNavigation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { DURATION } = useTransition();
   const transitionTimer = useRef<NodeJS.Timeout | null>(null);
 
   const handleNavigation = () => {
     dispatch(toggleTransitionActive());
-
     transitionTimer.current = setTimeout(() => {
       navigate('/' + props.page);
-    }, NAVIGATION_DURATION);
+    }, DURATION);
   };
 
   useEffect(() => {

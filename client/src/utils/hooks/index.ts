@@ -5,16 +5,19 @@ import { RootState } from '../../redux/rootReducer';
 // ----------THEME---------- //
 
 type Theme = RootState['themeReducer']['THEME'];
-export const useTheme: () => Theme = () =>
+export const useTheme = (): Theme =>
   useSelector((state: RootState) => state.themeReducer.THEME);
 
 // ----------INITIAL-LOADING---------- //
 
-type InitialLoading = RootState['initialLoadingReducer']['INITIAL_LOADING'];
-export const useInitialLoading: () => InitialLoading = () =>
-  useSelector(
-    (state: RootState) => state.initialLoadingReducer.INITIAL_LOADING,
-  );
+type InitialLoading = RootState['initialLoadingReducer'];
+export const useInitialLoading = (): InitialLoading =>
+  useSelector((state: RootState) => state.initialLoadingReducer);
+
+// ----------TRANSITION---------- //
+
+export const useTransition = (): RootState['transitionReducer'] =>
+  useSelector((state: RootState) => state.transitionReducer);
 
 // ----------CURRENT-PAGE---------- //
 
@@ -33,9 +36,7 @@ type Navigation = RootState['navigationReducer'] & {
 };
 
 export const useNavigation = (): Navigation => {
-  const { PAGES, IS_TRANSITION_ACTIVE, NAVIGATION_DURATION } = useSelector(
-    (state: RootState) => state.navigationReducer,
-  );
+  const { PAGES } = useSelector((state: RootState) => state.navigationReducer);
 
   const CURRENT_PAGE = useCurrentPage();
   const currentPageIndex = PAGES.indexOf(CURRENT_PAGE);
@@ -50,7 +51,5 @@ export const useNavigation = (): Navigation => {
     CURRENT_PAGE,
     NEXT_PAGE,
     PAGES,
-    IS_TRANSITION_ACTIVE,
-    NAVIGATION_DURATION,
   };
 };
