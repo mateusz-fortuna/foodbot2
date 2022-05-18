@@ -1,9 +1,11 @@
 import './index.sass';
 
-type Props = {
-  children: React.ReactNode;
+export type ButtonTheme = {
   fontColor: string;
   backgroundColor: string;
+};
+type Props = ButtonTheme & {
+  children: React.ReactNode;
   onClick?: () => void;
 };
 

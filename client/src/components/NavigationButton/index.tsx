@@ -3,12 +3,10 @@ import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useTransition } from 'utils/hooks';
-import Button from '../Button/';
+import Button, { ButtonTheme } from '../Button/';
 
-type Props = {
+type Props = ButtonTheme & {
   page: string;
-  fontColor: string;
-  backgroundColor: string;
 };
 
 const NavigationButton = (props: Props): JSX.Element => {

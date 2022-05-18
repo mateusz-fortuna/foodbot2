@@ -53,3 +53,9 @@ export const useNavigation = (): Navigation => {
     PAGES,
   };
 };
+
+// ----------MENU-OPENED---------- //
+
+type MenuOpened = RootState['menuReducer'];
+export const useMenuOpened = (): MenuOpened =>
+  useSelector((state: RootState) => state.menuReducer);
