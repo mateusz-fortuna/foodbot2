@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setInitialLoading } from 'features/initialLoading/initialLoadingSlice';
 import { TransitionOut } from '../Transitions';
+import { useTransition } from 'utils/hooks';
 import AnimatedText from '../AnimatedText';
 import './styles.sass';
-import { useTransition } from 'utils/hooks';
 
 type Props = {
   setMountIntro: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,13 +24,11 @@ const Intro = ({
   textColor,
   backgroundColor,
 }: Props): JSX.Element => {
+  const dispatch = useDispatch();
+  const [mountText, setMountText] = useState(true);
+  const [mountStripes, setMountStripes] = useState(false);
   const { DURATION, ELEMENTS_DELAY } = useTransition();
   const introDuration = 3000;
-
-  const [mountText, setMountText] = useState(true);
-  const [mountStripes, setMountStripes] = useState(true);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const unmountText = setTimeout(
@@ -38,7 +36,7 @@ const Intro = ({
       introDuration - DURATION * 0.5,
     );
     const unmountStripes = setTimeout(
-      () => setMountStripes(false),
+      () => setMountStripes(true),
       introDuration,
     );
     const unmountIntro = setTimeout(
@@ -50,19 +48,26 @@ const Intro = ({
       clearTimeout(unmountText);
       clearTimeout(unmountStripes);
       clearTimeout(unmountIntro);
-
       dispatch(setInitialLoading());
     };
   }, [setMountIntro, dispatch, DURATION, ELEMENTS_DELAY]);
 
   return (
-    <div className="intro" style={{ color: textColor }}>
-      <TransitionOut
-        mount={mountStripes}
-        duration={DURATION}
-        delay={ELEMENTS_DELAY}
-        backgroundColor={backgroundColor}
-      />
+    <div
+      className="intro"
+      style={{
+        color: textColor,
+        backgroundColor: !mountStripes ? backgroundColor : 'transparent',
+      }}
+    >
+      {mountStripes && (
+        <TransitionOut
+          mount={mountStripes}
+          duration={DURATION}
+          delay={ELEMENTS_DELAY}
+          backgroundColor={backgroundColor}
+        />
+      )}
       <div className="intro__text">
         <h1>
           <AnimatedText mount={mountText}>Title</AnimatedText>

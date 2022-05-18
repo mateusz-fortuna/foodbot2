@@ -43,7 +43,7 @@ const PageTransition = (): JSX.Element => {
       )}
       {!mountTransitionIn && (
         <TransitionOut
-          mount={mountTransitionIn}
+          mount={!mountTransitionIn}
           duration={DURATION}
           delay={ELEMENTS_DELAY}
           backgroundColor={background.inverted}
