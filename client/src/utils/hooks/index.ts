@@ -57,5 +57,5 @@ export const useNavigation = (): Navigation => {
 // ----------MENU-OPENED---------- //
 
 type MenuOpened = RootState['menuReducer'];
-export const useMenuOpened = (): MenuOpened =>
+export const useMenuState = (): MenuOpened =>
   useSelector((state: RootState) => state.menuReducer);
