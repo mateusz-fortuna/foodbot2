@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
   useInitialLoading,
-  useMenuOpened,
+  useMenuState,
   useTheme,
   useTransition,
 } from 'utils/hooks';
@@ -23,7 +23,7 @@ const MainLayout = ({ children }: Props): JSX.Element => {
   const { background, font } = useTheme();
   const { IS_INITIAL_LOADING } = useInitialLoading();
   const { IS_TRANSITION_ACTIVE } = useTransition();
-  const { IS_MENU_OPENED } = useMenuOpened();
+  const { IS_MENU_OPENED } = useMenuState();
   const [mountIntro, setMountIntro] = useState(true);
   const [orientation, setOrientation] = useState<Orientation>('landscape');
 
