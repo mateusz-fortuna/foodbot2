@@ -30,6 +30,7 @@ const TransitionCol = ({
           transitionDelay: `${transitionDelay}ms`,
           transitionDuration: `${duration - transitionDelay}ms`,
           backgroundColor: backgroundColor,
+          boxShadow: `0 0 0 1px ${backgroundColor}`,
         }}
       />
     </CSSTransition>
