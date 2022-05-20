@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { RootState } from '../../redux/rootReducer';
@@ -59,3 +60,26 @@ export const useNavigation = (): Navigation => {
 type MenuOpened = RootState['menuReducer'];
 export const useMenuState = (): MenuOpened =>
   useSelector((state: RootState) => state.menuReducer);
+
+// ----------ORIENTATION---------- //
+
+type Orientation = 'landscape' | 'portrait';
+
+export const useOrientation = (): Orientation => {
+  const [orientation, setOrientation] = useState<Orientation>('landscape');
+
+  const detectOrientation = () => {
+    const width = document.body.clientWidth;
+    const height = document.body.clientHeight;
+    if (width / height > 1) return setOrientation('landscape');
+    return setOrientation('portrait');
+  };
+
+  useEffect(() => {
+    detectOrientation();
+    window.addEventListener('resize', detectOrientation);
+    return () => window.removeEventListener('resize', detectOrientation);
+  }, []);
+
+  return orientation;
+};

@@ -2,7 +2,7 @@ import { toggleTransitionActive } from 'features/transition/transitionSlice';
 import { ReactChild, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { useNavigation, useTransition } from 'utils/hooks';
+import { useMenuState, useNavigation, useTransition } from 'utils/hooks';
 import { throttle } from 'lodash';
 
 type Props = {
@@ -12,6 +12,7 @@ type Props = {
 const Navigation = ({ children }: Props): JSX.Element => {
   const { DURATION } = useTransition();
   const { NEXT_PAGE, PREV_PAGE } = useNavigation();
+  const { IS_MENU_OPENED } = useMenuState();
   const navigationTimer = useRef<NodeJS.Timeout | null>(null);
   const touchStartY = useRef(0);
   const [direction, setDirection] = useState<'up' | 'down' | 'none'>('none');
@@ -57,7 +58,7 @@ const Navigation = ({ children }: Props): JSX.Element => {
     (direction === 'down' && NEXT_PAGE !== null);
 
   useEffect(() => {
-    if (isNavigationInBoundary) {
+    if (isNavigationInBoundary && !IS_MENU_OPENED) {
       if (tickCount !== 0) dispatch(toggleTransitionActive());
       navigationTimer.current = setTimeout(() => {
         if (direction === 'up') navigate('/' + PREV_PAGE);

@@ -7,7 +7,7 @@ import Button, { ButtonTheme } from '../Button/';
 
 type Props = ButtonTheme & {
   page: string;
-  children?: string;
+  children?: React.ReactNode;
 };
 
 const NavigationButton = (props: Props): JSX.Element => {
