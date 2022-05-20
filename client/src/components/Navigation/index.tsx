@@ -13,7 +13,7 @@ const Navigation = ({ children }: Props): JSX.Element => {
   const { DURATION } = useTransition();
   const { NEXT_PAGE, PREV_PAGE } = useNavigation();
   const navigationTimer = useRef<NodeJS.Timeout | null>(null);
-  const [touchStartY, setTouchStartY] = useState(0);
+  const touchStartY = useRef(0);
   const [direction, setDirection] = useState<'up' | 'down' | 'none'>('none');
   const [tickCount, setTickCount] = useState(0);
   const navigate = useNavigate();
@@ -22,24 +22,25 @@ const Navigation = ({ children }: Props): JSX.Element => {
     trailing: false,
   };
 
-  const handleTouchStart = ({ touches }: TouchEvent) =>
-    setTouchStartY(Math.floor(touches[0].clientY));
-
-  const handleTouchEnd = ({ changedTouches }: TouchEvent) => {
-    const touchEndY = Math.floor(changedTouches[0].clientY);
-    if (touchEndY < touchStartY) setDirection('down');
-    if (touchEndY > touchStartY) setDirection('up');
-    setTickCount((state) => state + 1);
-  };
-
-  const handleWheel = ({ deltaY }: WheelEvent) => {
-    if (deltaY > 0) setDirection('down');
-    if (deltaY < 0) setDirection('up');
-    setTickCount((state) => state + 1);
-  };
-  const throttledWheel = throttle(handleWheel, 2 * DURATION, throttleOptions);
-
   useEffect(() => {
+    const handleTouchStart = ({ touches }: TouchEvent) => {
+      touchStartY.current = touches[0].pageY;
+    };
+
+    const handleTouchEnd = ({ changedTouches }: TouchEvent) => {
+      const touchEndY = changedTouches[0].pageY;
+      if (touchEndY < touchStartY.current) setDirection('down');
+      if (touchEndY > touchStartY.current) setDirection('up');
+      setTickCount((state) => state + 1);
+    };
+
+    const handleWheel = ({ deltaY }: WheelEvent) => {
+      if (deltaY > 0) setDirection('down');
+      if (deltaY < 0) setDirection('up');
+      setTickCount((state) => state + 1);
+    };
+    const throttledWheel = throttle(handleWheel, 2 * DURATION, throttleOptions);
+
     window.addEventListener('wheel', throttledWheel, { passive: true });
     window.addEventListener('touchstart', handleTouchStart, { passive: true });
     window.addEventListener('touchend', handleTouchEnd, { passive: true });
