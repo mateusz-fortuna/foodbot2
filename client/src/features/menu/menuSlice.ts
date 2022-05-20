@@ -6,6 +6,7 @@ const menuSlice = createSlice({
     IS_MENU_OPENED: false,
     IS_MENU_TRANSITION: false,
     IS_MENU_TRANSITION_IN_PROGRESS: false,
+    IS_MENU_ITEM_TRANSITION: false,
   },
   reducers: {
     toggleMenuOpened: (state) => {
@@ -18,6 +19,9 @@ const menuSlice = createSlice({
       state.IS_MENU_TRANSITION_IN_PROGRESS =
         !state.IS_MENU_TRANSITION_IN_PROGRESS;
     },
+    toggleMenuItemTransition: (state) => {
+      state.IS_MENU_ITEM_TRANSITION = !state.IS_MENU_ITEM_TRANSITION;
+    },
   },
 });
 
@@ -25,5 +29,6 @@ export const {
   toggleMenuOpened,
   toggleMenuTransition,
   toggleMenuTransitionProgress,
+  toggleMenuItemTransition,
 } = menuSlice.actions;
 export default menuSlice.reducer;

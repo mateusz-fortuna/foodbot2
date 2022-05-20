@@ -1,6 +1,6 @@
 import { useTheme } from '../../utils/hooks';
-import Button from '../../components/Button';
 import AnimatedText from 'components/AnimatedText';
+import NavigationButton from 'components/NavigationButton';
 import './index.sass';
 
 const Home = (): JSX.Element => {
@@ -28,12 +28,14 @@ const Home = (): JSX.Element => {
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat.
           </AnimatedText>
-          <Button
+          <NavigationButton
+            page="features"
             fontColor={font.inverted}
             backgroundColor={background.inverted}
           >
             Learn more
-          </Button>
+          </NavigationButton>
+
           <h1 className="h1--decorative">
             <AnimatedText mount={true} nth={3}>
               Sample Text

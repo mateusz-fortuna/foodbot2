@@ -7,6 +7,7 @@ import Button, { ButtonTheme } from '../Button/';
 
 type Props = ButtonTheme & {
   page: string;
+  children?: React.ReactNode;
 };
 
 const NavigationButton = (props: Props): JSX.Element => {
@@ -34,7 +35,7 @@ const NavigationButton = (props: Props): JSX.Element => {
       backgroundColor={props.backgroundColor}
       onClick={handleNavigation}
     >
-      {props.page}
+      {props.children ? props.children : props.page}
     </Button>
   );
 };

@@ -1,7 +1,8 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import {
   useInitialLoading,
   useMenuState,
+  useOrientation,
   useTheme,
   useTransition,
 } from 'utils/hooks';
@@ -17,7 +18,6 @@ type Props = {
   openedMenuColor?: string;
   children: ReactNode;
 };
-type Orientation = 'landscape' | 'portrait';
 
 const MainLayout = ({ children }: Props): JSX.Element => {
   const { background, font } = useTheme();
@@ -25,20 +25,7 @@ const MainLayout = ({ children }: Props): JSX.Element => {
   const { IS_TRANSITION_ACTIVE } = useTransition();
   const { IS_MENU_OPENED } = useMenuState();
   const [mountIntro, setMountIntro] = useState(true);
-  const [orientation, setOrientation] = useState<Orientation>('landscape');
-
-  const detectOrientation = () => {
-    const width = document.body.clientWidth;
-    const height = document.body.clientHeight;
-    if (width / height > 1) return setOrientation('landscape');
-    return setOrientation('portrait');
-  };
-
-  useEffect(() => {
-    detectOrientation();
-    window.addEventListener('resize', detectOrientation);
-    return () => window.removeEventListener('resize', detectOrientation);
-  }, []);
+  const orientation = useOrientation();
 
   return (
     <div className="mainLayout">
