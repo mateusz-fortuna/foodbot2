@@ -13,23 +13,41 @@ const Navigation = ({ children }: Props): JSX.Element => {
   const { DURATION } = useTransition();
   const { NEXT_PAGE, PREV_PAGE } = useNavigation();
   const navigationTimer = useRef<NodeJS.Timeout | null>(null);
+  const [touchStartY, setTouchStartY] = useState(0);
   const [direction, setDirection] = useState<'up' | 'down' | 'none'>('none');
   const [tickCount, setTickCount] = useState(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const throttleOptions = {
+    trailing: false,
+  };
+
+  const handleTouchStart = ({ touches }: TouchEvent) =>
+    setTouchStartY(Math.floor(touches[0].clientY));
+
+  const handleTouchEnd = ({ changedTouches }: TouchEvent) => {
+    const touchEndY = Math.floor(changedTouches[0].clientY);
+    if (touchEndY < touchStartY) setDirection('down');
+    if (touchEndY > touchStartY) setDirection('up');
+    setTickCount((state) => state + 1);
+  };
 
   const handleWheel = ({ deltaY }: WheelEvent) => {
     if (deltaY > 0) setDirection('down');
     if (deltaY < 0) setDirection('up');
     setTickCount((state) => state + 1);
   };
-  const handleNavigation = throttle(handleWheel, 2 * DURATION, {
-    trailing: false,
-  });
+  const throttledWheel = throttle(handleWheel, 2 * DURATION, throttleOptions);
 
   useEffect(() => {
-    window.addEventListener('wheel', handleNavigation, { passive: true });
-    return () => window.removeEventListener('wheel', handleNavigation);
+    window.addEventListener('wheel', throttledWheel, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    return () => {
+      window.removeEventListener('wheel', throttledWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
     // eslint-disable-next-line
   }, []);
 
