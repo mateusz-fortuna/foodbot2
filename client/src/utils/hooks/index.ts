@@ -44,7 +44,7 @@ export const useNavigation = (): Navigation => {
   const PREV_PAGE =
     currentPageIndex - 1 < 0 ? null : PAGES[currentPageIndex - 1];
   const NEXT_PAGE =
-    currentPageIndex + 1 > PAGES.length ? null : PAGES[currentPageIndex + 1];
+    currentPageIndex + 2 > PAGES.length ? null : PAGES[currentPageIndex + 1];
 
   return {
     PREV_PAGE,
