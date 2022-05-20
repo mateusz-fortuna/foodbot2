@@ -10,7 +10,7 @@ const Home = (): JSX.Element => {
     'https://images.unsplash.com/photo-1652074847108-0b4294408ca1';
 
   return (
-    <main className="home" style={{ color: font.default }}>
+    <main className="home page__container" style={{ color: font.default }}>
       <section
         style={{ backgroundColor: background.inverted }}
         className="home__imageContainer"
