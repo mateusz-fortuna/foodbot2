@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import {
   useInitialLoading,
   useMenuState,
@@ -15,7 +15,7 @@ import Menu from 'components/Menu';
 type Props = {
   menuColor?: string;
   openedMenuColor?: string;
-  children: JSX.Element;
+  children: ReactNode;
 };
 type Orientation = 'landscape' | 'portrait';
 
