@@ -83,3 +83,9 @@ export const useOrientation = (): Orientation => {
 
   return orientation;
 };
+
+// ----------CONTENT---------- //
+
+type Content = RootState['languageReducer']['CONTENT'];
+export const useContent = (): Content =>
+  useSelector((state: RootState) => state.languageReducer.CONTENT);
