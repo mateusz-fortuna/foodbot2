@@ -1,21 +1,19 @@
 import CircleButton from 'components/CircleButton';
-import FeaturesDetails from 'components/FeaturesDetails';
-import { useState } from 'react';
-import { useContent, useTheme } from 'utils/hooks';
-import { core } from './core';
+import FeatureDetails from 'components/FeatureDetails';
+import { setFeatureDetails } from 'features/featureDetails/featureDetailsSlice';
+import { useDispatch } from 'react-redux';
+import { useContent, useFeatureDetails, useTheme } from 'utils/hooks';
 import './index.sass';
 
 const Features = (): JSX.Element => {
   const { background } = useTheme();
-  const features = useContent().features.map((content, index) => ({
-    ...content,
-    ...core[index],
-  }));
-  const [currentFeature, setCurrentFeature] = useState<string | null>(null);
+  const features = useContent().features;
+  const areDetails = useFeatureDetails().TITLE !== '';
+  const dispatch = useDispatch();
   const imageURL =
     'https://images.unsplash.com/photo-1652074847108-0b4294408ca1';
 
-  console.log(currentFeature);
+  console.log(useFeatureDetails());
 
   return (
     <div
@@ -24,19 +22,29 @@ const Features = (): JSX.Element => {
     >
       <div className="features__imageContainer">
         <img src={imageURL} alt="lorem ipsum" />
-        {features.map(({ id, buttonPosX, buttonPosY }) => (
-          <CircleButton
-            key={id}
-            onClick={() => setCurrentFeature(id)}
-            style={{
-              top: buttonPosY + '%',
-              left: buttonPosX + '%',
-            }}
-          />
-        ))}
+        {Object.entries(features).map(
+          ([name, { buttonPos, description, imgUrl, title }]) => (
+            <CircleButton
+              key={name}
+              onClick={() =>
+                dispatch(
+                  setFeatureDetails({
+                    IMG_URL: imgUrl,
+                    DESCRIPTION: description,
+                    TITLE: title,
+                  }),
+                )
+              }
+              style={{
+                left: buttonPos[0] + '%',
+                top: buttonPos[1] + '%',
+              }}
+            />
+          ),
+        )}
       </div>
 
-      {currentFeature && <FeaturesDetails />}
+      {areDetails && <FeatureDetails />}
     </div>
   );
 };

@@ -12,28 +12,38 @@
       "button": "Discover features"
     }
   ],
-  "features": [
-    {
-      "id": "basis",
+  "features": {
+    "basis": {
+      "buttonPos": [32, 69],
+      "imgUrl": "https://images.unsplash.com/photo-1652074847108-0b4294408ca1",
+      "title": "Basis",
       "description": "Different size (0.3mm - 1.2mm) printing heads provided to allow you to choose how delicate the print jobs will be. And the FoodBot 3D printer always print the best. This is sample text."
     },
-    {
-      "id": "head",
-      "description": "Different size (0.3mm - 1.2mm) printing heads provided to allow you to choose how delicate the print jobs will be. And the FoodBot 3D printer always print the best."
+    "fence": {
+      "buttonPos": [38, 40],
+      "imgUrl": "https://images.unsplash.com/photo-1652074847108-0b4294408ca1",
+      "title": "Fence",
+      "description": "Different size (0.3mm - 1.2mm) printing heads provided to allow you to choose how delicate the print jobs will be. And the FoodBot 3D printer always print the best. This is sample text."
     },
-    {
-      "id": "fence",
-      "description": "Different size (0.3mm - 1.2mm) printing heads provided to allow you to choose how delicate the print jobs will be. And the FoodBot 3D printer always print the best."
+    "head": {
+      "buttonPos": [48, 60],
+      "imgUrl": "https://images.unsplash.com/photo-1652074847108-0b4294408ca1",
+      "title": "Head",
+      "description": "Different size (0.3mm - 1.2mm) printing heads provided to allow you to choose how delicate the print jobs will be. And the FoodBot 3D printer always print the best. This is sample text."
     },
-    {
-      "id": "logo",
-      "description": "Different size (0.3mm - 1.2mm) printing heads provided to allow you to choose how delicate the print jobs will be. And the FoodBot 3D printer always print the best."
+    "logo": {
+      "buttonPos": [53, 27],
+      "imgUrl": "https://images.unsplash.com/photo-1652074847108-0b4294408ca1",
+      "title": "Logo",
+      "description": "Different size (0.3mm - 1.2mm) printing heads provided to allow you to choose how delicate the print jobs will be. And the FoodBot 3D printer always print the best. This is sample text."
     },
-    {
-      "id": "screen",
-      "description": "Different size (0.3mm - 1.2mm) printing heads provided to allow you to choose how delicate the print jobs will be. And the FoodBot 3D printer always print the best."
+    "screen": {
+      "buttonPos": [80, 28],
+      "imgUrl": "https://images.unsplash.com/photo-1652074847108-0b4294408ca1",
+      "title": "Screen",
+      "description": "Different size (0.3mm - 1.2mm) printing heads provided to allow you to choose how delicate the print jobs will be. And the FoodBot 3D printer always print the best. This is sample text."
     }
-  ],
+  },
   "gallery": [
     "https://images.unsplash.com/photo-1652074847108-0b4294408ca1",
     "https://images.unsplash.com/photo-1652074847108-0b4294408ca1",

@@ -57,8 +57,7 @@ export const useNavigation = (): Navigation => {
 
 // ----------MENU-OPENED---------- //
 
-type MenuOpened = RootState['menuReducer'];
-export const useMenuState = (): MenuOpened =>
+export const useMenuState = (): RootState['menuReducer'] =>
   useSelector((state: RootState) => state.menuReducer);
 
 // ----------ORIENTATION---------- //
@@ -89,3 +88,9 @@ export const useOrientation = (): Orientation => {
 type Content = RootState['languageReducer']['CONTENT'];
 export const useContent = (): Content =>
   useSelector((state: RootState) => state.languageReducer.CONTENT);
+
+// ----------FEATURE-DETAILS---------- //
+
+type FeatureDetails = RootState['featureDetailsReducer'];
+export const useFeatureDetails = (): FeatureDetails =>
+  useSelector((state: RootState) => state.featureDetailsReducer);
