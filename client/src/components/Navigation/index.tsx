@@ -2,8 +2,14 @@ import { toggleTransitionActive } from 'features/transition/transitionSlice';
 import { ReactChild, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { useMenuState, useNavigation, useTransition } from 'utils/hooks';
+import {
+  useFeatureDetails,
+  useMenuState,
+  useNavigation,
+  useTransition,
+} from 'utils/hooks';
 import { throttle } from 'lodash';
+import { resetFeatureDetails } from 'features/featureDetails/featureDetailsSlice';
 
 type Props = {
   children: ReactChild;
@@ -53,6 +59,7 @@ const Navigation = ({ children }: Props): JSX.Element => {
     // eslint-disable-next-line
   }, []);
 
+  const areFeatureDetailsOpened = useFeatureDetails().TITLE.length > 0;
   const isNavigationInBoundary =
     (direction === 'up' && PREV_PAGE !== null) ||
     (direction === 'down' && NEXT_PAGE !== null);
@@ -63,6 +70,7 @@ const Navigation = ({ children }: Props): JSX.Element => {
       navigationTimer.current = setTimeout(() => {
         if (direction === 'up') navigate('/' + PREV_PAGE);
         if (direction === 'down') navigate('/' + NEXT_PAGE);
+        if (areFeatureDetailsOpened) dispatch(resetFeatureDetails());
       }, DURATION);
     }
     return () => {

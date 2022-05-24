@@ -8,7 +8,7 @@ import './index.sass';
 const Features = (): JSX.Element => {
   const { background } = useTheme();
   const features = useContent().features;
-  const areDetails = useFeatureDetails().TITLE !== '';
+  const areDetailsOpened = useFeatureDetails().TITLE.length > 0;
   const dispatch = useDispatch();
   const imageURL =
     'https://images.unsplash.com/photo-1652074847108-0b4294408ca1';
@@ -44,7 +44,7 @@ const Features = (): JSX.Element => {
         )}
       </div>
 
-      {areDetails && <FeatureDetails />}
+      {areDetailsOpened && <FeatureDetails />}
     </div>
   );
 };
