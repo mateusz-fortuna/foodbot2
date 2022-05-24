@@ -17,8 +17,8 @@ const FeatureDetails = (): JSX.Element => {
       style={{ backgroundColor: background.default, color: font.default }}
     >
       <CloseButton onClick={() => dispatch(resetFeatureDetails())} />
-      <ImgSection imgUrl={IMG_URL} />
-      <ContentSection title={TITLE} description={DESCRIPTION} />
+      <ImgSection mount imgUrl={IMG_URL} />
+      <ContentSection mount title={TITLE} description={DESCRIPTION} />
     </div>
   );
 };

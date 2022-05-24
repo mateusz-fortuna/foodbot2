@@ -13,7 +13,14 @@ const Features = (): JSX.Element => {
   const imageURL =
     'https://images.unsplash.com/photo-1652074847108-0b4294408ca1';
 
-  console.log(useFeatureDetails());
+  const setDetails = (imgUrl: string, description: string, title: string) =>
+    dispatch(
+      setFeatureDetails({
+        IMG_URL: imgUrl,
+        DESCRIPTION: description,
+        TITLE: title,
+      }),
+    );
 
   return (
     <div
@@ -22,19 +29,12 @@ const Features = (): JSX.Element => {
     >
       <div className="features__imageContainer">
         <img src={imageURL} alt="lorem ipsum" />
+
         {Object.entries(features).map(
           ([name, { buttonPos, description, imgUrl, title }]) => (
             <CircleButton
               key={name}
-              onClick={() =>
-                dispatch(
-                  setFeatureDetails({
-                    IMG_URL: imgUrl,
-                    DESCRIPTION: description,
-                    TITLE: title,
-                  }),
-                )
-              }
+              onClick={() => setDetails(imgUrl, description, title)}
               style={{
                 left: buttonPos[0] + '%',
                 top: buttonPos[1] + '%',

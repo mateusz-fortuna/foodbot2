@@ -1,4 +1,5 @@
 type Props = {
+  mount: boolean;
   imgUrl: string;
 };
 
