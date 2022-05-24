@@ -2,7 +2,8 @@ import { useDispatch } from 'react-redux';
 import { useFeatureDetails, useTheme } from 'utils/hooks';
 import { resetFeatureDetails } from 'features/featureDetails/featureDetailsSlice';
 import CloseButton from 'components/CloseButton';
-import AnimatedText from 'components/AnimatedText';
+import ImgSection from './ImgSection';
+import ContentSection from './ContentSection';
 import './index.sass';
 
 const FeatureDetails = (): JSX.Element => {
@@ -16,19 +17,8 @@ const FeatureDetails = (): JSX.Element => {
       style={{ backgroundColor: background.default, color: font.default }}
     >
       <CloseButton onClick={() => dispatch(resetFeatureDetails())} />
-      <div className="features__details_imgSection">
-        <img src={IMG_URL} />
-      </div>
-      <div className="features__details_contentSection">
-        <h1>
-          <AnimatedText mount nth={0}>
-            {TITLE}
-          </AnimatedText>
-        </h1>
-        <AnimatedText mount nth={1}>
-          {DESCRIPTION}
-        </AnimatedText>
-      </div>
+      <ImgSection imgUrl={IMG_URL} />
+      <ContentSection title={TITLE} description={DESCRIPTION} />
     </div>
   );
 };
