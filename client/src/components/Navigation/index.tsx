@@ -36,9 +36,11 @@ const Navigation = ({ children }: Props): JSX.Element => {
 
     const handleTouchEnd = ({ changedTouches }: TouchEvent) => {
       const touchEndY = changedTouches[0].pageY;
-      if (touchEndY < touchStartY.current) setDirection('down');
-      if (touchEndY > touchStartY.current) setDirection('up');
+      const safeDistance = Math.abs(touchEndY - touchStartY.current) > 20;
+      if (safeDistance && touchEndY < touchStartY.current) setDirection('down');
+      if (safeDistance && touchEndY > touchStartY.current) setDirection('up');
       setTickCount((state) => state + 1);
+      setDirection('none');
     };
 
     const handleWheel = ({ deltaY }: WheelEvent) => {
