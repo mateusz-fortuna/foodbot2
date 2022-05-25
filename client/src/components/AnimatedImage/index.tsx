@@ -33,11 +33,13 @@ const AnimatedImage = ({
     img.addEventListener('error', displayError);
     img.src = src;
 
+    console.log('test');
+
     return () => {
       img.removeEventListener('load', mountAnimation);
       img.removeEventListener('error', displayError);
     };
-  }, []);
+  }, [src]);
 
   return (
     <div className="content__wrapper">
