@@ -1,5 +1,7 @@
 @import '../../sass/variables'
 
+$height: calc(100% - 4 * #{$padding-standard})
+
 .features__details
   position: absolute
   left: 0
@@ -7,19 +9,34 @@
   display: flex
   align-items: center
   width: 100%
-  height: calc(100% - 4 * #{$padding-standard})
+  height: $height
+  overflow: hidden
 
 .features__details_imgSection
   overflow: hidden
   display: flex
   width: 100%
 
-.features__details_imgSection > img
+.features__details_imgSection_img
   height: 100%
-  max-height: calc(100% - 4 * #{$padding-standard})
+  max-height: $height
   width: 100%
 
 .features__details_imgSection, .features__details_contentSection
   width: 50%
   padding-left: $padding-standard
   padding-right: $padding-standard
+
+.featuresDetailsTransition-appear
+  height: 0
+
+.featuresDetailsTransition-appear-active
+  height: $height
+  transition: all calc(1.5*#{$duration})
+
+.featuresDetailsTransition-exit-active
+  height: 0
+  transition: all calc(1.5*#{$duration})
+
+.featuresDetailsTransition-exit-done
+  height: 0

@@ -1,4 +1,5 @@
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { useTransition } from 'utils/hooks';
 import './styles.sass';
 
 type Props = {
@@ -15,9 +16,9 @@ const splitText = (txt: string) => {
 const AnimatedText = ({ mount, children, nth = 0 }: Props): JSX.Element => {
   const textLines = splitText(children);
   const animationClass = 'content--animation';
-  const animationDelay = 100;
-  const componentDelay = nth * animationDelay * 2;
-  const animationDuration = 1000 + componentDelay;
+  const { DURATION, ELEMENTS_DELAY } = useTransition();
+  const componentDelay = nth * ELEMENTS_DELAY * 2;
+  const animationDuration = DURATION + componentDelay;
 
   return (
     <TransitionGroup data-testid="text__container">
@@ -27,7 +28,7 @@ const AnimatedText = ({ mount, children, nth = 0 }: Props): JSX.Element => {
             <CSSTransition
               in={mount}
               classNames={animationClass}
-              timeout={animationDuration + index * animationDelay}
+              timeout={animationDuration + index * ELEMENTS_DELAY}
               appear
               unmountOnExit
             >
@@ -35,7 +36,7 @@ const AnimatedText = ({ mount, children, nth = 0 }: Props): JSX.Element => {
                 className={`content ${animationClass}`}
                 style={{
                   transitionDelay: `${
-                    index * animationDelay + componentDelay
+                    index * ELEMENTS_DELAY + componentDelay
                   }ms`,
                 }}
               >
