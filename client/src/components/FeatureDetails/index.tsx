@@ -7,6 +7,7 @@ import CloseButton from 'components/CloseButton';
 import ImgSection from './ImgSection';
 import ContentSection from './ContentSection';
 import './index.sass';
+import ArrowButton from 'components/ArrowButton';
 
 const FeatureDetails = (): JSX.Element => {
   const { background, font } = useTheme();
@@ -51,6 +52,7 @@ const FeatureDetails = (): JSX.Element => {
         style={{ backgroundColor: background.default, color: font.default }}
       >
         <CloseButton onClick={handleCloseButton} />
+        <ArrowButton direction="previous" />
         <ImgSection mount={mountContent} nth={1} imgUrl={IMG_URL} alt="" />
         <ContentSection
           mount={mountContent}
@@ -58,6 +60,7 @@ const FeatureDetails = (): JSX.Element => {
           title={TITLE}
           description={DESCRIPTION}
         />
+        <ArrowButton direction="next" />
       </div>
     </CSSTransition>
   );

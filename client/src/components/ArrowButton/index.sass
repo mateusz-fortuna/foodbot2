@@ -1,0 +1,41 @@
+@import '../../sass/variables'
+  
+.arrowButton
+  mix-blend-mode: difference
+  opacity: 0.75
+  width: 3rem
+  height: 3rem
+  position: relative
+
+.arrowButton > button
+  margin-top: 0
+  padding: 0
+  display: flex
+  position: absolute
+  width: 100%
+  height: 100%
+  justify-content: center
+
+.arrowButton.previous
+  margin-left: $padding-standard
+.arrowButton.next
+  margin-right: $padding-standard
+
+.arrowButton > button > span
+  width: calc(100%*0.75)
+  position: absolute
+  background-color: #fff
+  content: ""
+  display: block
+  transform-origin: left
+  height: 2px
+  top: 50%
+  transform: rotate(45deg)
+
+.arrowButton > button > span:nth-child(1)
+  transform: rotate(-45deg)
+  
+.arrowButton.next > button > span
+  transform-origin: right
+
+
