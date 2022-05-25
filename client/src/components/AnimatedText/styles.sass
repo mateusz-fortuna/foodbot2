@@ -1,23 +1,23 @@
 @import '../../sass/variables'
  
-.text__wrapper
+.content__wrapper
   overflow: hidden
 
-.text
+.content
   display: inline-block
 
-.text--animation-appear, .text--animation-enter
+.content--animation-appear, .content--animation-enter
   transform: translate3d(0,$transformValue,0)
   opacity: 0
 
-.text--animation-appear-active, .text--animation-enter-active
+.content--animation-appear-active, .content--animation-enter-active
   transform: translate3d(0,0,0)
   opacity: 1
   transition: all $duration
 
-.text--animation-appear-done, .text--animation-enter-done
+.content--animation-appear-done, .content--animation-enter-done
   transform: translate3d(0,0,0)
 
-.text--animation-exit-active
+.content--animation-exit-active
   transform: translate3d(0,-$transformValue,0)
   transition: all $duration

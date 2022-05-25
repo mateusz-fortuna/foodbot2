@@ -14,7 +14,7 @@ const splitText = (txt: string) => {
 
 const AnimatedText = ({ mount, children, nth = 0 }: Props): JSX.Element => {
   const textLines = splitText(children);
-  const animationClass = 'text--animation';
+  const animationClass = 'content--animation';
   const animationDelay = 100;
   const componentDelay = nth * animationDelay * 2;
   const animationDuration = 1000 + componentDelay;
@@ -23,7 +23,7 @@ const AnimatedText = ({ mount, children, nth = 0 }: Props): JSX.Element => {
     <TransitionGroup data-testid="text__container">
       <p>
         {textLines.map((line, index) => (
-          <div className="text__wrapper" key={`line${index}`}>
+          <div className="content__wrapper" key={`line${index}`}>
             <CSSTransition
               in={mount}
               classNames={animationClass}
@@ -32,7 +32,7 @@ const AnimatedText = ({ mount, children, nth = 0 }: Props): JSX.Element => {
               unmountOnExit
             >
               <span
-                className={`text ${animationClass}`}
+                className={`content ${animationClass}`}
                 style={{
                   transitionDelay: `${
                     index * animationDelay + componentDelay
