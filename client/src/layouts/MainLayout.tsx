@@ -10,7 +10,7 @@ import Navbar from 'components/Navbar';
 import PageTransition from 'components/Transitions/PageTransition';
 import Intro from '../components/Intro';
 import './styles.sass';
-import MenuButton from 'components/MenuButton';
+import MenuButton from 'components/Button/MenuButton';
 import Menu from 'components/Menu';
 
 type Props = {

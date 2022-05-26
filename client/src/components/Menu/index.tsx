@@ -1,4 +1,4 @@
-import MenuItem from 'components/MenuItem';
+import MenuItem from 'components/Menu/MenuItem';
 import MenuTransitions from 'components/MenuTransitions';
 import { useMenuState, useNavigation } from 'utils/hooks';
 import './index.sass';

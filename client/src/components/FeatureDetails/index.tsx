@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import { useFeatureDetails, useTheme, useTransition } from 'utils/hooks';
 import { resetFeatureDetails } from 'features/featureDetails/featureDetailsSlice';
 import { useEffect, useRef, useState } from 'react';
-import CloseButton from 'components/CloseButton';
+import CloseButton from 'components/Button/CloseButton';
 import ImgSection from './ImgSection';
 import ContentSection from './ContentSection';
 import './index.sass';
-import ArrowButton from 'components/ArrowButton';
+import ArrowButton from 'components/Button/ArrowButton';
 
 const FeatureDetails = (): JSX.Element => {
   const { background, font } = useTheme();

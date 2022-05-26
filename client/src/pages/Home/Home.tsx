@@ -1,6 +1,6 @@
 import { useTheme } from '../../utils/hooks';
 import AnimatedText from 'components/AnimatedText';
-import NavigationButton from 'components/NavigationButton';
+import NavigationButton from 'components/Button/NavigationButton';
 import './index.sass';
 
 const Home = (): JSX.Element => {

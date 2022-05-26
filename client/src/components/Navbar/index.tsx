@@ -1,5 +1,5 @@
-import NavbarItem from 'components/NavbarItem';
-import NavigationButton from 'components/NavigationButton';
+import NavbarItem from 'components/Navbar/NavbarItem';
+import NavigationButton from 'components/Button/NavigationButton';
 import { useNavigation } from 'utils/hooks';
 import './index.sass';
 

@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useTransition } from 'utils/hooks';
-import Button, { ButtonTheme } from '../Button/';
+import Button, { ButtonTheme } from '..';
 
 type Props = ButtonTheme & {
   page: string;

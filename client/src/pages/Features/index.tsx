@@ -1,4 +1,4 @@
-import CircleButton from 'components/CircleButton';
+import CircleButton from 'components/Button/CircleButton';
 import FeatureDetails from 'components/FeatureDetails';
 import { setFeatureDetails } from 'features/featureDetails/featureDetailsSlice';
 import { useDispatch } from 'react-redux';
