@@ -61,7 +61,7 @@ const Navigation = ({ children }: Props): JSX.Element => {
     // eslint-disable-next-line
   }, []);
 
-  const areFeatureDetailsOpened = useFeatureDetails().TITLE.length > 0;
+  const { OPENED_FEATURE } = useFeatureDetails();
   const isNavigationInBoundary =
     (direction === 'up' && PREV_PAGE !== null) ||
     (direction === 'down' && NEXT_PAGE !== null);
@@ -72,7 +72,7 @@ const Navigation = ({ children }: Props): JSX.Element => {
       navigationTimer.current = setTimeout(() => {
         if (direction === 'up') navigate('/' + PREV_PAGE);
         if (direction === 'down') navigate('/' + NEXT_PAGE);
-        if (areFeatureDetailsOpened) dispatch(resetFeatureDetails());
+        if (OPENED_FEATURE) dispatch(resetFeatureDetails());
       }, DURATION);
     }
     return () => {

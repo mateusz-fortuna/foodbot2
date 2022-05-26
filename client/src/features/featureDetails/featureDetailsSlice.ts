@@ -1,9 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from 'redux/rootReducer';
 
-const initialState = {
-  IMG_URL: '',
-  TITLE: '',
-  DESCRIPTION: '',
+export type FeatureName =
+  keyof RootState['languageReducer']['CONTENT']['features'];
+
+type State = {
+  OPENED_FEATURE: FeatureName | null;
+  PREVIOUS: FeatureName | null;
+  NEXT: FeatureName | null;
+};
+
+const initialState: State = {
+  OPENED_FEATURE: null,
+  PREVIOUS: null,
+  NEXT: null,
 };
 
 const featureDetailsSlice = createSlice({

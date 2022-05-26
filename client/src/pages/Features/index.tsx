@@ -1,26 +1,33 @@
 import CircleButton from 'components/Button/CircleButton';
 import FeatureDetails from 'components/FeatureDetails';
-import { setFeatureDetails } from 'features/featureDetails/featureDetailsSlice';
+import {
+  FeatureName,
+  setFeatureDetails,
+} from 'features/featureDetails/featureDetailsSlice';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { getNamesToInfiniteNavigation } from 'utils/helpers/getNamesToInfiniteNavigation';
 import { useContent, useFeatureDetails, useTheme } from 'utils/hooks';
 import './index.sass';
 
 const Features = (): JSX.Element => {
-  const { background } = useTheme();
-  const features = useContent().features;
-  const areDetailsOpened = useFeatureDetails().TITLE.length > 0;
   const dispatch = useDispatch();
+  const { background } = useTheme();
+  const { features } = useContent();
+  const { OPENED_FEATURE } = useFeatureDetails();
   const imageURL =
     'https://images.unsplash.com/photo-1652074847108-0b4294408ca1';
 
-  const setDetails = (imgUrl: string, description: string, title: string) =>
-    dispatch(
-      setFeatureDetails({
-        IMG_URL: imgUrl,
-        DESCRIPTION: description,
-        TITLE: title,
-      }),
-    );
+  useEffect(() => {
+    if (OPENED_FEATURE) {
+      const names = Object.keys(features) as FeatureName[];
+      const { NEXT, PREVIOUS } = getNamesToInfiniteNavigation(
+        OPENED_FEATURE,
+        names,
+      );
+      dispatch(setFeatureDetails({ OPENED_FEATURE, NEXT, PREVIOUS }));
+    }
+  }, [OPENED_FEATURE, dispatch, features]);
 
   return (
     <div
@@ -30,21 +37,21 @@ const Features = (): JSX.Element => {
       <div className="features__imageContainer">
         <img src={imageURL} alt="lorem ipsum" />
 
-        {Object.entries(features).map(
-          ([name, { buttonPos, description, imgUrl, title }]) => (
-            <CircleButton
-              key={name}
-              onClick={() => setDetails(imgUrl, description, title)}
-              style={{
-                left: buttonPos[0] + '%',
-                top: buttonPos[1] + '%',
-              }}
-            />
-          ),
-        )}
+        {Object.entries(features).map(([name, { buttonPos }]) => (
+          <CircleButton
+            key={name}
+            onClick={() =>
+              dispatch(setFeatureDetails({ OPENED_FEATURE: name }))
+            }
+            style={{
+              left: buttonPos[0] + '%',
+              top: buttonPos[1] + '%',
+            }}
+          />
+        ))}
       </div>
 
-      {areDetailsOpened && <FeatureDetails />}
+      {OPENED_FEATURE && <FeatureDetails />}
     </div>
   );
 };
