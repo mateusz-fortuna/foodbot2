@@ -4,8 +4,14 @@ const navigationSlice = createSlice({
   name: 'navigation',
   initialState: {
     PAGES: ['', 'features', 'gallery', 'contact', 'blog'],
+    IS_NAVIGATION_ACTIVE: false,
   },
-  reducers: {},
+  reducers: {
+    toggleNavigationActive: (state) => {
+      state.IS_NAVIGATION_ACTIVE = !state.IS_NAVIGATION_ACTIVE;
+    },
+  },
 });
 
 export default navigationSlice.reducer;
+export const { toggleNavigationActive } = navigationSlice.actions;

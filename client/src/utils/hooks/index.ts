@@ -37,7 +37,9 @@ type Navigation = RootState['navigationReducer'] & {
 };
 
 export const useNavigation = (): Navigation => {
-  const { PAGES } = useSelector((state: RootState) => state.navigationReducer);
+  const { PAGES, IS_NAVIGATION_ACTIVE } = useSelector(
+    (state: RootState) => state.navigationReducer,
+  );
 
   const CURRENT_PAGE = useCurrentPage();
   const currentPageIndex = PAGES.indexOf(CURRENT_PAGE);
@@ -52,6 +54,7 @@ export const useNavigation = (): Navigation => {
     CURRENT_PAGE,
     NEXT_PAGE,
     PAGES,
+    IS_NAVIGATION_ACTIVE,
   };
 };
 
