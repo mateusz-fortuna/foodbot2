@@ -13,6 +13,7 @@ import './index.sass';
 import {
   useContent,
   useFeatureDetails,
+  useOrientation,
   useTheme,
   useTransition,
 } from 'utils/hooks';
@@ -20,10 +21,11 @@ import {
 const FeatureDetails = (): JSX.Element | null => {
   const dispatch = useDispatch();
   const { OPENED_FEATURE } = useFeatureDetails();
-  const firstOpen = useRef(true);
   const { DURATION } = useTransition();
   const { background, font } = useTheme();
   const { features } = useContent();
+  const orientation = useOrientation();
+  const firstOpen = useRef(true);
   const featuresRef = useRef(OPENED_FEATURE ? features[OPENED_FEATURE] : null);
   const [mountContent, setMountContent] = useState(true);
   const [mount, setMount] = useState(true);
@@ -33,6 +35,7 @@ const FeatureDetails = (): JSX.Element | null => {
   const detailsAnimationDuration = 1.5 * DURATION;
   const transitionClassName = 'featuresDetailsTransition';
   const [resetContent, setResetContent] = useState(false);
+  const transitionDelayCoefficient = 1.25;
 
   // Handle content transition
 
@@ -45,19 +48,16 @@ const FeatureDetails = (): JSX.Element | null => {
         setResetContent(true);
         setResetContent(false);
         setMountContent(true);
-      }, 1.25 * DURATION);
+      }, transitionDelayCoefficient * DURATION);
       transitionTimeout.current = setTimeout(() => {
         dispatch(toggleDetailTransition());
-      }, 2 * 1.25 * DURATION);
+      }, 2 * transitionDelayCoefficient * DURATION);
     }
   }, [OPENED_FEATURE, DURATION, features, dispatch]);
 
   const handleCloseButton = () => {
     setMountContent(false);
-    detailsAnimation.current = setTimeout(
-      () => setMount(false),
-      0.75 * DURATION,
-    );
+    detailsAnimation.current = setTimeout(() => setMount(false), DURATION);
     closeTimeout.current = setTimeout(
       () => dispatch(resetFeatureDetails()),
       DURATION + detailsAnimationDuration,
@@ -84,14 +84,25 @@ const FeatureDetails = (): JSX.Element | null => {
       >
         <div
           className={'features__details ' + transitionClassName}
-          style={{ backgroundColor: background.default, color: font.default }}
+          style={{
+            backgroundColor: background.default,
+            color: font.default,
+          }}
         >
           <CloseButton onClick={handleCloseButton} />
-          <FeatureDetailsButton direction="previous" />
+          {orientation === 'landscape' && (
+            <FeatureDetailsButton direction="previous" />
+          )}
           {resetContent
             ? null
             : featuresRef.current && (
-                <>
+                <div
+                  className={
+                    orientation === 'portrait'
+                      ? 'features__details_sectionContainer features__details_sectionContainer--portrait'
+                      : 'features__details_sectionContainer'
+                  }
+                >
                   <ImgSection
                     mount={mountContent}
                     nth={1}
@@ -104,9 +115,16 @@ const FeatureDetails = (): JSX.Element | null => {
                     title={featuresRef.current.title}
                     description={featuresRef.current.description}
                   />
-                </>
+                </div>
               )}
-          <FeatureDetailsButton direction="next" />
+          {orientation === 'landscape' ? (
+            <FeatureDetailsButton direction="next" />
+          ) : (
+            <div className="features__details_arrowsContainer">
+              <FeatureDetailsButton direction="previous" />
+              <FeatureDetailsButton direction="next" />
+            </div>
+          )}
         </div>
       </CSSTransition>
     )
