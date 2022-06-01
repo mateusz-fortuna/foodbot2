@@ -6,18 +6,11 @@ import ArrowButton, { Props } from '../ArrowButton';
 const FeatureDetailsButton = ({ direction }: Props): JSX.Element => {
   const dispatch = useDispatch();
   const { IS_NAVIGATION_ACTIVE } = useNavigation();
-  const { NEXT, PREVIOUS } = useFeatureDetails();
+  const { NEXT, PREVIOUS, IS_DETAIL_TRANSITION } = useFeatureDetails();
   const name = direction === 'next' ? NEXT : PREVIOUS;
 
-  /**
-   *
-   *
-   * THE HANDLER NEEDS TO BE THROTTLED
-   *
-   */
-
   const handleClick = () => {
-    if (!IS_NAVIGATION_ACTIVE)
+    if (!IS_NAVIGATION_ACTIVE && !IS_DETAIL_TRANSITION)
       dispatch(setFeatureDetails({ OPENED_FEATURE: name }));
   };
 
