@@ -1,13 +1,15 @@
-import { toggleTransitionActive } from 'features/transition/transitionSlice';
-import { ReactChild, useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import {
   useFeatureDetails,
   useMenuState,
   useNavigation,
   useTransition,
 } from 'utils/hooks';
+import { toggleTransitionActive } from 'features/transition/transitionSlice';
+import { ReactChild, useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { throttle } from 'lodash';
 import { resetFeatureDetails } from 'features/featureDetails/featureDetailsSlice';
 
@@ -16,18 +18,42 @@ type Props = {
 };
 
 const Navigation = ({ children }: Props): JSX.Element => {
-  const { DURATION } = useTransition();
-  const { NEXT_PAGE, PREV_PAGE } = useNavigation();
-  const { IS_MENU_OPENED } = useMenuState();
   const navigationTimer = useRef<NodeJS.Timeout | null>(null);
-  const touchStartY = useRef(0);
   const [direction, setDirection] = useState<'up' | 'down' | 'none'>('none');
   const [tickCount, setTickCount] = useState(0);
+  const { NEXT_PAGE, PREV_PAGE } = useNavigation();
+  const { IS_MENU_OPENED } = useMenuState();
+  const { OPENED_FEATURE } = useFeatureDetails();
+  const { DURATION } = useTransition();
+  const touchStartY = useRef(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const isNavigationInBoundary =
+    (direction === 'up' && PREV_PAGE !== null) ||
+    (direction === 'down' && NEXT_PAGE !== null);
+
   const throttleOptions = {
     trailing: false,
   };
+
+  // ----------HANDLE NAVIGATION DEPENDING ON THE DIRECTION---------- //
+
+  useEffect(() => {
+    if (isNavigationInBoundary && !IS_MENU_OPENED) {
+      if (tickCount !== 0) dispatch(toggleTransitionActive());
+      navigationTimer.current = setTimeout(() => {
+        if (direction === 'up') navigate('/' + PREV_PAGE);
+        if (direction === 'down') navigate('/' + NEXT_PAGE);
+        if (OPENED_FEATURE) dispatch(resetFeatureDetails());
+      }, DURATION);
+    }
+    return () => {
+      if (navigationTimer.current) clearTimeout(navigationTimer.current);
+    };
+  }, [tickCount]);
+
+  // ----------DETECT SCROLLING DIRECTION---------- //
 
   useEffect(() => {
     const handleTouchStart = ({ touches }: TouchEvent) => {
@@ -58,28 +84,7 @@ const Navigation = ({ children }: Props): JSX.Element => {
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-    // eslint-disable-next-line
   }, []);
-
-  const { OPENED_FEATURE } = useFeatureDetails();
-  const isNavigationInBoundary =
-    (direction === 'up' && PREV_PAGE !== null) ||
-    (direction === 'down' && NEXT_PAGE !== null);
-
-  useEffect(() => {
-    if (isNavigationInBoundary && !IS_MENU_OPENED) {
-      if (tickCount !== 0) dispatch(toggleTransitionActive());
-      navigationTimer.current = setTimeout(() => {
-        if (direction === 'up') navigate('/' + PREV_PAGE);
-        if (direction === 'down') navigate('/' + NEXT_PAGE);
-        if (OPENED_FEATURE) dispatch(resetFeatureDetails());
-      }, DURATION);
-    }
-    return () => {
-      if (navigationTimer.current) clearTimeout(navigationTimer.current);
-    };
-    // eslint-disable-next-line
-  }, [tickCount]);
 
   return <>{children}</>;
 };
