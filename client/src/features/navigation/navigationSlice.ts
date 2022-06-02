@@ -4,6 +4,7 @@ const navigationSlice = createSlice({
   name: 'navigation',
   initialState: {
     PAGES: ['', 'features', 'gallery', 'contact', 'blog'],
+    EXCEPTIONS: ['gallery'],
     IS_NAVIGATION_ACTIVE: false,
   },
   reducers: {
