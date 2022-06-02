@@ -41,7 +41,7 @@ const Navigation = ({ children }: Props): JSX.Element => {
 
   useEffect(() => {
     if (isNavigationInBoundary && !IS_MENU_OPENED) {
-      if (tickCount !== 0) dispatch(toggleTransitionActive());
+      dispatch(toggleTransitionActive());
       navigationTimer.current = setTimeout(() => {
         if (direction === 'up') navigate('/' + PREV_PAGE);
         if (direction === 'down') navigate('/' + NEXT_PAGE);
