@@ -25,3 +25,7 @@
 
 .content--animation-exit-done
   opacity: 0
+
+@media (orientation: portrait)
+  .content--animation-appear-active, .content--animation-enter-active, .content--animation-appear-done, .content--animation-enter-done, .content--animation-exit-active
+    transition: transform $duration, opacity calc(0.5 * #{$duration})
