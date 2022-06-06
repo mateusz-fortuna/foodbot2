@@ -13,7 +13,7 @@ import scrollDetectionReducer from '../features/scrollDetection/scrollDetectionS
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['scroll'],
+  blacklist: ['scrollDetectionReducer'],
 };
 
 export const rootReducer = persistCombineReducers(persistConfig, {
