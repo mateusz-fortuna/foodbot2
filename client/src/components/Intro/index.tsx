@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setInitialLoading } from 'features/initialLoading/initialLoadingSlice';
 import { TransitionOut } from '../Transitions';
-import { useTransition } from 'utils/hooks';
+import { useGlobalState } from 'utils/hooks';
 import AnimatedText from '../AnimatedText';
 import './styles.sass';
 
@@ -27,7 +27,7 @@ const Intro = ({
   const dispatch = useDispatch();
   const [mountText, setMountText] = useState(true);
   const [mountStripes, setMountStripes] = useState(false);
-  const { DURATION, ELEMENTS_DELAY } = useTransition();
+  const { DURATION, ELEMENTS_DELAY } = useGlobalState().transitionReducer;
   const introDuration = 3000;
 
   useEffect(() => {

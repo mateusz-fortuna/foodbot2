@@ -3,22 +3,10 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { RootState } from '../../redux/rootReducer';
 
-// ----------THEME---------- //
+// ----------GLOBAL-STATE---------- //
 
-type Theme = RootState['themeReducer']['THEME'];
-export const useTheme = (): Theme =>
-  useSelector((state: RootState) => state.themeReducer.THEME);
-
-// ----------INITIAL-LOADING---------- //
-
-type InitialLoading = RootState['initialLoadingReducer'];
-export const useInitialLoading = (): InitialLoading =>
-  useSelector((state: RootState) => state.initialLoadingReducer);
-
-// ----------TRANSITION---------- //
-
-export const useTransition = (): RootState['transitionReducer'] =>
-  useSelector((state: RootState) => state.transitionReducer);
+export const useGlobalState = (): RootState =>
+  useSelector((state: RootState) => state);
 
 // ----------CURRENT-PAGE---------- //
 
@@ -30,7 +18,7 @@ export const useCurrentPage = (): string => {
 // ----------NAVIGATION---------- //
 
 export type PageOrBoundary = string | null;
-type Navigation = RootState['navigationReducer'] & {
+type Navigation = {
   CURRENT_PAGE: string;
   PREV_PAGE: PageOrBoundary;
   NEXT_PAGE: PageOrBoundary;
@@ -50,17 +38,11 @@ export const useNavigation = (): Navigation => {
     PAGE_INDEX + 2 > PAGES.length ? null : PAGES[PAGE_INDEX + 1];
 
   return {
-    ...navigationState,
     PREV_PAGE,
     CURRENT_PAGE,
     NEXT_PAGE,
   };
 };
-
-// ----------MENU-OPENED---------- //
-
-export const useMenuState = (): RootState['menuReducer'] =>
-  useSelector((state: RootState) => state.menuReducer);
 
 // ----------ORIENTATION---------- //
 
@@ -84,15 +66,3 @@ export const useOrientation = (): Orientation => {
 
   return orientation;
 };
-
-// ----------CONTENT---------- //
-
-type Content = RootState['languageReducer']['CONTENT'];
-export const useContent = (): Content =>
-  useSelector((state: RootState) => state.languageReducer.CONTENT);
-
-// ----------FEATURE-DETAILS---------- //
-
-type FeatureDetails = RootState['featureDetailsReducer'];
-export const useFeatureDetails = (): FeatureDetails =>
-  useSelector((state: RootState) => state.featureDetailsReducer);

@@ -7,14 +7,15 @@ import {
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getNamesToInfiniteNavigation } from 'utils/helpers/getNamesToInfiniteNavigation';
-import { useContent, useFeatureDetails, useTheme } from 'utils/hooks';
+import { useGlobalState } from 'utils/hooks';
 import './index.sass';
 
 const Features = (): JSX.Element => {
   const dispatch = useDispatch();
-  const { background } = useTheme();
-  const { features } = useContent();
-  const { OPENED_FEATURE } = useFeatureDetails();
+  const state = useGlobalState();
+  const { background } = state.themeReducer.THEME;
+  const { features } = state.languageReducer.CONTENT;
+  const { OPENED_FEATURE } = state.featureDetailsReducer;
   const imageURL =
     'https://images.unsplash.com/photo-1652074847108-0b4294408ca1';
 

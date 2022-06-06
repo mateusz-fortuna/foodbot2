@@ -1,12 +1,13 @@
 import { setFeatureDetails } from 'features/featureDetails/featureDetailsSlice';
 import { useDispatch } from 'react-redux';
-import { useFeatureDetails, useNavigation } from 'utils/hooks';
+import { useGlobalState } from 'utils/hooks';
 import ArrowButton, { Props } from '../ArrowButton';
 
 const FeatureDetailsButton = ({ direction }: Props): JSX.Element => {
   const dispatch = useDispatch();
-  const { IS_NAVIGATION_ACTIVE } = useNavigation();
-  const { NEXT, PREVIOUS, IS_DETAIL_TRANSITION } = useFeatureDetails();
+  const state = useGlobalState();
+  const { IS_NAVIGATION_ACTIVE } = state.navigationReducer;
+  const { NEXT, PREVIOUS, IS_DETAIL_TRANSITION } = state.featureDetailsReducer;
   const name = direction === 'next' ? NEXT : PREVIOUS;
 
   const handleClick = () => {

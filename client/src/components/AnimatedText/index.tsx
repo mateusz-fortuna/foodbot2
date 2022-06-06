@@ -1,5 +1,5 @@
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { useTransition } from 'utils/hooks';
+import { useGlobalState } from 'utils/hooks';
 import './styles.sass';
 
 type Props = {
@@ -16,7 +16,7 @@ const splitText = (txt: string) => {
 const AnimatedText = ({ mount, children, nth = 0 }: Props): JSX.Element => {
   const textLines = splitText(children);
   const animationClass = 'content--animation';
-  const { DURATION, ELEMENTS_DELAY } = useTransition();
+  const { DURATION, ELEMENTS_DELAY } = useGlobalState().transitionReducer;
   const componentDelay = nth * ELEMENTS_DELAY * 2;
   const animationDuration = DURATION + componentDelay;
 

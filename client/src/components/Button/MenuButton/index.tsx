@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { useMenuState, useTransition } from 'utils/hooks';
+import { useGlobalState } from 'utils/hooks';
 import Button from 'components/Button';
 import {
   toggleMenuItemTransition,
@@ -11,8 +11,9 @@ import {
 import './index.sass';
 
 const MenuButton = (): JSX.Element => {
-  const { IS_MENU_OPENED, IS_MENU_TRANSITION_IN_PROGRESS } = useMenuState();
-  const { DURATION } = useTransition();
+  const state = useGlobalState();
+  const { IS_MENU_OPENED, IS_MENU_TRANSITION_IN_PROGRESS } = state.menuReducer;
+  const { DURATION } = state.transitionReducer;
   const waitForItemsTransitionRef = useRef<NodeJS.Timeout | null>(null);
   const closeMenuRef = useRef<NodeJS.Timeout | null>(null);
   const transitionRef = useRef<NodeJS.Timeout | null>(null);

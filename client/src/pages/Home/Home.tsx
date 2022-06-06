@@ -1,10 +1,10 @@
-import { useTheme } from '../../utils/hooks';
+import { useGlobalState } from '../../utils/hooks';
 import AnimatedText from 'components/AnimatedText';
 import NavigationButton from 'components/Button/NavigationButton';
 import './index.sass';
 
 const Home = (): JSX.Element => {
-  const { font, background } = useTheme();
+  const { font, background } = useGlobalState().themeReducer.THEME;
 
   const imageURL =
     'https://images.unsplash.com/photo-1652074847108-0b4294408ca1';

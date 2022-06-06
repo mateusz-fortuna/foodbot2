@@ -1,5 +1,6 @@
 import { Route } from 'react-router-dom';
 import { Routes } from 'react-router';
+import ScrollDetector from './ScrollDetector';
 import Navigation from './Navigation';
 import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home/Home';
@@ -12,17 +13,19 @@ import './styles.sass';
 const App: () => JSX.Element = () => {
   return (
     <div className="App">
-      <Navigation>
-        <MainLayout>
-          <Routes>
-            <Route path="" element={<Home />}></Route>
-            <Route path="features" element={<Features />}></Route>
-            <Route path="gallery" element={<Gallery />}></Route>
-            <Route path="contact" element={<Contact />}></Route>
-            <Route path="blog" element={<Blog />}></Route>
-          </Routes>
-        </MainLayout>
-      </Navigation>
+      <ScrollDetector>
+        <Navigation>
+          <MainLayout>
+            <Routes>
+              <Route path="" element={<Home />}></Route>
+              <Route path="features" element={<Features />}></Route>
+              <Route path="gallery" element={<Gallery />}></Route>
+              <Route path="contact" element={<Contact />}></Route>
+              <Route path="blog" element={<Blog />}></Route>
+            </Routes>
+          </MainLayout>
+        </Navigation>
+      </ScrollDetector>
     </div>
   );
 };

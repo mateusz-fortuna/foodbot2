@@ -1,11 +1,12 @@
 import MenuItem from 'components/Menu/MenuItem';
 import MenuTransitions from 'components/MenuTransitions';
-import { useMenuState, useNavigation } from 'utils/hooks';
+import { useGlobalState } from 'utils/hooks';
 import './index.sass';
 
 const Menu = (): JSX.Element => {
-  const { IS_MENU_OPENED, IS_MENU_ITEM_TRANSITION } = useMenuState();
-  const { PAGES } = useNavigation();
+  const state = useGlobalState();
+  const { IS_MENU_OPENED, IS_MENU_ITEM_TRANSITION } = state.menuReducer;
+  const { PAGES } = state.navigationReducer;
 
   return (
     <div className="menu">

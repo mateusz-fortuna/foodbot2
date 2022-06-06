@@ -8,10 +8,12 @@ import initialLoadingReducer from '../features/initialLoading/initialLoadingSlic
 import menuReducer from '../features/menu/menuSlice';
 import transitionReducer from '../features/transition/transitionSlice';
 import featureDetailsReducer from '../features/featureDetails/featureDetailsSlice';
+import scrollDetectionReducer from '../features/scrollDetection/scrollDetectionSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['scroll'],
 };
 
 export const rootReducer = persistCombineReducers(persistConfig, {
@@ -22,6 +24,7 @@ export const rootReducer = persistCombineReducers(persistConfig, {
   menuReducer,
   transitionReducer,
   featureDetailsReducer,
+  scrollDetectionReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

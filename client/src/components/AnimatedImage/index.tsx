@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { useTransition } from 'utils/hooks';
+import { useGlobalState } from 'utils/hooks';
 
 type Props = {
   mount: boolean;
@@ -17,7 +17,7 @@ const AnimatedImage = ({
   nth = 0,
   className,
 }: Props): JSX.Element => {
-  const { DURATION, ELEMENTS_DELAY } = useTransition();
+  const { DURATION, ELEMENTS_DELAY } = useGlobalState().transitionReducer;
   const animationClass = 'content--animation';
   const componentDelay = nth * ELEMENTS_DELAY * 2;
   const animationDuration = DURATION + componentDelay;

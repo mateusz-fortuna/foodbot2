@@ -2,7 +2,7 @@ import { toggleTransitionActive } from 'features/transition/transitionSlice';
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { useTransition } from 'utils/hooks';
+import { useGlobalState } from 'utils/hooks';
 import Button, { ButtonTheme } from '..';
 
 type Props = ButtonTheme & {
@@ -13,7 +13,7 @@ type Props = ButtonTheme & {
 const NavigationButton = (props: Props): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { DURATION } = useTransition();
+  const { DURATION } = useGlobalState().transitionReducer;
   const transitionTimer = useRef<NodeJS.Timeout | null>(null);
 
   const handleNavigation = () => {

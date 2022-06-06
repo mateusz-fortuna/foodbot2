@@ -1,10 +1,11 @@
 import { TransitionIn, TransitionOut } from 'components/Transitions';
-import { useMenuState, useTheme, useTransition } from 'utils/hooks';
+import { useGlobalState } from 'utils/hooks';
 
 const MenuTransitions = (): JSX.Element => {
-  const { IS_MENU_TRANSITION } = useMenuState();
-  const { DURATION, ELEMENTS_DELAY } = useTransition();
-  const { background } = useTheme();
+  const state = useGlobalState();
+  const { IS_MENU_TRANSITION } = state.menuReducer;
+  const { DURATION, ELEMENTS_DELAY } = state.transitionReducer;
+  const { background } = state.themeReducer.THEME;
 
   return (
     <>

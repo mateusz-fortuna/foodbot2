@@ -1,17 +1,11 @@
 import { ReactNode, useState } from 'react';
-import {
-  useInitialLoading,
-  useMenuState,
-  useOrientation,
-  useTheme,
-  useTransition,
-} from 'utils/hooks';
+import { useGlobalState, useOrientation } from 'utils/hooks';
 import Navbar from 'components/Navbar';
 import PageTransition from 'components/Transitions/PageTransition';
 import Intro from '../components/Intro';
-import './styles.sass';
 import MenuButton from 'components/Button/MenuButton';
 import Menu from 'components/Menu';
+import './styles.sass';
 
 type Props = {
   menuColor?: string;
@@ -20,10 +14,11 @@ type Props = {
 };
 
 const MainLayout = ({ children }: Props): JSX.Element => {
-  const { background, font } = useTheme();
-  const { IS_INITIAL_LOADING } = useInitialLoading();
-  const { IS_TRANSITION_ACTIVE } = useTransition();
-  const { IS_MENU_OPENED } = useMenuState();
+  const state = useGlobalState();
+  const { background, font } = state.themeReducer.THEME;
+  const { IS_INITIAL_LOADING } = state.initialLoadingReducer;
+  const { IS_TRANSITION_ACTIVE } = state.transitionReducer;
+  const { IS_MENU_OPENED } = state.menuReducer;
   const [mountIntro, setMountIntro] = useState(true);
   const orientation = useOrientation();
 

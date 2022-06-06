@@ -4,26 +4,21 @@ import ContentSection from './ContentSection';
 import FeatureDetailsButton from 'components/Button/FeatureDetailsButton';
 import { CSSTransition } from 'react-transition-group';
 import { useDispatch } from 'react-redux';
+import { useEffect, useRef, useState } from 'react';
+import { useGlobalState, useOrientation } from 'utils/hooks';
+import './index.sass';
 import {
   resetFeatureDetails,
   toggleDetailTransition,
 } from 'features/featureDetails/featureDetailsSlice';
-import { useEffect, useRef, useState } from 'react';
-import './index.sass';
-import {
-  useContent,
-  useFeatureDetails,
-  useOrientation,
-  useTheme,
-  useTransition,
-} from 'utils/hooks';
 
 const FeatureDetails = (): JSX.Element | null => {
   const dispatch = useDispatch();
-  const { OPENED_FEATURE } = useFeatureDetails();
-  const { DURATION } = useTransition();
-  const { background, font } = useTheme();
-  const { features } = useContent();
+  const state = useGlobalState();
+  const { OPENED_FEATURE } = state.featureDetailsReducer;
+  const { DURATION } = state.transitionReducer;
+  const { background, font } = state.themeReducer.THEME;
+  const { features } = state.languageReducer.CONTENT;
   const orientation = useOrientation();
   const firstOpen = useRef(true);
   const featuresRef = useRef(OPENED_FEATURE ? features[OPENED_FEATURE] : null);

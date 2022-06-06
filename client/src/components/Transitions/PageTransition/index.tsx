@@ -1,13 +1,14 @@
 import { toggleTransitionActive } from 'features/transition/transitionSlice';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useTheme, useTransition } from 'utils/hooks';
+import { useGlobalState } from 'utils/hooks';
 import { TransitionIn, TransitionOut } from '..';
 
 const PageTransition = (): JSX.Element => {
   const dispatch = useDispatch();
-  const { background } = useTheme();
-  const { DURATION, ELEMENTS_DELAY } = useTransition();
+  const state = useGlobalState();
+  const { background } = state.themeReducer.THEME;
+  const { DURATION, ELEMENTS_DELAY } = state.transitionReducer;
 
   const [mountTransitionIn, setMountTransitionIn] = useState(true);
   const transitionInTimeout = useRef<NodeJS.Timeout | null>(null);
