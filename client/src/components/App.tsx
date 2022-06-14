@@ -7,7 +7,6 @@ import Home from '../pages/Home/Home';
 import Gallery from 'pages/Gallery';
 import Features from 'pages/Features';
 import Contact from 'pages/Contact';
-import Blog from 'pages/Blog';
 import './styles.sass';
 
 const App: () => JSX.Element = () => {
@@ -17,11 +16,10 @@ const App: () => JSX.Element = () => {
         <Navigation>
           <MainLayout>
             <Routes>
-              <Route path="" element={<Home />}></Route>
-              <Route path="features" element={<Features />}></Route>
-              <Route path="gallery" element={<Gallery />}></Route>
-              <Route path="contact" element={<Contact />}></Route>
-              <Route path="blog" element={<Blog />}></Route>
+              <Route path="/" element={<Home />} />
+              <Route path="features" element={<Features />} />
+              <Route path="gallery" element={<Gallery />} />
+              <Route path="contact" element={<Contact />} />
             </Routes>
           </MainLayout>
         </Navigation>

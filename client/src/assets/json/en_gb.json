@@ -51,25 +51,5 @@
     "https://images.unsplash.com/photo-1652074847108-0b4294408ca1",
     "https://images.unsplash.com/photo-1652074847108-0b4294408ca1"
   ],
-  "contact": {},
-  "blog": {
-    "title": "Blog",
-    "posts": [
-      {
-        "slug": "first_post",
-        "title": "This is the first post.",
-        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus, nisi ac suscipit consectetur, purus orci pharetra orci, vitae varius felis odio et odio. Maecenas et velit dapibus ex semper commodo. Nunc at augue eget lorem congue ultrices. Maecenas condimentum sed tellus ut vehicula. Nulla sollicitudin erat imperdiet lectus convallis lobortis. Suspendisse placerat est eros, sit amet accumsan justo porttitor quis. Mauris semper sapien leo, nec ullamcorper turpis sollicitudin non. Donec a orci posuere turpis porttitor facilisis sit amet eget ex.   Sed auctor viverra lacinia. Sed a facilisis urna. In quis lorem aliquet, aliquet neque sed, malesuada ante. In eget quam aliquam, rutrum mi vitae, ultricies quam. Phasellus eu nisl erat. Nullam molestie dolor ac ex malesuada mattis sit amet eget ex. Morbi at euismod ipsum, nec faucibus tortor. Ut rutrum nulla quis nisl lacinia tempus. In sollicitudin mi nec feugiat pretium.Donec non fringilla nisl. Vivamus laoreet tortor mi, fermentum egestas quam tincidunt at. Nulla laoreet placerat turpis, id euismod metus dignissim interdum. Etiam non dui non diam sollicitudin pulvinar sed et purus. Donec eget arcu euismod, cursus dolor tempor, mollis lacus. Suspendisse vel gravida neque, in suscipit augue. Phasellus tempor consectetur nisi cursus congue. Donec id odio ac ex rutrum commodo. Quisque odio neque, iaculis eu nibh in, dapibus egestas ex. Ut tincidunt, arcu quis pretium placerat, lacus ipsum convallis turpis, a lacinia mi quam ut arcu. Maecenas commodo tempor nunc et hendrerit. Pellentesque sed tristique nisi."
-      },
-      {
-        "slug": "second_post",
-        "title": "This is the second post.",
-        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus, nisi ac suscipit consectetur, purus orci pharetra orci, vitae varius felis odio et odio. Maecenas et velit dapibus ex semper commodo. Nunc at augue eget lorem congue ultrices. Maecenas condimentum sed tellus ut vehicula. Nulla sollicitudin erat imperdiet lectus convallis lobortis. Suspendisse placerat est eros, sit amet accumsan justo porttitor quis. Mauris semper sapien leo, nec ullamcorper turpis sollicitudin non. Donec a orci posuere turpis porttitor facilisis sit amet eget ex.   Sed auctor viverra lacinia. Sed a facilisis urna. In quis lorem aliquet, aliquet neque sed, malesuada ante. In eget quam aliquam, rutrum mi vitae, ultricies quam. Phasellus eu nisl erat. Nullam molestie dolor ac ex malesuada mattis sit amet eget ex. Morbi at euismod ipsum, nec faucibus tortor. Ut rutrum nulla quis nisl lacinia tempus. In sollicitudin mi nec feugiat pretium.Donec non fringilla nisl. Vivamus laoreet tortor mi, fermentum egestas quam tincidunt at. Nulla laoreet placerat turpis, id euismod metus dignissim interdum. Etiam non dui non diam sollicitudin pulvinar sed et purus. Donec eget arcu euismod, cursus dolor tempor, mollis lacus. Suspendisse vel gravida neque, in suscipit augue. Phasellus tempor consectetur nisi cursus congue. Donec id odio ac ex rutrum commodo. Quisque odio neque, iaculis eu nibh in, dapibus egestas ex. Ut tincidunt, arcu quis pretium placerat, lacus ipsum convallis turpis, a lacinia mi quam ut arcu. Maecenas commodo tempor nunc et hendrerit. Pellentesque sed tristique nisi."
-      },
-      {
-        "slug": "third_post",
-        "title": "This is the third post.",
-        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus, nisi ac suscipit consectetur, purus orci pharetra orci, vitae varius felis odio et odio. Maecenas et velit dapibus ex semper commodo. Nunc at augue eget lorem congue ultrices. Maecenas condimentum sed tellus ut vehicula. Nulla sollicitudin erat imperdiet lectus convallis lobortis. Suspendisse placerat est eros, sit amet accumsan justo porttitor quis. Mauris semper sapien leo, nec ullamcorper turpis sollicitudin non. Donec a orci posuere turpis porttitor facilisis sit amet eget ex.   Sed auctor viverra lacinia. Sed a facilisis urna. In quis lorem aliquet, aliquet neque sed, malesuada ante. In eget quam aliquam, rutrum mi vitae, ultricies quam. Phasellus eu nisl erat. Nullam molestie dolor ac ex malesuada mattis sit amet eget ex. Morbi at euismod ipsum, nec faucibus tortor. Ut rutrum nulla quis nisl lacinia tempus. In sollicitudin mi nec feugiat pretium.Donec non fringilla nisl. Vivamus laoreet tortor mi, fermentum egestas quam tincidunt at. Nulla laoreet placerat turpis, id euismod metus dignissim interdum. Etiam non dui non diam sollicitudin pulvinar sed et purus. Donec eget arcu euismod, cursus dolor tempor, mollis lacus. Suspendisse vel gravida neque, in suscipit augue. Phasellus tempor consectetur nisi cursus congue. Donec id odio ac ex rutrum commodo. Quisque odio neque, iaculis eu nibh in, dapibus egestas ex. Ut tincidunt, arcu quis pretium placerat, lacus ipsum convallis turpis, a lacinia mi quam ut arcu. Maecenas commodo tempor nunc et hendrerit. Pellentesque sed tristique nisi."
-      }
-    ]
-  }
+  "contact": {}
 }

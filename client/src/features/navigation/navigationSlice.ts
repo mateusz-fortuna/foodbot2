@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const navigationSlice = createSlice({
   name: 'navigation',
   initialState: {
-    PAGES: ['', 'features', 'gallery', 'contact', 'blog'],
+    PAGES: ['', 'features', 'gallery', 'contact'],
     EXCEPTIONS: ['gallery'],
     IS_NAVIGATION_ACTIVE: false,
     IS_NAVIGATION_PREVENTED: false,

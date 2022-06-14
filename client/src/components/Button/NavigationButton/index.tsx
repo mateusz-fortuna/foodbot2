@@ -11,15 +11,16 @@ type Props = ButtonTheme & {
 };
 
 const NavigationButton = (props: Props): JSX.Element => {
+  const transitionTimer = useRef<NodeJS.Timeout | null>(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { DURATION } = useGlobalState().transitionReducer;
-  const transitionTimer = useRef<NodeJS.Timeout | null>(null);
+  const { children, page } = props;
 
   const handleNavigation = () => {
     dispatch(toggleTransitionActive());
     transitionTimer.current = setTimeout(() => {
-      navigate('/' + props.page);
+      navigate('/' + page);
     }, DURATION);
   };
 
@@ -29,13 +30,19 @@ const NavigationButton = (props: Props): JSX.Element => {
     };
   }, []);
 
+  const buttonText = () => {
+    if (children) return children;
+    if (page === '') return 'Home';
+    return page;
+  };
+
   return (
     <Button
       fontColor={props.fontColor}
       backgroundColor={props.backgroundColor}
       onClick={handleNavigation}
     >
-      {props.children ? props.children : props.page}
+      {buttonText()}
     </Button>
   );
 };

@@ -8,7 +8,7 @@ const Navbar = (): JSX.Element => {
 
   return (
     <nav className="navbar">
-      {PAGES.slice(1).map((name) => (
+      {PAGES.map((name) => (
         <NavbarItem key={name}>
           <NavigationButton
             page={name}
