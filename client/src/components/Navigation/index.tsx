@@ -34,15 +34,14 @@ const Navigation = ({ children }: Props): JSX.Element => {
   const changeUrlAddress = () => {
     if (DIRECTION === 'up') navigate('/' + PREV_PAGE);
     if (DIRECTION === 'down') {
-      if (!IS_NAVIGATION_PREVENTED) navigate('/' + NEXT_PAGE);
+      navigate('/' + NEXT_PAGE);
     }
   };
   const closeFeatureDetailsWindow = () => {
     if (OPENED_FEATURE) dispatch(resetFeatureDetails());
   };
   const runAnimation = () => {
-    if (!(IS_NAVIGATION_PREVENTED && DIRECTION === 'down'))
-      dispatch(toggleTransitionActive());
+    dispatch(toggleTransitionActive());
   };
 
   // ----------HANDLE NAVIGATION---------- //
@@ -52,7 +51,7 @@ const Navigation = ({ children }: Props): JSX.Element => {
   }, [isNavigationException]);
 
   useEffect(() => {
-    if (isNavigationInBoundary && !IS_MENU_OPENED) {
+    if (isNavigationInBoundary && !IS_MENU_OPENED && !IS_NAVIGATION_PREVENTED) {
       runAnimation();
       animationTimer.current = setTimeout(() => {
         changeUrlAddress();
