@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useGlobalState, useNavigation } from 'utils/hooks';
 import { toggleTransitionActive } from 'features/transition/transitionSlice';
-import { setNavigationPrevented } from '../../features/navigation/navigationSlice';
 import { ReactChild, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -16,11 +15,9 @@ const Navigation = ({ children }: Props): JSX.Element => {
   const { IS_MENU_OPENED } = state.menuReducer;
   const { OPENED_FEATURE } = state.featureDetailsReducer;
   const { DURATION } = state.transitionReducer;
-  const { EXCEPTIONS, IS_NAVIGATION_PREVENTED } = state.navigationReducer;
   const { DIRECTION, TICK_COUNT } = state.scrollDetectionReducer;
-  const { NEXT_PAGE, PREV_PAGE, CURRENT_PAGE } = useNavigation();
+  const { NEXT_PAGE, PREV_PAGE } = useNavigation();
 
-  const isNavigationException = EXCEPTIONS.indexOf(CURRENT_PAGE) !== -1;
   const isNavigationInBoundary =
     (DIRECTION === 'up' && PREV_PAGE !== null) ||
     (DIRECTION === 'down' && NEXT_PAGE !== null);
@@ -47,11 +44,7 @@ const Navigation = ({ children }: Props): JSX.Element => {
   // ----------HANDLE NAVIGATION---------- //
 
   useEffect(() => {
-    dispatch(setNavigationPrevented(isNavigationException));
-  }, [isNavigationException]);
-
-  useEffect(() => {
-    if (isNavigationInBoundary && !IS_MENU_OPENED && !IS_NAVIGATION_PREVENTED) {
+    if (isNavigationInBoundary && !IS_MENU_OPENED) {
       runAnimation();
       animationTimer.current = setTimeout(() => {
         changeUrlAddress();

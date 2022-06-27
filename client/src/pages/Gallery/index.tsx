@@ -28,7 +28,7 @@ const Gallery = (): JSX.Element => {
     Promise.all(imagePromises)
       .then(() => setIsGalleryLoaded(true))
       .catch(() => setIsError(true));
-  }, []);
+  }, [imageUrls]);
 
   return (
     <div
