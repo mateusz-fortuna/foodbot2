@@ -2,8 +2,9 @@ import { CSSProperties } from 'react';
 import Button from 'components/Button';
 import './index.sass';
 
+export type Direction = 'previous' | 'next';
 export type Props = {
-  direction: 'previous' | 'next';
+  direction: Direction;
   onClick?: () => void;
   style?: CSSProperties;
 };

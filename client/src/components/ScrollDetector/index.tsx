@@ -35,6 +35,7 @@ const ScrollDetector = ({ children }: Props): JSX.Element => {
       if (safeDistance && touchEndY > touchStartY.current)
         setScrollDirection('up');
       incrementTickCount();
+      setScrollDirection('none');
     };
 
     const handleWheel = ({ deltaY }: WheelEvent) => {

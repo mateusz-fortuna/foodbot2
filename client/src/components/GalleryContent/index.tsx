@@ -1,5 +1,5 @@
 import AnimatedImage from 'components/AnimatedImage';
-import ArrowButton from 'components/Button/ArrowButton';
+import ArrowButton, { Direction } from 'components/Button/ArrowButton';
 import { useEffect, useRef, useState } from 'react';
 import { useGlobalState, useOrientation } from 'utils/hooks';
 import './index.sass';
@@ -9,35 +9,43 @@ type Props = {
 };
 
 const GalleryContent = ({ images }: Props): JSX.Element => {
+  const { DURATION } = useGlobalState().transitionReducer;
   const [imgIndex, setImgIndex] = useState(0);
   const [isImageMounted, setIsImageMounted] = useState(true);
   const isLandscape = useOrientation() === 'landscape';
-  const arrowsMargin = '8rem';
-
   const transitionTimer = useRef<NodeJS.Timeout | null>(null);
-  const { DURATION } = useGlobalState().transitionReducer;
   const transitionSpeed = DURATION * 0.5;
+  const arrowsMargin = isLandscape ? '8rem' : 0;
+  const lastIndex = images.length - 1;
 
   const incrementIndex = () =>
-    setImgIndex((index) => (index === images.length - 1 ? 0 : index + 1));
+    setImgIndex((index) => (index === lastIndex ? 0 : index + 1));
   const decrementIndex = () =>
-    setImgIndex((index) => (index === 0 ? images.length - 1 : index - 1));
+    setImgIndex((index) => (index === 0 ? lastIndex : index - 1));
 
-  const showNextImage = () => {
+  const changeImage = (direction: Direction) => {
     setIsImageMounted(false);
     transitionTimer.current = setTimeout(() => {
-      incrementIndex();
+      if (direction === 'next') incrementIndex();
+      if (direction === 'previous') decrementIndex();
       setIsImageMounted(true);
     }, transitionSpeed);
   };
 
-  const showPreviousImage = () => {
-    setIsImageMounted(false);
-    transitionTimer.current = setTimeout(() => {
-      decrementIndex();
-      setIsImageMounted(true);
-    }, transitionSpeed);
-  };
+  const leftArrow = (
+    <ArrowButton
+      direction="previous"
+      style={{ marginLeft: arrowsMargin }}
+      onClick={() => changeImage('previous')}
+    />
+  );
+  const rightArrow = (
+    <ArrowButton
+      direction="next"
+      style={{ marginRight: arrowsMargin }}
+      onClick={() => changeImage('next')}
+    />
+  );
 
   useEffect(() => {
     return () => {
@@ -47,14 +55,11 @@ const GalleryContent = ({ images }: Props): JSX.Element => {
 
   return (
     <>
-      {isLandscape && (
-        <ArrowButton
-          direction="previous"
-          style={{ marginLeft: arrowsMargin }}
-          onClick={showPreviousImage}
-        />
-      )}
-      <div className="gallery__content_wrapper">
+      {isLandscape && leftArrow}
+      <div
+        className="gallery__content_wrapper"
+        style={{ marginBottom: isLandscape ? 0 : '4rem' }}
+      >
         <div className="gallery__content">
           <AnimatedImage
             mount={isImageMounted}
@@ -63,12 +68,12 @@ const GalleryContent = ({ images }: Props): JSX.Element => {
           />
         </div>
       </div>
-      {isLandscape && (
-        <ArrowButton
-          direction="next"
-          style={{ marginRight: arrowsMargin }}
-          onClick={showNextImage}
-        />
+      {isLandscape && rightArrow}
+      {!isLandscape && (
+        <div className="features__details_arrowsContainer">
+          {leftArrow}
+          {rightArrow}
+        </div>
       )}
     </>
   );
