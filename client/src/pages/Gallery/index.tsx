@@ -1,5 +1,6 @@
 import GalleryContent from 'components/GalleryContent';
-import { useEffect, useState } from 'react';
+import Progress from 'components/Progress';
+import { useEffect, useRef, useState } from 'react';
 import { useGlobalState } from 'utils/hooks';
 import './index.sass';
 
@@ -10,6 +11,8 @@ const Gallery = (): JSX.Element => {
   const { languageReducer, themeReducer } = useGlobalState();
   const { background } = themeReducer.THEME;
   const imageUrls = languageReducer.CONTENT.gallery;
+  const loadingDelayRef = useRef<NodeJS.Timeout | null>(null);
+  const transitionDelay = 50;
 
   const imagePromise = (url: string) =>
     new Promise<HTMLImageElement>((resolve, reject) => {
@@ -25,9 +28,18 @@ const Gallery = (): JSX.Element => {
 
   useEffect(() => {
     const imagePromises = imageUrls.map((url) => imagePromise(url));
+    const handleImagesLoaded = () => {
+      loadingDelayRef.current = setTimeout(
+        () => setIsGalleryLoaded(true),
+        transitionDelay * (100 / imageUrls.length),
+      );
+    };
     Promise.all(imagePromises)
-      .then(() => setIsGalleryLoaded(true))
+      .then(() => handleImagesLoaded())
       .catch(() => setIsError(true));
+    return () => {
+      if (loadingDelayRef.current) clearTimeout(loadingDelayRef.current);
+    };
   }, [imageUrls]);
 
   return (
@@ -35,6 +47,13 @@ const Gallery = (): JSX.Element => {
       className="gallery page__container"
       style={{ backgroundColor: background.default }}
     >
+      {!isGalleryLoaded && (
+        <Progress
+          numerator={images.length}
+          denominator={imageUrls.length}
+          transitionDelay={transitionDelay}
+        />
+      )}
       {isGalleryLoaded && <GalleryContent images={images} />}
       {isError && 'Failed to load images.'}
     </div>
