@@ -52,8 +52,16 @@
     "https://images.unsplash.com/photo-1656390170467-071bffc48871"
   ],
   "contact": {
-    "title": "contact",
-    "form": {},
+    "form": {
+      "title": "Ask your question here",
+      "name": "name",
+      "email": "email",
+      "message": "message",
+      "submitButton": "submit",
+      "errorMessages": {
+        "required": "This field is required."
+      }
+    },
     "map": {
       "latitude": 52.2319,
       "longitude": 21.0062,

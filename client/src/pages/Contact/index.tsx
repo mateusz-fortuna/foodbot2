@@ -1,5 +1,6 @@
 import { useGlobalState, useOrientation } from 'utils/hooks';
-import Map from '../../components/Map';
+import Map from 'components/Map';
+import Form from 'components/Form';
 import './index.sass';
 
 const Contact = (): JSX.Element => {
@@ -14,7 +15,9 @@ const Contact = (): JSX.Element => {
       className="contact page__container"
       style={{ backgroundColor: background.default, color: font.default }}
     >
-      <section className="contact__form_container"></section>
+      <section className="contact__form_container">
+        <Form />
+      </section>
       {isLandscape && (
         <section className="contact__map_container">
           <div className="contact__map">

@@ -7,6 +7,7 @@ export type ButtonTheme = {
 type Props = ButtonTheme & {
   children: React.ReactNode;
   onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
 };
 
 const Button = ({
@@ -14,10 +15,11 @@ const Button = ({
   fontColor,
   backgroundColor,
   onClick,
+  type,
 }: Props): JSX.Element => {
   return (
     <button
-      type="button"
+      type={type ? type : 'button'}
       onClick={onClick ? () => onClick() : undefined}
       className="button"
       style={{
