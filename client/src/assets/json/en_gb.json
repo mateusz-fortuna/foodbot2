@@ -59,7 +59,8 @@
       "message": "message",
       "submitButton": "submit",
       "errorMessages": {
-        "required": "This field is required."
+        "required": "This field is required.",
+        "pattern": "The email is invalid."
       }
     },
     "map": {
