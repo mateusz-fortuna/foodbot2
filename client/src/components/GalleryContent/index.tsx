@@ -1,7 +1,7 @@
-import AnimatedImage from 'components/AnimatedImage';
+/* eslint-disable react-hooks/exhaustive-deps */
 import ArrowButton, { Direction } from 'components/Button/ArrowButton';
 import { useEffect, useRef, useState } from 'react';
-import { useGlobalState, useOrientation } from 'utils/hooks';
+import { useOrientation } from 'utils/hooks';
 import './index.sass';
 
 type Props = {
@@ -9,12 +9,9 @@ type Props = {
 };
 
 const GalleryContent = ({ images }: Props): JSX.Element => {
-  const { DURATION } = useGlobalState().transitionReducer;
   const [imgIndex, setImgIndex] = useState(0);
-  const [isImageMounted, setIsImageMounted] = useState(true);
   const isLandscape = useOrientation() === 'landscape';
   const transitionTimer = useRef<NodeJS.Timeout | null>(null);
-  const transitionSpeed = DURATION * 0.5;
   const arrowsMargin = isLandscape ? '8rem' : 0;
   const lastIndex = images.length - 1;
 
@@ -24,12 +21,12 @@ const GalleryContent = ({ images }: Props): JSX.Element => {
     setImgIndex((index) => (index === 0 ? lastIndex : index - 1));
 
   const changeImage = (direction: Direction) => {
-    setIsImageMounted(false);
-    transitionTimer.current = setTimeout(() => {
-      if (direction === 'next') incrementIndex();
-      if (direction === 'previous') decrementIndex();
-      setIsImageMounted(true);
-    }, transitionSpeed);
+    if (direction === 'next') incrementIndex();
+    if (direction === 'previous') decrementIndex();
+  };
+  const handleKeyboardNavigation = ({ code }: KeyboardEvent) => {
+    if (code === 'ArrowLeft') return changeImage('previous');
+    if (code === 'ArrowRight') return changeImage('next');
   };
 
   const leftArrow = (
@@ -48,7 +45,9 @@ const GalleryContent = ({ images }: Props): JSX.Element => {
   );
 
   useEffect(() => {
+    window.addEventListener('keyup', handleKeyboardNavigation);
     return () => {
+      window.removeEventListener('keyup', handleKeyboardNavigation);
       if (transitionTimer.current) clearTimeout(transitionTimer.current);
     };
   }, []);
@@ -61,11 +60,7 @@ const GalleryContent = ({ images }: Props): JSX.Element => {
         style={{ marginBottom: isLandscape ? 0 : '4rem' }}
       >
         <div className="gallery__content">
-          <AnimatedImage
-            mount={isImageMounted}
-            src={images[imgIndex].src}
-            alt={images[imgIndex].alt}
-          />
+          <img src={images[imgIndex].src} alt={images[imgIndex].alt} />
         </div>
       </div>
       {isLandscape && rightArrow}

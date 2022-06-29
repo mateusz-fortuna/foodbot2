@@ -31,7 +31,7 @@ const Progress = ({
     return () => {
       if (transitionRef.current) clearInterval(transitionRef.current);
     };
-  }, [numerator]);
+  }, [numerator, quotient, transitionDelay]);
 
   return (
     <div className="progress">
