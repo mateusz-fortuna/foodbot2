@@ -51,5 +51,15 @@
     "https://images.unsplash.com/photo-1648737119359-510d4f551382",
     "https://images.unsplash.com/photo-1656390170467-071bffc48871"
   ],
-  "contact": {}
+  "contact": {
+    "title": "contact",
+    "form": {},
+    "map": {
+      "latitude": 52.2319,
+      "longitude": 21.0062,
+      "zoom": 15,
+      "markerLatitude": 52.2319,
+      "markerLongitude": 21.0062
+    }
+  }
 }

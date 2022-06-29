@@ -1,13 +1,34 @@
-import AnimatedText from 'components/AnimatedText';
+import { useGlobalState, useOrientation } from 'utils/hooks';
+import Map from '../../components/Map';
 import './index.sass';
 
 const Contact = (): JSX.Element => {
+  const state = useGlobalState();
+  const isLandscape = useOrientation() === 'landscape';
+  const { font, background } = state.themeReducer.THEME;
+  const { latitude, longitude, zoom, markerLatitude, markerLongitude } =
+    state.languageReducer.CONTENT.contact.map;
+
   return (
-    <div className="contact page__container">
-      <h1>
-        <AnimatedText mount>Contact</AnimatedText>
-      </h1>
-    </div>
+    <main
+      className="contact page__container"
+      style={{ backgroundColor: background.default, color: font.default }}
+    >
+      <section className="contact__form_container"></section>
+      {isLandscape && (
+        <section className="contact__map_container">
+          <div className="contact__map">
+            <Map
+              latitude={latitude}
+              longitude={longitude}
+              zoom={zoom}
+              markerLatitude={markerLatitude}
+              markerLongitude={markerLongitude}
+            />
+          </div>
+        </section>
+      )}
+    </main>
   );
 };
 
