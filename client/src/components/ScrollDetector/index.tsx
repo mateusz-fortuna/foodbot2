@@ -48,13 +48,27 @@ const ScrollDetector = ({ children }: Props): JSX.Element => {
       trailing: false,
     });
 
+    const handleKeyboardNavigation = ({ code }: KeyboardEvent) => {
+      if (code === 'ArrowUp') setScrollDirection('up');
+      if (code === 'ArrowDown') setScrollDirection('down');
+      incrementTickCount();
+    };
+
+    const throttledKeyboardNavigation = throttle(
+      handleKeyboardNavigation,
+      2 * DURATION,
+      { trailing: false },
+    );
+
     window.addEventListener('wheel', throttledWheel, { passive: true });
     window.addEventListener('touchstart', handleTouchStart, { passive: true });
     window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    window.addEventListener('keyup', throttledKeyboardNavigation);
     return () => {
       window.removeEventListener('wheel', throttledWheel);
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('keyup', throttledKeyboardNavigation);
     };
   }, [DURATION, dispatch]);
 
