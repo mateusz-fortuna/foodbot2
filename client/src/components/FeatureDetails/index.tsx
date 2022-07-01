@@ -2,6 +2,7 @@ import CloseButton from 'components/Button/CloseButton';
 import ImgSection from './ImgSection';
 import ContentSection from './ContentSection';
 import FeatureDetailsButton from 'components/Button/FeatureDetailsButton';
+import ContentProgressIndicator from 'components/ContentProgressIndicator';
 import { CSSTransition } from 'react-transition-group';
 import { useDispatch } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
@@ -24,13 +25,18 @@ const FeatureDetails = (): JSX.Element | null => {
   const featuresRef = useRef(OPENED_FEATURE ? features[OPENED_FEATURE] : null);
   const [mountContent, setMountContent] = useState(true);
   const [mount, setMount] = useState(true);
+  const [featureIndex, setFeatureIndex] = useState(0);
   const closeTimeout = useRef<NodeJS.Timeout | null>(null);
   const detailsAnimation = useRef<NodeJS.Timeout | null>(null);
   const transitionTimeout = useRef<NodeJS.Timeout | null>(null);
   const detailsAnimationDuration = 1.5 * DURATION;
-  const transitionClassName = 'featuresDetailsTransition';
   const [resetContent, setResetContent] = useState(false);
   const transitionDelayCoefficient = 1.25;
+  const transitionClass = 'featuresDetailsTransition';
+  const sectionClass = 'features__details_sectionContainer';
+  const sectionClassPortrait = `${sectionClass} features__details_sectionContainer--portrait`;
+  const sectionContainerClass =
+    orientation === 'portrait' ? sectionClassPortrait : sectionClass;
 
   // Handle content transition
 
@@ -42,6 +48,7 @@ const FeatureDetails = (): JSX.Element | null => {
         featuresRef.current = features[OPENED_FEATURE];
         setResetContent(true);
         setResetContent(false);
+        setFeatureIndex(Object.keys(features).indexOf(OPENED_FEATURE) + 1);
         setMountContent(true);
       }, transitionDelayCoefficient * DURATION);
       transitionTimeout.current = setTimeout(() => {
@@ -72,13 +79,13 @@ const FeatureDetails = (): JSX.Element | null => {
   return (
     OPENED_FEATURE && (
       <CSSTransition
-        classNames={transitionClassName}
+        classNames={transitionClass}
         in={mount}
         timeout={detailsAnimationDuration}
         appear
       >
         <div
-          className={'features__details ' + transitionClassName}
+          className={'features__details ' + transitionClass}
           style={{
             backgroundColor: background.default,
             color: font.default,
@@ -91,13 +98,7 @@ const FeatureDetails = (): JSX.Element | null => {
           {resetContent
             ? null
             : featuresRef.current && (
-                <div
-                  className={
-                    orientation === 'portrait'
-                      ? 'features__details_sectionContainer features__details_sectionContainer--portrait'
-                      : 'features__details_sectionContainer'
-                  }
-                >
+                <div className={sectionContainerClass}>
                   <ImgSection
                     mount={mountContent}
                     nth={1}
@@ -112,6 +113,15 @@ const FeatureDetails = (): JSX.Element | null => {
                   />
                 </div>
               )}
+          {orientation === 'landscape' && featureIndex && (
+            <h1>
+              <ContentProgressIndicator
+                numerator={featureIndex}
+                denominator={Object.keys(features).length}
+                mount={mountContent}
+              />
+            </h1>
+          )}
           {orientation === 'landscape' ? (
             <FeatureDetailsButton direction="next" />
           ) : (

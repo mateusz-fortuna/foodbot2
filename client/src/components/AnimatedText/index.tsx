@@ -2,10 +2,12 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { useGlobalState } from 'utils/hooks';
 import './styles.sass';
 
-type Props = {
+export type AnimatedTextProps = {
   mount?: boolean;
-  children: string;
   nth?: number;
+};
+type Props = AnimatedTextProps & {
+  children: string;
 };
 
 const splitText = (txt: string) => {

@@ -38,11 +38,11 @@ const Features = (): JSX.Element => {
       <div className="features__imageContainer">
         <img src={imageURL} alt="lorem ipsum" />
 
-        {Object.entries(features).map(([name, { buttonPos }]) => (
+        {Object.entries(features).map(([name, { buttonPos }], INDEX) => (
           <CircleButton
             key={name}
             onClick={() =>
-              dispatch(setFeatureDetails({ OPENED_FEATURE: name }))
+              dispatch(setFeatureDetails({ INDEX, OPENED_FEATURE: name }))
             }
             style={{
               left: buttonPos[0] + '%',

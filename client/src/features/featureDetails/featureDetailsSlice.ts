@@ -5,6 +5,7 @@ export type FeatureName =
   keyof RootState['languageReducer']['CONTENT']['features'];
 
 type State = {
+  INDEX: number;
   OPENED_FEATURE: FeatureName | null;
   PREVIOUS: FeatureName | null;
   NEXT: FeatureName | null;
@@ -12,6 +13,7 @@ type State = {
 };
 
 const initialState: State = {
+  INDEX: 0,
   OPENED_FEATURE: null,
   PREVIOUS: null,
   NEXT: null,

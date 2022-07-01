@@ -1,9 +1,8 @@
+import { ContentProgressProps } from 'components/ContentProgressIndicator';
 import { useEffect, useRef, useState } from 'react';
 import './index.sass';
 
-type Props = {
-  numerator: number;
-  denominator: number;
+type Props = ContentProgressProps & {
   transitionDelay: number;
 };
 
