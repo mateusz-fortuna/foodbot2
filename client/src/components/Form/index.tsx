@@ -52,7 +52,7 @@ const Form = (): JSX.Element => {
         pattern={emailPattern}
         {...inputBoxProps}
       />
-      <InputBox name={message} nth={2} type="textarea" {...inputBoxProps} />
+      <InputBox name={message} nth={3} type="textarea" {...inputBoxProps} />
       <SubmitButton>{submitButton}</SubmitButton>
     </form>
   );
