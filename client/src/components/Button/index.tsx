@@ -8,6 +8,7 @@ type Props = ButtonTheme & {
   children: React.ReactNode;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
+  style?: React.CSSProperties;
 };
 
 const Button = ({
@@ -16,6 +17,7 @@ const Button = ({
   backgroundColor,
   onClick,
   type,
+  style,
 }: Props): JSX.Element => {
   return (
     <button
@@ -26,6 +28,7 @@ const Button = ({
         color: fontColor,
         backgroundColor: backgroundColor,
         outlineColor: backgroundColor,
+        ...style,
       }}
     >
       {children}

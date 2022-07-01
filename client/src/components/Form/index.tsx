@@ -1,26 +1,33 @@
-import Button from 'components/Button';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useGlobalState } from 'utils/hooks';
+import { useGlobalState, useOrientation } from 'utils/hooks';
+import InputBox from 'components/InputBox';
+import AnimatedText from 'components/AnimatedText';
+import SubmitButton from 'components/Button/SubmitButton';
 import './index.sass';
 
-type Inputs = {
+export type Inputs = {
   name: string;
   email: string;
   message: string;
 };
 
 const Form = (): JSX.Element => {
+  const isLandscape = useOrientation() === 'landscape';
+  const { title, name, email, message, submitButton, errorMessages } =
+    useGlobalState().languageReducer.CONTENT.contact.form;
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
-  const submit: SubmitHandler<Inputs> = (data) => console.log(data);
-  const state = useGlobalState();
-  const { background, font } = state.themeReducer.THEME;
-  const { title, name, email, message, submitButton, errorMessages } =
-    state.languageReducer.CONTENT.contact.form;
+  const inputBoxProps = {
+    errorMessages,
+    errors,
+    register,
+    required: true,
+  };
 
   const emailPattern = {
     value:
@@ -28,44 +35,25 @@ const Form = (): JSX.Element => {
     message: errorMessages.pattern,
   };
 
-  const submitButtonStyle = {
-    position: 'absolute',
-    inset: 0,
-    height: '100%',
-    opacity: 0,
-    cursor: 'pointer',
-  } as React.CSSProperties;
+  const submit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   return (
-    <form onSubmit={handleSubmit(submit)}>
-      <h1>{`${title}!`}</h1>
-
-      <div className="inputBox">
-        <label>{`${name}:`}</label>
-        <input {...register('name', { required: true })} />
-        {errors.name && <span>{errorMessages.required}</span>}
-      </div>
-
-      <div className="inputBox">
-        <label>{`${email}:`}</label>
-        <input
-          {...register('email', { required: true, pattern: emailPattern })}
-        />
-        {errors.email && <span>{errorMessages.required}</span>}
-        <span>{errors.email?.message}</span>
-      </div>
-
-      <div className="inputBox">
-        <label>{`${message}:`}</label>
-        <textarea {...register('message', { required: true })} rows={8} />
-        {errors.message && <span>{errorMessages.required}</span>}
-        {}
-      </div>
-
-      <Button backgroundColor={background.inverted} fontColor={font.inverted}>
-        {submitButton}
-        <input type="submit" style={submitButtonStyle} />
-      </Button>
+    <form
+      onSubmit={handleSubmit(submit)}
+      style={{ marginTop: isLandscape ? 0 : '4rem' }}
+    >
+      <h1>
+        <AnimatedText>{`${title}!`}</AnimatedText>
+      </h1>
+      <InputBox name={name} nth={1} {...inputBoxProps} />
+      <InputBox
+        name={email}
+        nth={2}
+        pattern={emailPattern}
+        {...inputBoxProps}
+      />
+      <InputBox name={message} nth={2} type="textarea" {...inputBoxProps} />
+      <SubmitButton>{submitButton}</SubmitButton>
     </form>
   );
 };

@@ -3,7 +3,7 @@ import { useGlobalState } from 'utils/hooks';
 import './styles.sass';
 
 type Props = {
-  mount: boolean;
+  mount?: boolean;
   children: string;
   nth?: number;
 };
@@ -13,7 +13,11 @@ const splitText = (txt: string) => {
   return txt.match(linesSplittingRegex)?.map((line) => line.trimEnd()) || [txt];
 };
 
-const AnimatedText = ({ mount, children, nth = 0 }: Props): JSX.Element => {
+const AnimatedText = ({
+  mount = true,
+  children,
+  nth = 0,
+}: Props): JSX.Element => {
   const textLines = splitText(children);
   const animationClass = 'content--animation';
   const { DURATION, ELEMENTS_DELAY } = useGlobalState().transitionReducer;
