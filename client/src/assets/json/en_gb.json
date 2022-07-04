@@ -59,8 +59,9 @@
       "message": "message",
       "submitButton": "submit",
       "errorMessages": {
-        "required": "This field is required.",
-        "pattern": "The email is invalid."
+        "required": "This field is required",
+        "pattern": "The email is invalid",
+        "captcha": "Please resolve the ReCAPTCHA"
       }
     },
     "map": {

@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useGlobalState, useOrientation } from 'utils/hooks';
 import InputBox from 'components/InputBox';
 import AnimatedText from 'components/AnimatedText';
+import ReCAPTCHA from 'react-google-recaptcha';
 import SubmitButton from 'components/Button/SubmitButton';
 import './index.sass';
+import { sendData } from './sendData';
 
 export type Inputs = {
   name: string;
@@ -12,9 +15,14 @@ export type Inputs = {
 };
 
 const Form = (): JSX.Element => {
+  const serverPath = '';
+  const recaptchaSiteKey = '6LerWc0aAAAAAHshuCVA20zxcp1UbBPCDFGXL1Dg';
+  const [isCaptchaValid, setIsCaptchaValid] = useState(false);
+  const [isSubmitButtonClicked, setIsSubmitButtonClicked] = useState(false);
   const isLandscape = useOrientation() === 'landscape';
+  const state = useGlobalState();
   const { title, name, email, message, submitButton, errorMessages } =
-    useGlobalState().languageReducer.CONTENT.contact.form;
+    state.languageReducer.CONTENT.contact.form;
 
   const {
     register,
@@ -35,7 +43,12 @@ const Form = (): JSX.Element => {
     message: errorMessages.pattern,
   };
 
-  const submit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const submit: SubmitHandler<Inputs> = (data) => {
+    setIsSubmitButtonClicked(true);
+    if (isCaptchaValid) {
+      sendData(serverPath, data);
+    }
+  };
 
   return (
     <form
@@ -53,6 +66,13 @@ const Form = (): JSX.Element => {
         {...inputBoxProps}
       />
       <InputBox name={message} nth={3} type="textarea" {...inputBoxProps} />
+      <ReCAPTCHA
+        sitekey={recaptchaSiteKey}
+        onChange={() => setIsCaptchaValid(true)}
+      />
+      {!isCaptchaValid && isSubmitButtonClicked && (
+        <span className="spanError">{errorMessages.captcha}</span>
+      )}
       <SubmitButton>{submitButton}</SubmitButton>
     </form>
   );

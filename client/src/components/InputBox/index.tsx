@@ -41,8 +41,12 @@ const InputBox = ({
         <AnimatedText nth={nth}>{`${name}:`}</AnimatedText>
       </label>
       {type === 'text' ? textInput : textArea}
-      {errors.name && <span>{errorMessages.required}</span>}
-      {name === 'email' && <span>{errors.email?.message}</span>}
+      {errors.name && (
+        <span className="spanError">{errorMessages.required}</span>
+      )}
+      {name === 'email' && (
+        <span className="spanError">{errors.email?.message}</span>
+      )}
     </div>
   );
 };

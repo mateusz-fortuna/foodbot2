@@ -21,9 +21,6 @@
 .env.test.local
 .env.production.local
 .env
-.env.bak
-/client/.env
-/client/.env.bak
 
 npm-debug.log*
 yarn-debug.log*
