@@ -74,17 +74,22 @@ const GalleryContent = ({ images }: Props): JSX.Element => {
         <div className="gallery__content">
           <img src={images[imgIndex].src} alt={images[imgIndex].alt} />
         </div>
-        <h1>
-          <ContentProgressIndicator
-            numerator={numerator}
-            denominator={images.length}
-            mount={isIndicator}
-          />
-        </h1>
+        {isLandscape && (
+          <h1>
+            <ContentProgressIndicator
+              numerator={numerator}
+              denominator={images.length}
+              mount={isIndicator}
+            />
+          </h1>
+        )}
       </div>
       {isLandscape && rightArrow}
       {!isLandscape && (
-        <div className="features__details_arrowsContainer">
+        <div
+          className="features__details_arrowsContainer"
+          style={{ bottom: '1rem' }}
+        >
           {leftArrow}
           {rightArrow}
         </div>
