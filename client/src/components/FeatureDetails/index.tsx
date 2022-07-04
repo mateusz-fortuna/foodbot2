@@ -25,7 +25,9 @@ const FeatureDetails = (): JSX.Element | null => {
   const featuresRef = useRef(OPENED_FEATURE ? features[OPENED_FEATURE] : null);
   const [mountContent, setMountContent] = useState(true);
   const [mount, setMount] = useState(true);
-  const [featureIndex, setFeatureIndex] = useState(0);
+  const index =
+    Object.keys(features).indexOf(OPENED_FEATURE ? OPENED_FEATURE : '') + 1;
+  const [featureIndex, setFeatureIndex] = useState(index);
   const closeTimeout = useRef<NodeJS.Timeout | null>(null);
   const detailsAnimation = useRef<NodeJS.Timeout | null>(null);
   const transitionTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -48,14 +50,14 @@ const FeatureDetails = (): JSX.Element | null => {
         featuresRef.current = features[OPENED_FEATURE];
         setResetContent(true);
         setResetContent(false);
-        setFeatureIndex(Object.keys(features).indexOf(OPENED_FEATURE) + 1);
+        setFeatureIndex(index);
         setMountContent(true);
       }, transitionDelayCoefficient * DURATION);
       transitionTimeout.current = setTimeout(() => {
         dispatch(toggleDetailTransition());
       }, 2 * transitionDelayCoefficient * DURATION);
     }
-  }, [OPENED_FEATURE, DURATION, features, dispatch]);
+  }, [OPENED_FEATURE, DURATION, features, dispatch, index]);
 
   const handleCloseButton = () => {
     setMountContent(false);
@@ -113,7 +115,7 @@ const FeatureDetails = (): JSX.Element | null => {
                   />
                 </div>
               )}
-          {orientation === 'landscape' && featureIndex && (
+          {orientation === 'landscape' && OPENED_FEATURE && (
             <h1>
               <ContentProgressIndicator
                 numerator={featureIndex}

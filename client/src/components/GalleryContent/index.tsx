@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import ArrowButton, { Direction } from 'components/Button/ArrowButton';
+import ContentProgressIndicator from 'components/ContentProgressIndicator';
 import { useEffect, useRef, useState } from 'react';
-import { useOrientation } from 'utils/hooks';
+import { useGlobalState, useOrientation } from 'utils/hooks';
 import './index.sass';
 
 type Props = {
@@ -10,6 +11,9 @@ type Props = {
 
 const GalleryContent = ({ images }: Props): JSX.Element => {
   const [imgIndex, setImgIndex] = useState(0);
+  const [numerator, setNumerator] = useState(imgIndex + 1);
+  const [isIndicator, setIsIndicator] = useState(false);
+  const { DURATION } = useGlobalState().transitionReducer;
   const isLandscape = useOrientation() === 'landscape';
   const transitionTimer = useRef<NodeJS.Timeout | null>(null);
   const arrowsMargin = isLandscape ? '8rem' : 0;
@@ -45,6 +49,14 @@ const GalleryContent = ({ images }: Props): JSX.Element => {
   );
 
   useEffect(() => {
+    setIsIndicator(false);
+    transitionTimer.current = setTimeout(() => {
+      setNumerator(imgIndex + 1);
+      setIsIndicator(true);
+    }, DURATION);
+  }, [imgIndex]);
+
+  useEffect(() => {
     window.addEventListener('keyup', handleKeyboardNavigation);
     return () => {
       window.removeEventListener('keyup', handleKeyboardNavigation);
@@ -62,6 +74,13 @@ const GalleryContent = ({ images }: Props): JSX.Element => {
         <div className="gallery__content">
           <img src={images[imgIndex].src} alt={images[imgIndex].alt} />
         </div>
+        <h1>
+          <ContentProgressIndicator
+            numerator={numerator}
+            denominator={images.length}
+            mount={isIndicator}
+          />
+        </h1>
       </div>
       {isLandscape && rightArrow}
       {!isLandscape && (
