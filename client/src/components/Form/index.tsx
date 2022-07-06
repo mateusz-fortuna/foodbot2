@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useGlobalState, useOrientation } from 'utils/hooks';
@@ -5,22 +6,24 @@ import InputBox from 'components/InputBox';
 import AnimatedText from 'components/AnimatedText';
 import ReCAPTCHA from 'react-google-recaptcha';
 import SubmitButton from 'components/Button/SubmitButton';
+import axios from 'axios';
 import './index.sass';
-import { sendData } from './sendData';
 
 export type Inputs = {
   name: string;
   email: string;
   message: string;
 };
+type Status = 'none' | 'inProgress' | 'success' | 'error';
 
 const Form = (): JSX.Element => {
-  const serverPath = '';
+  const serverPath = 'http://localhost:3001/contact/submit';
   const recaptchaSiteKey = '6LerWc0aAAAAAHshuCVA20zxcp1UbBPCDFGXL1Dg';
+  const state = useGlobalState();
+  const isLandscape = useOrientation() === 'landscape';
   const [isCaptchaValid, setIsCaptchaValid] = useState(false);
   const [isSubmitButtonClicked, setIsSubmitButtonClicked] = useState(false);
-  const isLandscape = useOrientation() === 'landscape';
-  const state = useGlobalState();
+  const [submittingStatus, setSubmittingStatus] = useState<Status>('none');
   const { title, name, email, message, submitButton, errorMessages } =
     state.languageReducer.CONTENT.contact.form;
 
@@ -46,7 +49,8 @@ const Form = (): JSX.Element => {
   const submit: SubmitHandler<Inputs> = (data) => {
     setIsSubmitButtonClicked(true);
     if (isCaptchaValid) {
-      sendData(serverPath, data);
+      setSubmittingStatus('inProgress');
+      return axios.post(serverPath, data).then((res) => console.log(res));
     }
   };
 
@@ -73,7 +77,11 @@ const Form = (): JSX.Element => {
       {!isCaptchaValid && isSubmitButtonClicked && (
         <span className="spanError">{errorMessages.captcha}</span>
       )}
-      <SubmitButton>{submitButton}</SubmitButton>
+      <SubmitButton isFormSubmitting={submittingStatus === 'inProgress'}>
+        {submittingStatus === 'inProgress'
+          ? submitButton.submitting + '...'
+          : submitButton.default}
+      </SubmitButton>
     </form>
   );
 };

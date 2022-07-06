@@ -57,7 +57,14 @@
       "name": "name",
       "email": "email",
       "message": "message",
-      "submitButton": "submit",
+      "submitButton": {
+        "default": "submit",
+        "submitting": "submitting"
+      },
+      "status": {
+        "success": "the email was sent successfully",
+        "error": "something went wrong. Please try again later"
+      },
       "errorMessages": {
         "required": "This field is required",
         "pattern": "The email is invalid",
