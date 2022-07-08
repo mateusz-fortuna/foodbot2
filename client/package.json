@@ -1,6 +1,6 @@
 {
   "name": "foodbot",
-  "homepage": ".",
+  "homepage": "/",
   "publicPath": "/",
   "main": "src/App.tsx",
   "version": "0.1.0",

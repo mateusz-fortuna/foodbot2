@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import path from "path";
 import cors from "cors";
 import axios from "axios";
+import { Inputs } from "./client/src/components/Form";
 
 // ----------SERVER CONFIG---------- //
 
@@ -14,8 +15,8 @@ app.use(express.static(path.join(__dirname, "client/build")));
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/client/public/index.html"));
+app.get("/*", (_req, res) => {
+  res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
 app.listen(port, () => {
@@ -38,13 +39,11 @@ app.post("/contact/submit", (req, res) => {
     template_id: REACT_APP_EMAILJS_TEMPLATE,
     template_params: {
       ...req.body,
-    },
+    } as Inputs,
     accessToken: REACT_APP_EMAILJS_TOKEN,
   };
 
   return axios
     .post("https://api.emailjs.com/api/v1.0/email/send", data)
-    .then((apiRes) => res.send(apiRes))
-    .then(() => console.log("Email sent successfully."))
-    .catch((err) => console.error("Failed to sent email: ", err));
+    .then(() => res.sendStatus(200));
 });

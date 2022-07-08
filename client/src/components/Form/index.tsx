@@ -50,7 +50,10 @@ const Form = (): JSX.Element => {
     setIsSubmitButtonClicked(true);
     if (isCaptchaValid) {
       setSubmittingStatus('inProgress');
-      return axios.post(serverPath, data).then((res) => console.log(res));
+      return axios
+        .post(serverPath, data)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
     }
   };
 
