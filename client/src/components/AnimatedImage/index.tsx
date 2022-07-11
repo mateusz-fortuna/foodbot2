@@ -1,3 +1,4 @@
+import Spinner from 'components/Spinner';
 import { useEffect, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { useGlobalState } from 'utils/hooks';
@@ -41,6 +42,7 @@ const AnimatedImage = ({
 
   return (
     <div className="content__wrapper">
+      {!imageLoaded && <Spinner />}
       <CSSTransition
         in={mount && imageLoaded}
         classNames={animationClass}

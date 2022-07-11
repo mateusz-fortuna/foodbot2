@@ -5,19 +5,22 @@ $transitionDuration: calc(1.5*#{$duration})
 
 .features__details
   width: 100%
-  height: $height
-  position: absolute
-  left: 0
-  bottom: 0
-  display: flex
-  align-items: center
-  justify-content: center
   overflow: hidden
+  z-index: 1
+  position: absolute
+  bottom: 0
+
+.features__details--desktop
+  height: $height
+
+.features__details--mobile
+  height: 100%
 
 .features__details_imgSection
   width: 100%
   display: flex
   overflow: hidden
+  justify-content: center
 
 .features__details_imgSection_img
   width: 100%
@@ -50,7 +53,7 @@ $transitionDuration: calc(1.5*#{$duration})
   gap: calc( 4*#{$padding-standard} )
 
 
-.features__details > h1 > .contentProgressIndicator
+.features__details > .featuresDetailsTransition > h1 > .contentProgressIndicator
   position: absolute
   bottom: 0
   right: 0
@@ -59,11 +62,21 @@ $transitionDuration: calc(1.5*#{$duration})
 
 // ----------ANIMATIONS---------- //
 
+.featuresDetailsTransition
+  position: absolute
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100%
+  height: 100%
+  bottom: 0
+  overflow: hidden
+
 .featuresDetailsTransition-appear, .featuresDetailsTransition-exit-done
   height: 0
 
 .featuresDetailsTransition-appear-active
-  height: $height
+  height: 100%
   transition: all $transitionDuration
 
 .featuresDetailsTransition-exit-active

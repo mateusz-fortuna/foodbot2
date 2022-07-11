@@ -81,58 +81,69 @@ const FeatureDetails = (): JSX.Element | null => {
   /* eslint-disable @typescript-eslint/indent */
   return (
     OPENED_FEATURE && (
-      <CSSTransition
-        classNames={transitionClass}
-        in={mount}
-        timeout={detailsAnimationDuration}
-        appear
+      <div
+        className={`features__details ${
+          isLandscape
+            ? 'features__details--desktop'
+            : 'features__details--mobile'
+        }  `}
       >
-        <div
-          className={'features__details ' + transitionClass}
-          style={{
-            backgroundColor: background.default,
-            color: font.default,
-          }}
+        <CSSTransition
+          classNames={transitionClass}
+          in={mount}
+          timeout={detailsAnimationDuration}
+          appear
         >
-          <CloseButton onClick={handleCloseButton} />
-          {isLandscape && <FeatureDetailsButton direction="previous" />}
-          {resetContent
-            ? null
-            : featuresRef.current && (
-                <div className={sectionContainerClass}>
-                  <ImgSection
-                    mount={mountContent}
-                    nth={1}
-                    imgUrl={featuresRef.current.imgUrl}
-                    alt=""
-                  />
-                  <ContentSection
-                    mount={mountContent}
-                    nth={2}
-                    title={featuresRef.current.title}
-                    description={featuresRef.current.description}
-                  />
-                </div>
-              )}
-          {isLandscape && OPENED_FEATURE && (
-            <h1>
-              <ContentProgressIndicator
-                numerator={featureIndex}
-                denominator={Object.keys(features).length}
-                mount={mountContent}
-              />
-            </h1>
-          )}
-          {isLandscape ? (
-            <FeatureDetailsButton direction="next" />
-          ) : (
-            <div className="features__details_arrowsContainer">
-              <FeatureDetailsButton direction="previous" />
+          <div
+            className={transitionClass}
+            style={{
+              backgroundColor: background.default,
+              color: font.default,
+            }}
+          >
+            <CloseButton onClick={handleCloseButton} />
+            {isLandscape && <FeatureDetailsButton direction="previous" />}
+            {resetContent
+              ? null
+              : featuresRef.current && (
+                  <div className={sectionContainerClass}>
+                    <ImgSection
+                      mount={mountContent}
+                      nth={1}
+                      imgUrl={featuresRef.current.imgUrl}
+                      alt=""
+                    />
+                    <ContentSection
+                      mount={mountContent}
+                      nth={2}
+                      title={featuresRef.current.title}
+                      description={featuresRef.current.description}
+                    />
+                  </div>
+                )}
+            {isLandscape && OPENED_FEATURE && (
+              <h1>
+                <ContentProgressIndicator
+                  numerator={featureIndex}
+                  denominator={Object.keys(features).length}
+                  mount={mountContent}
+                />
+              </h1>
+            )}
+            {isLandscape ? (
               <FeatureDetailsButton direction="next" />
-            </div>
-          )}
-        </div>
-      </CSSTransition>
+            ) : (
+              <div
+                className="features__details_arrowsContainer"
+                style={{ bottom: '1rem' }}
+              >
+                <FeatureDetailsButton direction="previous" />
+                <FeatureDetailsButton direction="next" />
+              </div>
+            )}
+          </div>
+        </CSSTransition>
+      </div>
     )
   );
 };
