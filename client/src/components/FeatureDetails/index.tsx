@@ -106,7 +106,10 @@ const FeatureDetails = (): JSX.Element | null => {
             {resetContent
               ? null
               : featuresRef.current && (
-                  <div className={sectionContainerClass}>
+                  <div
+                    className={sectionContainerClass}
+                    style={isLandscape ? undefined : { height: '70%' }}
+                  >
                     <ImgSection
                       mount={mountContent}
                       nth={1}
