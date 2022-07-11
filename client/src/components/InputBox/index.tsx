@@ -1,4 +1,3 @@
-import AnimatedText from 'components/AnimatedText';
 import { Inputs } from 'components/Form';
 import { FieldErrors, UseFormRegister, ValidationRule } from 'react-hook-form';
 import { RootState } from 'redux/rootReducer';
@@ -7,39 +6,46 @@ type ErrorMessages =
   RootState['languageReducer']['CONTENT']['contact']['form']['errorMessages'];
 type Props = {
   register: UseFormRegister<Inputs>;
-  name: UseFormRegister<Inputs>['arguments']['name'];
+  setInputFocus: () => void;
+  id: UseFormRegister<Inputs>['arguments']['name'];
+  name: string;
   type?: 'text' | 'textarea';
   rows?: number;
   required?: boolean;
   pattern?: ValidationRule<RegExp>;
-  nth: number;
   errors: FieldErrors<Inputs>;
   errorMessages: ErrorMessages;
 };
 
 const InputBox = ({
+  id,
   type = 'text',
   rows = 12,
   name,
   required = false,
   pattern,
-  nth,
-  register,
   errors,
   errorMessages,
+  register,
+  setInputFocus,
 }: Props): JSX.Element => {
-  const textInput = <input {...register(name, { required, pattern })} />;
+  const textInput = (
+    <input
+      id={id}
+      {...register(id, { required, pattern })}
+      onFocus={setInputFocus}
+    />
+  );
   const textArea = (
     <textarea
-      {...register('message', { required: required, pattern })}
+      id={id}
+      {...register(id, { required: required, pattern })}
       rows={rows}
     />
   );
   return (
     <div className="inputBox">
-      <label>
-        <AnimatedText nth={nth}>{`${name}:`}</AnimatedText>
-      </label>
+      <label htmlFor={id}>{`${name}:`}</label>
       {type === 'text' ? textInput : textArea}
       {errors.name && (
         <span className="spanError">{errorMessages.required}</span>

@@ -21,20 +21,17 @@ const SubmitButton = ({ children, isFormSubmitting }: Props): JSX.Element => {
 
   const marginTop = (
     isLandscape
-      ? {
+      ? undefined
+      : {
           marginTop: 0,
         }
-      : undefined
   ) as React.CSSProperties | undefined;
 
   return (
     <Button
       backgroundColor={background.inverted}
       fontColor={font.inverted}
-      style={{
-        ...marginTop,
-        opacity: isFormSubmitting ? 0.6 : 1,
-      }}
+      style={{ ...marginTop, opacity: isFormSubmitting ? 0.6 : 1 }}
     >
       {children}
       <input type="submit" style={submitButtonStyle} />

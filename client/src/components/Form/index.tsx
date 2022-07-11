@@ -1,9 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useGlobalState, useOrientation } from 'utils/hooks';
 import InputBox from 'components/InputBox';
-import AnimatedText from 'components/AnimatedText';
 import ReCAPTCHA from 'react-google-recaptcha';
 import SubmitButton from 'components/Button/SubmitButton';
 import axios from 'axios';
@@ -21,6 +19,10 @@ const Form = (): JSX.Element => {
   const recaptchaSiteKey = '6LerWc0aAAAAAHshuCVA20zxcp1UbBPCDFGXL1Dg';
   const state = useGlobalState();
   const isLandscape = useOrientation() === 'landscape';
+  const { DURATION } = state.transitionReducer;
+  const [isInputFocused, setIsInputFocused] = useState(false);
+  const captchaWrapperRef = useRef<HTMLDivElement | null>(null);
+  const transitionTimeout = useRef<NodeJS.Timeout | null>(null);
   const [isCaptchaValid, setIsCaptchaValid] = useState(false);
   const [isSubmitButtonClicked, setIsSubmitButtonClicked] = useState(false);
   const [submittingStatus, setSubmittingStatus] = useState<Status>('none');
@@ -38,6 +40,7 @@ const Form = (): JSX.Element => {
     errors,
     register,
     required: true,
+    setInputFocus: () => setIsInputFocused(true),
   };
 
   const emailPattern = {
@@ -57,28 +60,48 @@ const Form = (): JSX.Element => {
     }
   };
 
+  useEffect(() => {
+    const captha = captchaWrapperRef.current;
+    if (isInputFocused && captha) {
+      transitionTimeout.current = setTimeout(() => {
+        captha.style.opacity = '1';
+      }, DURATION);
+    }
+
+    return () => {
+      if (transitionTimeout.current) clearTimeout(transitionTimeout.current);
+    };
+  }, [isInputFocused, DURATION]);
+
   return (
     <form
       onSubmit={handleSubmit(submit)}
-      style={{ marginTop: isLandscape ? 0 : '4rem' }}
+      style={{ marginTop: isLandscape ? '2rem' : '4rem' }}
     >
-      <h1>
-        <AnimatedText>{`${title}!`}</AnimatedText>
-      </h1>
-      <InputBox name={name} nth={1} {...inputBoxProps} />
+      <h1>{`${title}!`}</h1>
+      <InputBox id="name" name={name} {...inputBoxProps} />
       <InputBox
+        id="email"
         name={email}
-        nth={2}
         pattern={emailPattern}
         {...inputBoxProps}
       />
-      <InputBox name={message} nth={3} type="textarea" {...inputBoxProps} />
-      <ReCAPTCHA
-        sitekey={recaptchaSiteKey}
-        onChange={() => setIsCaptchaValid(true)}
+      <InputBox
+        id="message"
+        name={message}
+        type="textarea"
+        {...inputBoxProps}
       />
-      {!isCaptchaValid && isSubmitButtonClicked && (
-        <span className="spanError">{errorMessages.captcha}</span>
+      {isLandscape && isInputFocused && (
+        <div className="captchaWrapper" ref={captchaWrapperRef}>
+          <ReCAPTCHA
+            sitekey={recaptchaSiteKey}
+            onChange={() => setIsCaptchaValid(true)}
+          />
+          {!isCaptchaValid && isSubmitButtonClicked && (
+            <span className="spanError">{errorMessages.captcha}</span>
+          )}
+        </div>
       )}
       <SubmitButton isFormSubmitting={submittingStatus === 'inProgress'}>
         {submittingStatus === 'inProgress'

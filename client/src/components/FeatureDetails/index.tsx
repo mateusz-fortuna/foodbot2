@@ -20,7 +20,7 @@ const FeatureDetails = (): JSX.Element | null => {
   const { DURATION } = state.transitionReducer;
   const { background, font } = state.themeReducer.THEME;
   const { features } = state.languageReducer.CONTENT;
-  const orientation = useOrientation();
+  const isLandscape = useOrientation() === 'landscape';
   const firstOpen = useRef(true);
   const featuresRef = useRef(OPENED_FEATURE ? features[OPENED_FEATURE] : null);
   const [mountContent, setMountContent] = useState(true);
@@ -37,8 +37,9 @@ const FeatureDetails = (): JSX.Element | null => {
   const transitionClass = 'featuresDetailsTransition';
   const sectionClass = 'features__details_sectionContainer';
   const sectionClassPortrait = `${sectionClass} features__details_sectionContainer--portrait`;
-  const sectionContainerClass =
-    orientation === 'portrait' ? sectionClassPortrait : sectionClass;
+  const sectionContainerClass = isLandscape
+    ? sectionClass
+    : sectionClassPortrait;
 
   // Handle content transition
 
@@ -94,9 +95,7 @@ const FeatureDetails = (): JSX.Element | null => {
           }}
         >
           <CloseButton onClick={handleCloseButton} />
-          {orientation === 'landscape' && (
-            <FeatureDetailsButton direction="previous" />
-          )}
+          {isLandscape && <FeatureDetailsButton direction="previous" />}
           {resetContent
             ? null
             : featuresRef.current && (
@@ -115,7 +114,7 @@ const FeatureDetails = (): JSX.Element | null => {
                   />
                 </div>
               )}
-          {orientation === 'landscape' && OPENED_FEATURE && (
+          {isLandscape && OPENED_FEATURE && (
             <h1>
               <ContentProgressIndicator
                 numerator={featureIndex}
@@ -124,7 +123,7 @@ const FeatureDetails = (): JSX.Element | null => {
               />
             </h1>
           )}
-          {orientation === 'landscape' ? (
+          {isLandscape ? (
             <FeatureDetailsButton direction="next" />
           ) : (
             <div className="features__details_arrowsContainer">
