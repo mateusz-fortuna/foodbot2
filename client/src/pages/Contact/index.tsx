@@ -1,32 +1,29 @@
 import { useGlobalState, useOrientation } from 'utils/hooks';
+import FormContainer from 'components/FormContainer';
 import Map from 'components/Map';
-import Form from 'components/Form';
 import './index.sass';
 
 const Contact = (): JSX.Element => {
   const state = useGlobalState();
   const isLandscape = useOrientation() === 'landscape';
   const { font, background } = state.themeReducer.THEME;
-  const { latitude, longitude, zoom, markerLatitude, markerLongitude } =
-    state.languageReducer.CONTENT.contact.map;
+  const { map } = state.languageReducer.CONTENT.contact;
 
   return (
     <main
       className="contact page__container"
       style={{ backgroundColor: background.default, color: font.default }}
     >
-      <section className="contact__form_container">
-        <Form />
-      </section>
+      <FormContainer />
       {isLandscape && (
         <section className="contact__map_container">
           <div className="contact__map">
             <Map
-              latitude={latitude}
-              longitude={longitude}
-              zoom={zoom}
-              markerLatitude={markerLatitude}
-              markerLongitude={markerLongitude}
+              latitude={map.latitude}
+              longitude={map.longitude}
+              zoom={map.zoom}
+              markerLatitude={map.markerLatitude}
+              markerLongitude={map.markerLongitude}
             />
           </div>
         </section>

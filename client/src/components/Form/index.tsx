@@ -1,10 +1,11 @@
+import axios, { AxiosResponse } from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useGlobalState, useOrientation } from 'utils/hooks';
+import { Status } from 'components/FormContainer';
 import InputBox from 'components/InputBox';
 import ReCAPTCHA from 'react-google-recaptcha';
 import SubmitButton from 'components/Button/SubmitButton';
-import axios from 'axios';
 import './index.sass';
 
 export type Inputs = {
@@ -12,9 +13,15 @@ export type Inputs = {
   email: string;
   message: string;
 };
-type Status = 'none' | 'inProgress' | 'success' | 'error';
+type Props = {
+  submittingStatus: Status;
+  setSubmittingStatus: React.Dispatch<React.SetStateAction<Status>>;
+};
 
-const Form = (): JSX.Element => {
+const Form = ({
+  submittingStatus,
+  setSubmittingStatus,
+}: Props): JSX.Element => {
   const serverPath = 'http://localhost:3001/contact/submit';
   const recaptchaSiteKey = '6LerWc0aAAAAAHshuCVA20zxcp1UbBPCDFGXL1Dg';
   const state = useGlobalState();
@@ -25,9 +32,14 @@ const Form = (): JSX.Element => {
   const transitionTimeout = useRef<NodeJS.Timeout | null>(null);
   const [isCaptchaValid, setIsCaptchaValid] = useState(false);
   const [isSubmitButtonClicked, setIsSubmitButtonClicked] = useState(false);
-  const [submittingStatus, setSubmittingStatus] = useState<Status>('none');
   const { title, name, email, message, submitButton, errorMessages } =
     state.languageReducer.CONTENT.contact.form;
+
+  const emailPattern = {
+    value:
+      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+    message: errorMessages.pattern,
+  };
 
   const {
     register,
@@ -43,23 +55,20 @@ const Form = (): JSX.Element => {
     setInputFocus: () => setIsInputFocused(true),
   };
 
-  const emailPattern = {
-    value:
-      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-    message: errorMessages.pattern,
+  const handleResponseStatus = ({ status }: AxiosResponse) => {
+    if (status === 200) return setSubmittingStatus('success');
+    return setSubmittingStatus('error');
   };
 
   const submit: SubmitHandler<Inputs> = (data) => {
     setIsSubmitButtonClicked(true);
     if (isCaptchaValid) {
       setSubmittingStatus('inProgress');
-      return axios
-        .post(serverPath, data)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+      axios.post(serverPath, data).then((res) => handleResponseStatus(res));
     }
   };
 
+  // Show captcha
   useEffect(() => {
     const captha = captchaWrapperRef.current;
     if (isInputFocused && captha) {
@@ -67,7 +76,6 @@ const Form = (): JSX.Element => {
         captha.style.opacity = '1';
       }, DURATION);
     }
-
     return () => {
       if (transitionTimeout.current) clearTimeout(transitionTimeout.current);
     };
