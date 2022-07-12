@@ -45,11 +45,26 @@
     }
   },
   "gallery": [
-    "https://images.unsplash.com/photo-1652074847108-0b4294408ca1",
-    "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
-    "https://images.unsplash.com/photo-1656199538282-4d07b0685b01",
-    "https://images.unsplash.com/photo-1648737119359-510d4f551382",
-    "https://images.unsplash.com/photo-1656390170467-071bffc48871"
+    {
+      "url": "https://images.unsplash.com/photo-1652074847108-0b4294408ca1",
+      "alt": ""
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
+      "alt": ""
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1656199538282-4d07b0685b01",
+      "alt": ""
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1648737119359-510d4f551382",
+      "alt": ""
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1656390170467-071bffc48871",
+      "alt": ""
+    }
   ],
   "contact": {
     "form": {

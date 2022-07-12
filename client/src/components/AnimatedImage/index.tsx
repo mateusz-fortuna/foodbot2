@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import { useGlobalState } from 'utils/hooks';
 
 type Props = {
-  mount: boolean;
+  mount?: boolean;
   src: string;
   alt: string;
   nth?: number;
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const AnimatedImage = ({
-  mount,
+  mount = true,
   src,
   alt,
   nth = 0,

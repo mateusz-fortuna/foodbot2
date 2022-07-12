@@ -1,12 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import AnimatedImage from 'components/AnimatedImage';
 import ArrowButton, { Direction } from 'components/Button/ArrowButton';
 import ContentProgressIndicator from 'components/ContentProgressIndicator';
 import { useEffect, useRef, useState } from 'react';
 import { useGlobalState, useOrientation } from 'utils/hooks';
 import './index.sass';
 
+type ImageData = {
+  url: string;
+  alt: string;
+};
 type Props = {
-  images: HTMLImageElement[];
+  images: ImageData[];
 };
 
 const GalleryContent = ({ images }: Props): JSX.Element => {
@@ -72,7 +77,10 @@ const GalleryContent = ({ images }: Props): JSX.Element => {
         style={{ marginBottom: isLandscape ? 0 : '4rem' }}
       >
         <div className="gallery__content">
-          <img src={images[imgIndex].src} alt={images[imgIndex].alt} />
+          <AnimatedImage
+            src={images[imgIndex].url}
+            alt={images[imgIndex].alt}
+          />
         </div>
         {isLandscape && (
           <h1>
