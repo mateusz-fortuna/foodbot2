@@ -8,15 +8,17 @@ const Navbar = (): JSX.Element => {
 
   return (
     <nav className="navbar">
-      {PAGES.map((name) => (
-        <NavbarItem key={name}>
-          <NavigationButton
-            page={name}
-            fontColor="#fff"
-            backgroundColor="transparent"
-          />
-        </NavbarItem>
-      ))}
+      <ol>
+        {PAGES.map((name) => (
+          <NavbarItem key={name}>
+            <NavigationButton
+              page={name}
+              fontColor="#fff"
+              backgroundColor="transparent"
+            />
+          </NavbarItem>
+        ))}
+      </ol>
     </nav>
   );
 };
