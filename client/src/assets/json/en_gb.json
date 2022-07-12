@@ -77,8 +77,14 @@
         "submitting": "submitting"
       },
       "status": {
-        "success": "the email was sent successfully",
-        "error": "something went wrong. Please try again later"
+        "success": {
+          "header": "thank you",
+          "message": "The email was sent successfully."
+        },
+        "error": {
+          "header": "The message cannot be send.",
+          "message": "Something went wrong. Please try again later."
+        }
       },
       "errorMessages": {
         "required": "This field is required",
