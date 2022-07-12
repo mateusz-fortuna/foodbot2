@@ -15,13 +15,12 @@ type Props = {
 };
 
 const GalleryContent = ({ images }: Props): JSX.Element => {
+  const { DURATION } = useGlobalState().transitionReducer;
   const [imgIndex, setImgIndex] = useState(0);
   const [numerator, setNumerator] = useState(imgIndex + 1);
   const [isIndicator, setIsIndicator] = useState(false);
-  const { DURATION } = useGlobalState().transitionReducer;
   const isLandscape = useOrientation() === 'landscape';
   const transitionTimer = useRef<NodeJS.Timeout | null>(null);
-  const arrowsMargin = isLandscape ? '8rem' : 0;
   const lastIndex = images.length - 1;
 
   const incrementIndex = () =>
@@ -38,21 +37,6 @@ const GalleryContent = ({ images }: Props): JSX.Element => {
     if (code === 'ArrowRight') return changeImage('next');
   };
 
-  const leftArrow = (
-    <ArrowButton
-      direction="previous"
-      style={{ marginLeft: arrowsMargin }}
-      onClick={() => changeImage('previous')}
-    />
-  );
-  const rightArrow = (
-    <ArrowButton
-      direction="next"
-      style={{ marginRight: arrowsMargin }}
-      onClick={() => changeImage('next')}
-    />
-  );
-
   useEffect(() => {
     setIsIndicator(false);
     transitionTimer.current = setTimeout(() => {
@@ -68,6 +52,36 @@ const GalleryContent = ({ images }: Props): JSX.Element => {
       if (transitionTimer.current) clearTimeout(transitionTimer.current);
     };
   }, []);
+
+  // ----------BUTTONS---------- //
+
+  const arrowsMargin = isLandscape ? '8rem' : 0;
+
+  const leftArrow = (
+    <ArrowButton
+      direction="previous"
+      style={{ marginLeft: arrowsMargin }}
+      onClick={() => changeImage('previous')}
+    />
+  );
+  const rightArrow = (
+    <ArrowButton
+      direction="next"
+      style={{ marginRight: arrowsMargin }}
+      onClick={() => changeImage('next')}
+    />
+  );
+  const buttonsMobileLayout = (
+    <div
+      className="features__details_arrowsContainer"
+      style={{ bottom: '1rem' }}
+    >
+      {leftArrow}
+      {rightArrow}
+    </div>
+  );
+
+  // ----------JSX---------- //
 
   return (
     <>
@@ -93,15 +107,7 @@ const GalleryContent = ({ images }: Props): JSX.Element => {
         )}
       </div>
       {isLandscape && rightArrow}
-      {!isLandscape && (
-        <div
-          className="features__details_arrowsContainer"
-          style={{ bottom: '1rem' }}
-        >
-          {leftArrow}
-          {rightArrow}
-        </div>
-      )}
+      {!isLandscape && buttonsMobileLayout}
     </>
   );
 };
