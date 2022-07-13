@@ -78,12 +78,12 @@
       },
       "status": {
         "success": {
-          "header": "thank you",
+          "header": "Thank you!",
           "message": "The email was sent successfully."
         },
         "error": {
           "header": "The message cannot be send.",
-          "message": "Something went wrong. Please try again later."
+          "message": "Something went wrong. Please contact us with the following email address:"
         }
       },
       "errorMessages": {
