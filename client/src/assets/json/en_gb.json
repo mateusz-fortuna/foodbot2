@@ -5,13 +5,12 @@
       "subtitle": "Create your own dream dessert"
     }
   ],
-  "home": [
-    {
-      "title": "FoodBot",
-      "description": "FoodBot 3D printer is an equipment which can make food quickly. It allows you to create your own dream dessert.",
-      "button": "Discover features"
-    }
-  ],
+  "home": {
+    "title": "FoodBot",
+    "description": "FoodBot 3D printer is an equipment which can make food quickly. It allows you to create your own dream dessert.",
+    "button": "Discover features",
+    "imgUrl": "https://images.unsplash.com/photo-1652074847108-0b4294408ca1"
+  },
   "features": {
     "basis": {
       "buttonPos": [32, 69],
@@ -47,23 +46,23 @@
   "gallery": [
     {
       "url": "https://images.unsplash.com/photo-1652074847108-0b4294408ca1",
-      "alt": ""
+      "alt": "Lorem ipsum"
     },
     {
       "url": "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
-      "alt": ""
+      "alt": "Lorem ipsum"
     },
     {
       "url": "https://images.unsplash.com/photo-1656199538282-4d07b0685b01",
-      "alt": ""
+      "alt": "Lorem ipsum"
     },
     {
       "url": "https://images.unsplash.com/photo-1648737119359-510d4f551382",
-      "alt": ""
+      "alt": "Lorem ipsum"
     },
     {
       "url": "https://images.unsplash.com/photo-1656390170467-071bffc48871",
-      "alt": ""
+      "alt": "Lorem ipsum"
     }
   ],
   "contact": {

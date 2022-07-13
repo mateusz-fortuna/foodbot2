@@ -2,6 +2,7 @@ import NavbarItem from 'components/Navbar/NavbarItem';
 import NavigationButton from 'components/Button/NavigationButton';
 import { useGlobalState } from 'utils/hooks';
 import './index.sass';
+import LanguageButtonsWrapper from 'components/LanguageButtonsWrapper';
 
 const Navbar = (): JSX.Element => {
   const { PAGES } = useGlobalState().navigationReducer;
@@ -19,6 +20,7 @@ const Navbar = (): JSX.Element => {
           </NavbarItem>
         ))}
       </ol>
+      <LanguageButtonsWrapper />
     </nav>
   );
 };

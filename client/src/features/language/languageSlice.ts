@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { english, polish } from './languages';
 import EN_GB from '../../assets/json/en_gb.json';
+import PL_PL from '../../assets/json/pl_pl.json';
 
-const content = (payload: string) => {
+export type Language = 'english' | 'polish';
+
+const getContent = (payload?: Language) => {
   switch (payload) {
-    case polish:
-      return EN_GB;
+    case 'polish':
+      return PL_PL;
     default:
       return EN_GB;
   }
@@ -14,13 +16,13 @@ const content = (payload: string) => {
 const languageSlice = createSlice({
   name: 'language',
   initialState: {
-    LANGUAGE: english,
-    CONTENT: content(english),
+    LANGUAGE: 'english',
+    CONTENT: getContent(),
   },
   reducers: {
-    setLanguage: (state, { payload }: PayloadAction<string>) => {
+    setLanguage: (state, { payload }: PayloadAction<Language>) => {
       state.LANGUAGE = payload;
-      state.CONTENT = content(payload);
+      state.CONTENT = getContent(payload);
     },
   },
 });

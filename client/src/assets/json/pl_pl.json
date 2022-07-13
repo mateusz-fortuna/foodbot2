@@ -1,0 +1,101 @@
+{
+  "intro": {
+    "title": "FoodBot",
+    "subtitle": "Powitanie w języku polskim"
+  },
+  "home": {
+    "title": "FoodBot",
+    "description": "Jakiś tekst testowy po polsku. Sprawdzam działanie przełączania ustawień językowych. Strona FoodBot jest już prawie na ukończeniu.",
+    "button": "Odkryj możliwości",
+    "imgUrl": "https://images.unsplash.com/photo-1652074847108-0b4294408ca1"
+  },
+  "features": {
+    "basis": {
+      "buttonPos": [32, 69],
+      "imgUrl": "https://images.unsplash.com/photo-1653233871814-7e7b75102e3c",
+      "title": "Podstawa",
+      "description": "Różne szerokości dysz (0.3mm - 1.2mm) pozwalają ci zdecydować, jak delikatny będzie wydruk. A drukarka FoodBot 3D zawsze zrobi to doskonale. Przykładowy bełkot marketingowy."
+    },
+    "fence": {
+      "buttonPos": [38, 40],
+      "imgUrl": "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
+      "title": "Coś tam",
+      "description": "Różne szerokości dysz (0.3mm - 1.2mm) pozwalają ci zdecydować, jak delikatny będzie wydruk. A drukarka FoodBot 3D zawsze zrobi to doskonale. Przykładowy bełkot marketingowy."
+    },
+    "head": {
+      "buttonPos": [48, 60],
+      "imgUrl": "https://images.unsplash.com/photo-1656199538282-4d07b0685b01",
+      "title": "Głowica",
+      "description": "Różne szerokości dysz (0.3mm - 1.2mm) pozwalają ci zdecydować, jak delikatny będzie wydruk. A drukarka FoodBot 3D zawsze zrobi to doskonale. Przykładowy bełkot marketingowy."
+    },
+    "logo": {
+      "buttonPos": [53, 27],
+      "imgUrl": "https://images.unsplash.com/photo-1648737119359-510d4f551382",
+      "title": "Logo",
+      "description": "Różne szerokości dysz (0.3mm - 1.2mm) pozwalają ci zdecydować, jak delikatny będzie wydruk. A drukarka FoodBot 3D zawsze zrobi to doskonale. Przykładowy bełkot marketingowy."
+    },
+    "screen": {
+      "buttonPos": [80, 28],
+      "imgUrl": "https://images.unsplash.com/photo-1656390170467-071bffc48871",
+      "title": "Wyświetlacz",
+      "description": "Różne szerokości dysz (0.3mm - 1.2mm) pozwalają ci zdecydować, jak delikatny będzie wydruk. A drukarka FoodBot 3D zawsze zrobi to doskonale. Przykładowy bełkot marketingowy."
+    }
+  },
+  "gallery": [
+    {
+      "url": "https://images.unsplash.com/photo-1652074847108-0b4294408ca1",
+      "alt": "Lorem ipsum"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
+      "alt": "Lorem ipsum"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1656199538282-4d07b0685b01",
+      "alt": "Lorem ipsum"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1648737119359-510d4f551382",
+      "alt": "Lorem ipsum"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1656390170467-071bffc48871",
+      "alt": "Lorem ipsum"
+    }
+  ],
+  "contact": {
+    "form": {
+      "title": "Zadaj nam pytanie!",
+      "name": "imię",
+      "email": "email",
+      "message": "wiadomość",
+      "submitButton": {
+        "default": "wyślij",
+        "submitting": "wysyłanie"
+      },
+      "status": {
+        "success": {
+          "header": "Dziękujemy za wiadomość!",
+          "message": "Email został dostarczony. Niedługo skontaktujemy się z tobą."
+        },
+        "error": {
+          "header": "Wiadomość nie została wysłana.",
+          "message": "Coś poszło nie tak. Prosimy o kontakt poprzez poniższy adres mailowy:"
+        }
+      },
+      "errorMessages": {
+        "required": "Pole jest wymagane",
+        "pattern": "Email jest niepoprawny",
+        "captcha": "ReCAPTCHA jest obowiązkowa"
+      }
+    },
+    "map": {
+      "latitude": 52.2319,
+      "longitude": 21.0062,
+      "zoom": 15,
+      "markerLatitude": 52.2319,
+      "markerLongitude": 21.0062
+    },
+    "email": "sample_email@gmail.com"
+  }
+}
