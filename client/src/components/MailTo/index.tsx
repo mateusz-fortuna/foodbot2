@@ -1,18 +1,19 @@
+import AnimatedText from 'components/AnimatedText';
+import './index.sass';
+
 type Props = {
   email: string;
   color: string;
+  nth?: number;
 };
 
-const MailTo = ({ email, color }: Props): JSX.Element => {
+const MailTo = ({ email, color, nth = 0 }: Props): JSX.Element => {
   return (
-    <>
-      <a
-        href={`mailto:${email}`}
-        style={{ color: color, textDecoration: 'underline dotted' }}
-      >
-        {email}
+    <div className="mailTo">
+      <a href={`mailto:${email}`} style={{ color: color }}>
+        <AnimatedText nth={nth}>{email}</AnimatedText>
       </a>
-    </>
+    </div>
   );
 };
 
