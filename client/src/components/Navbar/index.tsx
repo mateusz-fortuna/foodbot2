@@ -20,7 +20,7 @@ const Navbar = (): JSX.Element => {
           </NavbarItem>
         ))}
       </ol>
-      <LanguageButtonsWrapper />
+      <LanguageButtonsWrapper mount />
     </nav>
   );
 };
