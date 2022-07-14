@@ -30,19 +30,13 @@ const NavigationButton = (props: Props): JSX.Element => {
     };
   }, []);
 
-  const buttonText = () => {
-    if (children) return children;
-    if (page === '') return 'Home';
-    return page;
-  };
-
   return (
     <Button
       fontColor={props.fontColor}
       backgroundColor={props.backgroundColor}
       onClick={handleNavigation}
     >
-      {buttonText()}
+      {children}
     </Button>
   );
 };

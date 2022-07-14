@@ -16,7 +16,7 @@ const getContent = (payload?: Language) => {
 const languageSlice = createSlice({
   name: 'language',
   initialState: {
-    LANGUAGE: 'english',
+    LANGUAGE: 'english' as Language,
     CONTENT: getContent(),
   },
   reducers: {

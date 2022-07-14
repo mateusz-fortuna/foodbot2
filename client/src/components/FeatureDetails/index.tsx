@@ -19,7 +19,7 @@ const FeatureDetails = (): JSX.Element | null => {
   const { OPENED_FEATURE } = state.featureDetailsReducer;
   const { DURATION } = state.transitionReducer;
   const { background, font } = state.themeReducer.THEME;
-  const { features } = state.languageReducer.CONTENT;
+  const { features } = state.languageReducer.CONTENT.features;
   const isLandscape = useOrientation() === 'landscape';
   const firstOpen = useRef(true);
   const featuresRef = useRef(OPENED_FEATURE ? features[OPENED_FEATURE] : null);

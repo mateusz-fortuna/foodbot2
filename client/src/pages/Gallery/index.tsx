@@ -5,7 +5,7 @@ import './index.sass';
 const Gallery = (): JSX.Element => {
   const { languageReducer, themeReducer } = useGlobalState();
   const { background } = themeReducer.THEME;
-  const images = languageReducer.CONTENT.gallery;
+  const images = languageReducer.CONTENT.gallery.images;
 
   return (
     <div

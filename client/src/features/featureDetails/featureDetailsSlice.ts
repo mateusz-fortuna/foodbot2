@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'redux/rootReducer';
 
 export type FeatureName =
-  keyof RootState['languageReducer']['CONTENT']['features'];
+  keyof RootState['languageReducer']['CONTENT']['features']['features'];
 
 type State = {
   OPENED_FEATURE: FeatureName | null;

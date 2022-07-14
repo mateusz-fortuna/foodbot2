@@ -66,3 +66,11 @@ export const useOrientation = (): Orientation => {
 
   return orientation;
 };
+
+// ----------PAGE-NAME---------- //
+
+export const usePageNames = (): string[] => {
+  const state = useGlobalState();
+  const { contact, features, gallery, home } = state.languageReducer.CONTENT;
+  return [home.name, features.name, gallery.name, contact.name];
+};

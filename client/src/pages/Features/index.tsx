@@ -14,7 +14,7 @@ const Features = (): JSX.Element => {
   const dispatch = useDispatch();
   const state = useGlobalState();
   const { background } = state.themeReducer.THEME;
-  const { features } = state.languageReducer.CONTENT;
+  const { features } = state.languageReducer.CONTENT.features;
   const { OPENED_FEATURE } = state.featureDetailsReducer;
   const imageURL =
     'https://images.unsplash.com/photo-1652074847108-0b4294408ca1';

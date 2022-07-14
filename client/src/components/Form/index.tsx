@@ -86,7 +86,7 @@ const Form = ({
       onSubmit={handleSubmit(submit)}
       style={{ marginTop: isLandscape ? '2rem' : '4rem' }}
     >
-      <h1>{`${title}!`}</h1>
+      <h1>{title}</h1>
       <InputBox id="name" name={name} {...inputBoxProps} />
       <InputBox
         id="email"
