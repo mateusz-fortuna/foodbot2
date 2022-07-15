@@ -40,6 +40,7 @@ const FeatureDetails = (): JSX.Element | null => {
   const sectionContainerClass = isLandscape
     ? sectionClass
     : sectionClassPortrait;
+  const [isImageMounted, setIsImageMounted] = useState(false);
 
   // Handle content transition
 
@@ -93,6 +94,7 @@ const FeatureDetails = (): JSX.Element | null => {
           in={mount}
           timeout={detailsAnimationDuration}
           appear
+          onEntered={() => setIsImageMounted(true)}
         >
           <div
             className={transitionClass}
@@ -110,12 +112,15 @@ const FeatureDetails = (): JSX.Element | null => {
                     className={sectionContainerClass}
                     style={isLandscape ? undefined : { height: '70%' }}
                   >
-                    <ImgSection
-                      mount={mountContent}
-                      nth={1}
-                      imgUrl={featuresRef.current.imgUrl}
-                      alt=""
-                    />
+                    {
+                      <ImgSection
+                        isImageMounted={isImageMounted}
+                        mount={mountContent}
+                        nth={1}
+                        imgUrl={featuresRef.current.imgUrl}
+                        alt=""
+                      />
+                    }
                     <ContentSection
                       mount={mountContent}
                       nth={2}
