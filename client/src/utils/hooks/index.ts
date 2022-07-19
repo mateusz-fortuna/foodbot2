@@ -67,6 +67,26 @@ export const useOrientation = (): Orientation => {
   return orientation;
 };
 
+// ----------IS-SMALL-DEVICE---------- //
+
+export const useIsSmallDevice = (): boolean => {
+  const [isSmallDevice, setIsSmallDevice] = useState(false);
+
+  const checkIsSmallDevice = () => {
+    const minHeight = 700;
+    const deviceHeight = document.body.clientHeight;
+    return setIsSmallDevice(deviceHeight < minHeight);
+  };
+
+  useEffect(() => {
+    checkIsSmallDevice();
+    window.addEventListener('resize', checkIsSmallDevice);
+    return () => window.removeEventListener('resize', checkIsSmallDevice);
+  }, []);
+
+  return isSmallDevice;
+};
+
 // ----------PAGE-NAME---------- //
 
 export const usePageNames = (): string[] => {

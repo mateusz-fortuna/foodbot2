@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useGlobalState, useOrientation } from 'utils/hooks';
+import { useGlobalState, useIsSmallDevice, useOrientation } from 'utils/hooks';
 import { Status } from 'components/FormContainer';
 import InputBox from 'components/InputBox';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -26,12 +26,15 @@ const Form = ({
   const recaptchaSiteKey = '6LerWc0aAAAAAHshuCVA20zxcp1UbBPCDFGXL1Dg';
   const state = useGlobalState();
   const isLandscape = useOrientation() === 'landscape';
+  const isSmallDevice = useIsSmallDevice();
   const { DURATION } = state.transitionReducer;
   const [isInputFocused, setIsInputFocused] = useState(false);
   const captchaWrapperRef = useRef<HTMLDivElement | null>(null);
   const transitionTimeout = useRef<NodeJS.Timeout | null>(null);
   const [isCaptchaValid, setIsCaptchaValid] = useState(false);
+  const isTitleMounted = isSmallDevice ? !isInputFocused : true;
   const [isSubmitButtonClicked, setIsSubmitButtonClicked] = useState(false);
+
   const { title, name, email, message, submitButton, errorMessages } =
     state.languageReducer.CONTENT.contact.form;
 
@@ -86,7 +89,7 @@ const Form = ({
       onSubmit={handleSubmit(submit)}
       style={{ marginTop: isLandscape ? '2rem' : '4rem' }}
     >
-      <h1>{title}</h1>
+      {isTitleMounted && <h1>{title}</h1>}
       <InputBox id="name" name={name} {...inputBoxProps} />
       <InputBox
         id="email"
@@ -100,7 +103,7 @@ const Form = ({
         type="textarea"
         {...inputBoxProps}
       />
-      {isLandscape && isInputFocused && (
+      {isInputFocused && (
         <div className="captchaWrapper" ref={captchaWrapperRef}>
           <ReCAPTCHA
             sitekey={recaptchaSiteKey}
