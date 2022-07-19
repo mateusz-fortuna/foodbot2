@@ -10,7 +10,7 @@
     "title": "FoodBot",
     "description": "FoodBot 3D printer is an equipment which can make food quickly. It allows you to create your own dream dessert.",
     "button": "Discover features",
-    "imgUrl": "https://images.unsplash.com/photo-1652074847108-0b4294408ca1"
+    "imgUrl": "https://raw.githubusercontent.com/mateusz-fortuna/foodbot-website/master/client/src/assets/images/printer-perspective.png"
   },
   "features": {
     "name": "features",
@@ -51,23 +51,23 @@
     "name": "gallery",
     "images": [
       {
-        "url": "https://images.unsplash.com/photo-1652074847108-0b4294408ca1",
+        "url": "https://contents.sixshop.com/thumbnails/uploadedFiles/92537/default/image_1581835087339_500.png",
         "alt": "Lorem ipsum"
       },
       {
-        "url": "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
+        "url": "https://contents.sixshop.com/thumbnails/uploadedFiles/92537/default/image_1581677196789_500.png",
         "alt": "Lorem ipsum"
       },
       {
-        "url": "https://images.unsplash.com/photo-1656199538282-4d07b0685b01",
+        "url": "https://contents.sixshop.com/thumbnails/uploadedFiles/92537/default/image_1581677207104_500.png",
         "alt": "Lorem ipsum"
       },
       {
-        "url": "https://images.unsplash.com/photo-1648737119359-510d4f551382",
+        "url": "https://contents.sixshop.com/thumbnails/uploadedFiles/92537/default/image_1581677214696_500.png",
         "alt": "Lorem ipsum"
       },
       {
-        "url": "https://images.unsplash.com/photo-1656390170467-071bffc48871",
+        "url": "https://contents.sixshop.com/thumbnails/uploadedFiles/92537/default/image_1581837711219_500.png",
         "alt": "Lorem ipsum"
       }
     ]
