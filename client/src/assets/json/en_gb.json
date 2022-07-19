@@ -10,7 +10,7 @@
     "title": "FoodBot",
     "description": "FoodBot 3D printer is an equipment which can make food quickly. It allows you to create your own dream dessert.",
     "button": "Discover features",
-    "imgUrl": "https://raw.githubusercontent.com/mateusz-fortuna/foodbot-website/master/client/src/assets/images/printer-perspective.png"
+    "imgUrl": "https://raw.githubusercontent.com/mateusz-fortuna/foodbot2/dev/client/src/assets/images/food-printer-without-background.png"
   },
   "features": {
     "name": "features",

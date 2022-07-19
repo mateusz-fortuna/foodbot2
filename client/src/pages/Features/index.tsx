@@ -17,7 +17,7 @@ const Features = (): JSX.Element => {
   const { features } = state.languageReducer.CONTENT.features;
   const { OPENED_FEATURE } = state.featureDetailsReducer;
   const imageURL =
-    'https://images.unsplash.com/photo-1652074847108-0b4294408ca1';
+    'https://raw.githubusercontent.com/mateusz-fortuna/foodbot2/dev/client/src/assets/images/printer-perspective.png';
 
   useEffect(() => {
     if (OPENED_FEATURE) {

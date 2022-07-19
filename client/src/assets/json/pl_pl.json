@@ -8,7 +8,7 @@
     "title": "FoodBot",
     "description": "Jakiś tekst testowy po polsku. Sprawdzam działanie przełączania ustawień językowych. Strona FoodBot jest już prawie na ukończeniu.",
     "button": "Odkryj możliwości",
-    "imgUrl": "https://images.unsplash.com/photo-1652074847108-0b4294408ca1"
+    "imgUrl": "https://raw.githubusercontent.com/mateusz-fortuna/foodbot2/dev/client/src/assets/images/food-printer-without-background.png"
   },
   "features": {
     "name": "możliwości",
